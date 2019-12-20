@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/layuot/Index.cshtml";
+}
+
+<!-- services section -->
+<section class="services-w3l" id="services">
+    <div class="container">
+        <h3 class="text-center" data-aos="flip-up">Tìm Kiếm</h3>
+        <div class="col-lg-4 col-md-4 col-sm-4 w3-agile">
+            <div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5d" data-aos="flip-up">
+                <i class="hi-icon fa fa-money" aria-hidden="true"><a href="#0"></a></i>
+            </div>
+            <h4 data-aos="flip-up">Sắp Xếp</h4>
+            <p data-aos="flip-up">
+                <li data-aos="flip-up"> <input type="checkbox" name="" id=""> Cao-Thấp</li>
+                <li data-aos="flip-up"> <input type="checkbox" name="" id=""> Cao-Thấp</li>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 w3-agile">
+            <div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5d" data-aos="flip-up">
+                <i class="hi-icon fa fa-birthday-cake" aria-hidden="true"><a href="#0"></a></i>
+            </div>
+            <h4 data-aos="flip-up">Khuyến Mãi</h4>
+            <p data-aos="flip-up">
+                <li data-aos="flip-up"> <input type="checkbox" name="" id=""> Lớn Hơn 50%</li>
+                <li data-aos="flip-up"> <input type="checkbox" name="" id=""> 50%-30%</li>
+                <li data-aos="flip-up"> <input type="checkbox" name="" id=""> 30%-10%</li>
+                <li data-aos="flip-up"> <input type="checkbox" name="" id=""> Nhỏ Hơn 10%</li>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 w3-agile">
+            <div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5d" data-aos="flip-up">
+                <i class="hi-icon fa fa-search" aria-hidden="true"></i>
+                <a href="#0"></a>
+            </div>
+            <h4 data-aos="flip-up">Tìm Kiếm</h4>
+            <p data-aos="flip-up">
+                <li data-aos="flip-up">
+                    <input type="text" style="height: 30px; width: 100%;" placeholder="Tìm Sản Phẩm">
+                    <input type="submit" class="btn btn-block" value="Tìm Kiếm">
+                </li>
+            </p>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</section>
+<!-- /services section -->
+<div id="sanpham"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4" style="padding-top:2% ;">
+            <div class="mag">
+                <div class="magnify">
+                    <img data-toggle="magnify" class="cardtexxt" src="../Content/home/images/5e593b4caf944aca1385.jpg" alt="Sản phẩm 1">
+                    <div class="magnify-large" style="background: url('../Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;"></div>
+                </div>
+                <div class="cardtexxt1">Sản phẩm 1</div>
+                <div>Trần Hải Nam</div>
+                <a href="@Url.Action("Index","chiTiet",new {id=6})" class=" btn btn-block btnsp" type="submit" value="Chi Tiết"></a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4" style="padding-top:2% ;">
+            <div class="mag">
+                <div class="magnify">
+                    <img data-toggle="magnify" class="cardtexxt" src="../Content/home/images/5e593b4caf944aca1385.jpg" alt="Sản phẩm 1">
+                    <div class="magnify-large" style="background: url('../Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;"></div>
+                </div>
+                <div class="cardtexxt1">Sản phẩm 2</div>
+                <div>Mèo Đóng Bỉm</div>
+                <input class=" btn btn-block btnsp" type="submit" value="Chi Tiết">
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4" style="padding-top:2% ;">
+            <div class="mag">
+                <div class="magnify">
+                    <img data-toggle="magnify" class="cardtexxt" src="../Content/home/images/5e593b4caf944aca1385.jpg" alt="Sản phẩm 1">
+                    <div class="magnify-large" style="background: url('../Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;"></div>
+                </div>
+                <div class="cardtexxt1">Sản phẩm 3</div>
+                <div>Tuyết Ngày 21</div>
+                <input class=" btn btn-block btnsp" type="submit" value="Chi Tiết">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- team section -->
+<section class="team-w3l ">
+    <div class="container ">
+        <h3 class="text-center " data-aos="flip-up ">Team Của Tao</h3>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 team-agile " data-aos="zoom-in ">
+            <div class="view view-third ">
+                <img src="../Content/home/images/83a660ccf614134a4a05.jpg" alt=" " class="img-responsive " />
+                <div class="mask ">
+                    <h4>WT436</h4>
+                    <ul class="social-icons1 ">
+                        <li><a href="http://facebook.com/MeoDongBim"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+                        <li><a href="http://facebook.com/MeoDongBim"><i class="fa fa-google " aria-hidden="true"></i></a></li>
+                        <li><a href="http://facebook.com/MeoDongBim"><i class="fa fa-phone " aria-hidden="true"></i></a></li>
+                    </ul>
+                    <p class="info ">Mèo Đóng Bỉm</p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix "></div>
+    </div>
+</section>
+<!-- /team section -->

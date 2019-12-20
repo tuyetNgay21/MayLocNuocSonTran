@@ -1,0 +1,296 @@
+﻿@using MayLocNuoc.Models
+@{ mayLocNuocEntities db = new mayLocNuocEntities();}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Máy Lọc Nước Sơn Trần</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,700,300' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="~/Content/chiTiet/css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div id="taikhoanhientai" style="font-size:150%;padding-left:20%; color:blue;">Tài Khoản :@ViewBag.taikhoan</div>
+    <div class="content">
+        <h1>Thông Tin Chi Tiết Về Sản Phẩm</h1>
+        <div class="container">
+            @{ var sp = (F_laySanPham_Result)ViewBag.sanpham;}
+            <h2>Tên Sản Phẩm:@sp.tensp</h2>
+            <div class="product">
+                <div class="container-full">
+                    <div class="row">
+                        <div class="product-image col-xs-12 col-sm-12	col-md-12 col-lg-6 col-xl-6">
+                            <img data-toggle="magnify" src="@sp.anhsanpham1" alt="">
+                            <div class="magnify-large" style="background: url('@sp.anhsanpham1') no-repeat;">
+                            </div>
+                        </div>
+                        <div class="product-info col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                            <p><span>Giá : </span>@sp.gia (VNĐ)</p>
+                            <p><span>Kích Thước</span>@sp.rong x @sp.dai x @sp.cao (Rộng X Dài X Cao)</p>
+                            <p><span>Hãng : </span>@sp.thuongHieu</p>
+                            <p><span>Chất Lượng</span>@sp.chatluong</p>
+                            <p><span>Số Lõi Lọc</span>@sp.soLoiLoc</p>
+                            <p><span>Công Xuất</span>@sp.congxuat (kw/h)</p>
+                            <p><span>Tốc Độ Lọc</span>@sp.tocdoloc (lít/giờ)</p>
+                            <p><span>Công Nghệ Kháng Khẩn</span>@sp.congnghekhangkhuan</p>
+                            <p><span>Công Xuất Máy Bơm</span>@sp.congXuatBom</p>
+                            <p><span>Nơi Sản Xuất</span>@sp.noisanxuat</p>
+                            <p><span>Số Lượng Đã Bán</span>@sp.soluongdaban</p>
+
+                            <p>
+                                <span>Số Lượng</span>
+                                <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
+                                    <option value="">-</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </p>
+                            <div class="cart">
+                                <input style="width:30%; height:30px; font-size:120%; border-radius:5px;" id="magiamgia" type="text" placeholder="Mã Giảm Giá" />
+                                <input class="btn btn-default" type="submit" id="kiemtracode" onclick="kiemtra()" value="Kiểm Tra">
+                            </div>
+                            <div class="cart"><a href="#">Mua</a><a href="#">Liên Hệ </a></div>
+                            @if (save.taikhoan == null)
+                            {
+                                <div id="taikhoanhienthi" style=" border: 1px solid black; display:block;padding:5%; margin:30px;">
+                                    <label style="text-align:center;">
+                                        <input id="dangnhap112" type="radio" name="r" />
+                                        <label for="dangnhap112">Đăng Nhập</label>
+                                        <input id="dangky112" type="radio" style="padding:5%" name="r" checked="checked" />
+                                        <label for="dangky112">Đăng Ký</label>
+                                    </label>
+                                    <input id="dnsdt" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="text" placeholder="Số Điện Thoại " />
+                                    <input id="dnpass" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="password" placeholder="Mật Khẩu" />
+                                    <input id="dkPassAgain" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="password" placeholder="Mật Khẩu" />
+                                    <input id="dkdc" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="text" placeholder="Địa Chỉ" />
+                                    <input id="tendc" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="text" placeholder="Tên" />
+                                    <input id="tuoidc" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="number" placeholder="Tuổi" />
+                                    <input id="emaildc" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="email" placeholder="Email" />
+                                    <input id="submitDangKy" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Đăng Ký" />
+                                    <input id="submitDangNhap" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Đăng Nhập" />
+                                    <input id="submitlaymk" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Lấy Mật Khẩu" />
+                                    <input id="submitdoimk" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Đổi Mật Khẩu" />
+
+                                    <div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                            }
+
+                            <script>
+                                function kiemtra() {
+
+                                    var a = $('#magiamgia').val().trim();
+                                    var b = @sp.magiamgia;
+                                    if (a != b) {
+                                        alert("Mã Không Chính Xác");
+                                    }
+                                    else {
+                                        alert("Bạn đã được Giảm " + @sp.sophantram +"%");
+                                    }
+                                };
+                            </script>
+                            <p>
+                                <span>Đánh Giá Số Sao</span>
+                                <div class="rating">
+                                    <span class="starRating">
+                                        <input id="rating5" type="radio" name="rating1" value="5">
+                                        <label for="rating5">5</label>
+                                        <input id="rating4" type="radio" name="rating1" value="4">
+                                        <label for="rating4">4</label>
+                                        <input id="rating3" type="radio" name="rating1" value="3">
+                                        <label for="rating3">3</label>
+                                        <input id="rating2" type="radio" name="rating1" value="2">
+                                        <label for="rating2">2</label>
+                                        <input id="rating1" type="radio" name="rating1" value="1">
+                                        <label for="rating1">1</label>
+                                    </span>
+                                </div>
+                                <div class="clear"></div>
+                            </p>
+
+                            <div class="cart">
+                                <input id="noidungdanhgia" style="width:60%; height:30px; font-size:120%; border-radius:5px;" type="text" placeholder="Nhập Đánh Giá" />
+                                <input class="btn btn-default" id="danhgia112" type="submit" value="Đánh Giá">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+
+            <section class="ac-container">
+                <div>
+                    <input id="ac-1" name="accordion-1" type="checkbox" />
+                    <label for="ac-1">Chi Tiết</label>
+                    <article class="ac-small">
+                        <p>@sp.tieude</p>
+                    </article>
+                </div>
+                <div>
+                    <input id="ac-2" name="accordion-1" type="checkbox" />
+                    <label for="ac-2">Hình Ảnh Bổ Sung</label>
+                    <article class="ac-large ac-image">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="mag">
+                                        <div class="magnify">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham2" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham2') no-repeat;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mag">
+                                        <div class="magnify">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham3" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3') no-repeat;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mag">
+                                        <div class="magnify">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham4" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham4') no-repeat;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mag">
+                                        <div class="magnify">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham5" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham5') no-repeat;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div>
+                    <input id="ac-3" name="accordion-1" type="checkbox" />
+                    <label for="ac-3">Sản Phẩm Cùng Hãng </label>
+                    <article class="ac-medium">
+                        <div class="container-full">
+                            <div class="row">
+                                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" style="padding-bottom:2%;">
+                                    <div class="card">
+                                        <img src="" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="">Card title</h5>
+                                            <i class="card-text"></i>
+                                            <a href="@Url.Action("Index", "chiTiet",new{id=6})" class=" butttt btn btn-primary">Xem Chi Tiết</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @{ var a = db.F_cungHang(sp.idSP).ToList(); }
+                                @if (a.Count() == 0) {
+                                    <h1>Chưa Có Phần Tử Nào</h1>
+                                }else
+                                    {
+                                        foreach (var keyyy in a)
+                                        {
+                                            <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" style="padding-bottom:2%;">
+                                                <div class="card">
+                                                    <img src="@keyyy.anhsanpham1" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="@keyyy.tensp">Card title</h5>
+                                                        <i class="card-text">@keyyy.gia</i>
+                                                        <button class=" butttt btn btn-primary" id="@keyyy.idSP">Xem Chi Tiết</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                }
+
+
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div>
+                    <input id="ac-4" name="accordion-1" type="checkbox" />
+                    <label for="ac-4">Vận Chuyển Và Bảo Hành</label>
+                    <article class="ac-medium">
+                        <h3>Shipping</h3>
+                        <ul class="ship">
+                            <li class="day">Giao Hàng Và Lắp đặt 1-7 Ngày</li>
+                            <li class="home">Miễn Phí Giao Hàng Và Lắp đặt khu vực Đông bắc Bộ</li>
+                            <li class="cod">Bảo Hành và sửa chữa trong 2 năm</li>
+                        </ul>
+                    </article>
+                </div>
+                <div>
+                    <!--nut ngoai cung-->
+                    <input id="ac-6" name="accordion-1" type="checkbox" />
+                    <label for="ac-6">Bình Luận Và Số Sao</label>
+                    <article class="ac-medium">
+                        <!--nut thu 2-->
+
+                        <section class="container" style="padding:0 10%;">
+                            @{ var dg = (List<F_laydanhdia_Result>)ViewBag.danhgia;}
+                            @foreach (var key in dg)
+                            {
+                                <div>
+                                    @{ List<F_layComment_Result> comment2 = db.F_layComment(key.idDG).ToList();
+
+                                    }
+                                    <input id="@key.idDG" name="accordion-1" type="checkbox" />
+                                    <label for="@key.idDG" style="text-align:left; background-color:burlywood;">
+                                        @key.taikhoan : @key.noidung <i style="color:yellow; padding:1%;"> @key.sosao sao</i>
+                                        <br />
+                                        <button class="like" id="@key.idDG" style="width:20%; background-color:rgba(0, 0, 0, 0.00); border:0px;">Like (<i class="hienthisoLike" id="@key.idDG">@key.solike</i>)</button>
+                                        <i style="padding:0 5%;">Comment (<i>@comment2.Count()</i>)</i>
+
+                                    </label>
+                                    <article class="ac-medium">
+                                        <!--nut thu 3-->
+                                        <ul id="@key.idDG" class="ship" style="text-align:left;">
+                                            @foreach (var ketc in comment2)
+                                            {
+                                                <li id="@ketc.idCM">@ketc.taikhoan  : @ketc.noidung</li>
+                                            }
+                                            <content>
+                                                <textarea style="width:100%" class="@key.idDG" rows="2" cols="20"></textarea>
+                                                <button id="@key.idDG" class=" butt btn btn-info" style="width:20%">Trả Lời</button>
+                                            </content>
+                                        </ul>
+                                    </article>
+                                </div>
+                            }
+                        </section>
+
+
+                    </article>
+                </div>
+            </section>
+
+
+        </div>
+    </div>
+    <div class="copyright">
+        <p>  © 2019 Web Bán Máy lọc Nước Ro | Thiết Kế Web  <a href="http://facebook.com/MeoDongBim">Hải Nam </a></p>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.slim.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="../Content/chiTiet/js/JavaScript.js"></script>
+    <script src="../Content/chiTiet/js/JavaScript1.js"></script>
+</body>
+</html>

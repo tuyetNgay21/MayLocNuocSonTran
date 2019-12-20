@@ -1,0 +1,314 @@
+﻿@using MayLocNuoc.Models
+@{ 
+     mayLocNuocEntities db = new mayLocNuocEntities();
+            List<F_Top10DanhGiaCao_Result> danhgiacao = db.F_Top10DanhGiaCao(10).ToList();   ViewBag.danhgiacao=danhgiacao;
+            List<F_TopBanChay_Result> sanphamBanChay = db.F_TopBanChay(10).ToList(); ViewBag.sanphambanchay = sanphamBanChay;
+}
+<html>
+<head>
+    <title>Máy Lọc Nước Sơn Trần</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <!-- /fonts -->
+    <!-- css -->
+    <link href="~/Content/home/css/aos.css" rel="stylesheet" />
+    <link href="~/Content/home/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/home/css/jQuery.lightninBox.css" rel="stylesheet" />
+    <link href="~/Content/home/css/pogo-slider.min.css" rel="stylesheet" />
+    <link href="~/Content/home/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/home/css/style.css" rel="stylesheet" />
+    <!-- /css -->
+</head>
+
+<body>
+    <!-- banner -->
+    <section class="banner-w3ls">
+        <div class="navbar-wrapper">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="index.html">
+                                <h1>Bistro</h1>
+                            </a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right cl-effect-21">
+                                <li class="active"><a href="index.html">Home</a></li>
+                                <li><a href="#sanpham" class="page-scroll">Sản Phẩm</a></li>
+                                <li><a href="#services" class="page-scroll">Tìm Kiếm</a></li>
+                                <li><a href="#menu" class="page-scroll"><i class="fa fa-cart-plus " aria-hidden="true"></i></a></li>
+                                <li><a href="#test" class="page-scroll"><i class="fa fa-bell-o " aria-hidden="true"></i></a></li>
+                                <li><a href="#contact" class="page-scroll">Đăng Nhập</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="slider">
+            <ul class="slider-main">
+                <li>
+                    <img src="../Content/home/images/about1.jpg" />
+                    <div class="banner-w3ls">
+                        <h3>Bistro - Enjoy the Difference.</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tristique varius vulputate.</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="../Content/home/images/banner2.jpg" alt="">
+                    <div class="banner-w1">
+                        <h3>Bistro - Let the Good times roll.</h3>
+                        <p>Mauris vel erat nec diam molestie consequat eu at sem. Duis sagittis sollicitudin nisl vitae consectetur. </p>
+                    </div>
+                </li>
+                <li>
+                    <img src="../Content/home/images/banner2.jpg" alt="">
+                    <div class="banner-w1">
+                        <h3>Bistro - Let the Good times roll.</h3>
+                        <p>Mauris vel erat nec diam molestie consequat eu at sem. Duis sagittis sollicitudin nisl vitae consectetur. </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- /banner -->
+    <!-- deals -->
+    <section class="bestdeals-w3ls">
+        <div class="container-fluid">
+            <div class="col-lg-1 col-md-1 col-md-push-5 deal-agileits3" data-aos="zoom-in">
+                <h3 class="deal-agile1">Sản Phẩm Đánh Giá Cao</h3>
+            </div>
+            <div class="col-lg-5 col-md-5 col-md-pull-1 deal-agileits1" data-aos="zoom-in">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tổng Số Sao</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng Còn</th>
+                            </tr>
+                        </thead>
+                        @{ var danhgiasao = (List<F_Top10DanhGiaCao_Result>)ViewBag.danhgiacao;}
+                        @foreach (var key in danhgiasao)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@key.idSP</td>
+                                    <td>@key.sosao</td>
+                                    <td> <a href="">@key.tensp</a> </td>
+                                    <td>@key.soluongdamua</td>
+                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 deal-agileits3" data-aos="zoom-in">
+                <h3 class="deal-agile2">Sản Phẩm Mua Nhiều</h3>
+            </div>
+            <div class="col-lg-5 col-md-5 deal-agileits2" data-aos="zoom-in">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Số sản Phẩm đã bán</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng Còn</th>
+                            </tr>
+                        </thead>
+                        @{ var sanphambanchay = (List<F_TopBanChay_Result>)ViewBag.sanphamBanChay;}
+                        @foreach (var ky in sanphambanchay)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@ky.idSP</td>
+                                    <td>@ky.sodaBan</td>
+                                    <td> <a href="">@ky.tensp</a> </td>
+                                    <td>@ky.soluongconlai</td>
+                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </section>
+    <!-- /deals -->
+    <!-- about section -->
+    <section class="about-w3l" id="about">
+        <div class="container-fluid">
+            <div class="col-lg-6 col-md-6 col-sm-6 about-agileinfo1" data-aos="flip-right">
+                <div class="pogoSlider" id="js-main-slider">
+                    <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style="background-image:url(../Content/home/images/about1.jpg);background-position:center;"></div>
+                    <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style="background-image:url(../Content/home/images/about2.jpg);background-position:center;"></div>
+                    <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style="background-image:url(../Content/home/images/about3.jpg);background-position:center;"></div>
+                </div>
+                <!-- .pogoSlider -->
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 about-agileinfo2" data-aos="flip-left">
+                <div class="aboutinfo">
+                    <h2>Sản Phẩm Nổi Bật</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis sem at commodo maximus. Vivamus a urna et arcu semper sodales at ut nulla. Curabitur nunc ex, sollicitudin eu consequat eu, consequat non nulla. Ut nec mauris
+                        velit. Quisque felis urna, vulputate quis euismod nec, vulputate a tortor. Etiam nec nulla lacinia, venenatis velit id, consequat urna. Duis quis molestie risus, cursus convallis metus.
+                    </p>
+                    <p>
+                        Etiam nec nulla lacinia, venenatis velit id, consequat urna. Duis quis molestie risus, cursus convallis metus. Phasellus massa lacus, faucibus sit amet pretium sit amet, imperdiet ut purus.Cras laoreet nunc vitae nisl rutrum pretium.
+                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                    </p>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </section>
+    <!-- /about section -->
+  @RenderBody()
+    <section class="footer-agileits-ws " id="contact ">
+        <div class="container ">
+            <div class="col-lg-3 col-md-3 col-sm-6 footer-w3-agile1 " data-aos="flip-left ">
+                <h4>Di chuyển Nhanh</h4>
+                <ul class="links-w3ls ">
+                    <li><a href="index.html "><i class="fa fa-home " aria-hidden="true "></i> Home</a></li>
+                    <li><a href="#about " class="page-scroll "><i class="fa fa-universal-access " aria-hidden="true "></i> Sản Phẩm Nỏi Bật</a></li>
+                    <li><a href="#services " class="page-scroll "><i class="fa fa-handshake-o " aria-hidden="true "></i>Tìm Kiếm</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 footer-w3-agile2 " data-aos="flip-right ">
+                <h4>Sản Phẩm Khác</h4>
+                <ul class="latest-pics ">
+                    <li>
+                        <a href="../Content/home/images/pic1.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic1.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic2.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic2.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic3.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic3.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic4.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic4.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic5.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic5.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic6.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic6.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic7.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic7.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic8.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic8.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                    <li>
+                        <a href="../Content/home/images/pic9.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic9.jpg " alt=" " class="img-responsive " /></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 footer-w3-agile3 " data-aos="flip-left ">
+                <h4>Địa chỉ</h4>
+                <p class="address-w3ls ">Trần Hải Nam</p>
+                <p class="address-w3ls ">Tân Hà , Tân Lễ</p>
+                <p class="address-w3ls ">Hưng Hà ,Thái Bình </p>
+                <ul class="contact-info ">
+                    <li>
+                        <p><i class="fa fa-phone " aria-hidden="true "></i>0392516308</p>
+                    </li>
+                    <li>
+                        <p>
+                            </i><a href="https://www.facebook.com/MeoDongBim"><i class="fa fa-facebook " aria-hidden="true "></i>Facebook</a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 footer-w3-agile4 " data-aos="flip-right ">
+                <h4>Đánh Giá Chúng Tôi</h4>
+                <div class="subscribe ">
+                    <form action="# " method="post ">
+                        <div class="form-group1 slideanim ">
+                            <input class="form-control " id="email1 " name="email1 " placeholder="Enter Your Email Address " type="email " required>
+                        </div>
+                        <div class="form-group2 slideanim ">
+                            <button class="btn btn-outline btn-lg " type="submit ">Đánh Giá</button>
+                        </div>
+                        <div class="clearfix "></div>
+                    </form>
+                </div>
+            </div>
+            <div class="clearfix "></div>
+        </div>
+    </section>
+    <!-- last section -->
+    <div class="copyright-w3-agile ">
+        <p>
+            © 2019 Web Bán Máy lọc Nước Ro | Design Hải Nam
+            <a href=" " target="_blank "></a>
+        </p>
+    </div>
+    <!-- /last section -->
+    <!-- back to top -->
+    <a href="#0 " class="cd-top ">Top</a>
+    <!-- /back to top -->
+    <!-- js files -->
+    <script src="../Content/home/js/jquery.min.js "></script>
+    <script src="../Content/home/js/bootstrap.min.js "></script>
+    <script src="../Content/home/js/SmoothScroll.min.js "></script>
+    <script src="../Content/home/js/modernizr.min.js "></script>
+    <script src="../Content/home/js/jquery.easing.min.js "></script>
+    <script src="../Content/home/js/grayscale.js "></script>
+    <script src="../Content/home/js/top.js "></script>
+    <script src="../Content/home/js/jarallax.js "></script>
+    <script type="text/javascript ">
+        /* init Jarallax */
+        $('.jarallax').jarallax({
+            speed: 0.5,
+            imgWidth: 1366,
+            imgHeight: 768
+        })
+    </script>
+    <script src='../Content/home/js/aos.js'></script>
+    <script src="../Content/home/js/aos2.js "></script>
+    <!-- contact section -->
+    <script src="../Content/home/js/jqBootstrapValidation.js "></script>
+    <script src="../Content/home/js/contact_me.js "></script>
+    <!-- /contact section -->
+    <!-- menu section -->
+    <script src="../Content/home/js/jQuery.lightninBox.js "></script>
+    <script type="text/javascript ">
+        $(".lightninBox ").lightninBox();
+    </script>
+    <!-- /menu section -->
+    <!-- about section -->
+    <script src="../Content/home/js/jquery.pogo-slider.min.js "></script>
+    <script src="../Content/home/js/main.js "></script>
+    <!-- /about section -->
+    <!-- banner section -->
+    <script src="../Content/home/js/osSlider.js "></script>
+    <script type="text/javascript ">
+        var slider = new osSlider({
+            pNode: '.slider',
+            cNode: '.slider-main li',
+            speed: 3000,
+            autoPlay: true
+        });
+    </script>
+    <!-- /banner section -->
+    <!-- /js files -->
+</body>
+
+</html>
