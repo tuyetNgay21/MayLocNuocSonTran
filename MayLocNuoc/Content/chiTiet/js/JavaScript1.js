@@ -7,7 +7,7 @@
     $('#tuoidc').css('display', 'none');
     $('#emaildc').css('display', 'none');
 });
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $('#dangky112').click(function () {
     $('#submitDangKy').css('display', 'block');
     $('#submitDangNhap').css('display', 'none');
@@ -17,25 +17,32 @@ $('#dangky112').click(function () {
     $('#tuoidc').css('display', 'block');
     $('#emaildc').css('display', 'block');
 });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $('#submitDangNhap').click(function () {
     var a = $('#dnsdt').val().trim();
     var b = $('#dnpass').val().trim();
-    $.ajax({
-        url: 'dangnhap1123',
-        method: "POST",
-        data: { a: a, b: b },
-        Type: "json",
-        success: function (e) {
-            if (e != 0) {
-               // location.reload();
+    if (a === "" || a === null || b === "" || b === null) {
+        alert("Bạn cần nhập đầy đủ thông tin");
+    }
+    else {
+        $.ajax({
+            url: "chiTiet/dangnhap1123",
+            data: { a: a, b: b },
+            dataType: "JSON",
+            type: "POST",
+            success: function (e) {
+                if (e != 0) {
+                    // location.reload();
+                }
+                else {
+                    alert("Tài Khoản Không Chính Xác");
+                }
+            },
+            error: function (r) {
+                alert('Có Lỗi sảy ra'+r);
             }
-            else {
-                alert("Tài Khoản Không Chính Xác");
-            }
-        },
-        error: function () { alert('Có Lỗi sảy ra'); }
-    });
+        });
+    }
+   
 });
 
 function checkEmail() {
@@ -50,7 +57,7 @@ function checkEmail() {
         return true;
     }
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $('#submitDangKy').click(function () {
     var taikhoan = $('#dnsdt').val();
     var matkhau = $('#dnpass').val();
@@ -92,7 +99,7 @@ $('#submitDangKy').click(function () {
 
 });
 //nhan danh gia , 
-//kiem tra so sao//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 var abvcghs = 0;
 $('#rating5').click(function () {
     abvcghs = $('#rating5').val();
@@ -109,7 +116,7 @@ $('#rating2').click(function () {
 $('#rating1').click(function () {
     abvcghs = $('#rating1').val();
 });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $("#danhgia112").click(function () {
     if (abvcghs == 0) {
         alert("Bạn Cần đánh giá số sao");
@@ -142,7 +149,7 @@ $("#danhgia112").click(function () {
     }
 
 });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 $(".like").off().on('click', function () {
     var idcdg = this.id;
     
@@ -174,7 +181,6 @@ $(".like").off().on('click', function () {
     });
 });
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $(".butt").off().on('click', function () {
     var idcdg = this.id;
     
@@ -203,4 +209,3 @@ $(".butt").off().on('click', function () {
         }
     });
 });
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

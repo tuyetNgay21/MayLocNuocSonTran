@@ -13,7 +13,7 @@ namespace MayLocNuoc.Controllers
         
         // GET: chiTiet
        public static int  idcuasanpham;
-        
+        [HttpGet]
         public ActionResult Index(int? id)
         {
             mayLocNuocEntities db = new mayLocNuocEntities();

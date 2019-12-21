@@ -11,6 +11,7 @@ namespace MayLocNuoc.Controllers
         // GET: mac dinh 
         public ActionResult Index()
         {
+            ViewBag.tt = 10;
             return View();
         }
         [HttpPost]
