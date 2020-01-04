@@ -10,13 +10,13 @@ namespace MayLocNuoc.Controllers
 
     public class chiTietController : Controller
     {
-        
+        mayLocNuocEntities db = new mayLocNuocEntities();
         // GET: chiTiet
-       public static int  idcuasanpham;
+        public static int  idcuasanpham;
         [HttpGet]
         public ActionResult Index(int? id)
         {
-            mayLocNuocEntities db = new mayLocNuocEntities();
+
             idcuasanpham = Convert.ToInt32(id);
             if(idcuasanpham==0)
             {
@@ -41,11 +41,9 @@ namespace MayLocNuoc.Controllers
             return View();
         }
 
-        [HttpPost]
-
+[HttpPost]
         public JsonResult themtaikhoan(string a, string b, string c, string d, string e, string g)
         {
-            mayLocNuocEntities db = new mayLocNuocEntities();
             string avg = "";
             if (KyTu.kiemtra(a) == true || KyTu.kiemtra(b) == true || KyTu.kiemtra(c) == true || KyTu.kiemtra(d) == true || KyTu.kiemtra(e) == true)
             {
@@ -112,7 +110,7 @@ namespace MayLocNuoc.Controllers
         }
         public JsonResult dangnhap1123(string a, string b)
         {
-            mayLocNuocEntities db = new mayLocNuocEntities();
+
             string trave = "";
             string avc = MD5.ToMD5(b.Trim());
             int c = db.accs.Where(n => n.taikhoan == a && n.matkhau == avc).Count();
@@ -130,7 +128,7 @@ namespace MayLocNuoc.Controllers
 
         public JsonResult themDanhGia(string a, string b)
         {
-            mayLocNuocEntities db = new mayLocNuocEntities();
+           
             string trave = "";
             if(save.taikhoan==null|| save.taikhoan=="")
             {
@@ -165,7 +163,6 @@ namespace MayLocNuoc.Controllers
 
         public JsonResult themlikedg(string a)
         {
-            mayLocNuocEntities db = new mayLocNuocEntities();
             string trave = "";
             if (save.taikhoan==null ||save.taikhoan=="")
             {
@@ -205,7 +202,6 @@ namespace MayLocNuoc.Controllers
 
         public JsonResult themcommentdg(string a , string b)
         {
-            mayLocNuocEntities db = new mayLocNuocEntities();
             string trave = "";
             if (save.taikhoan == null || save.taikhoan == "")
             {

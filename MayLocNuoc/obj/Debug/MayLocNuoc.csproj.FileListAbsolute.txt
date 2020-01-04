@@ -47,18 +47,6 @@ D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\roslyn\vbc.exe.config
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\roslyn\vbc.rsp
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\roslyn\VBCSCompiler.exe
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\roslyn\VBCSCompiler.exe.config
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\Antlr3.Runtime.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\Microsoft.Web.Infrastructure.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\Newtonsoft.Json.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.Helpers.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.Mvc.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.Optimization.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.Razor.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.WebPages.Deployment.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.WebPages.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.WebPages.Razor.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\WebGrease.dll
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.Helpers.xml
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.Mvc.xml
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\System.Web.Optimization.xml
@@ -73,7 +61,5 @@ D:\Web Asp\MayLocNuoc\MayLocNuoc\obj\Debug\MayLocNuoc.csprojAssemblyReference.ca
 D:\Web Asp\MayLocNuoc\MayLocNuoc\obj\Debug\MayLocNuoc.csproj.CopyComplete
 D:\Web Asp\MayLocNuoc\MayLocNuoc\obj\Debug\MayLocNuoc.dll
 D:\Web Asp\MayLocNuoc\MayLocNuoc\obj\Debug\MayLocNuoc.pdb
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\EntityFramework.dll
-D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\EntityFramework.SqlServer.dll
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\EntityFramework.xml
 D:\Web Asp\MayLocNuoc\MayLocNuoc\bin\EntityFramework.SqlServer.xml

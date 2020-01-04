@@ -23,9 +23,9 @@ namespace MayLocNuoc.Models
             this.giohangs = new HashSet<giohang>();
             this.infoes = new HashSet<info>();
             this.infodeletes = new HashSet<infodelete>();
-            this.NhaCungCaps = new HashSet<NhaCungCap>();
             this.liKe1 = new HashSet<liKe1>();
             this.liKedgs = new HashSet<liKedg>();
+            this.NhaCungCaps = new HashSet<NhaCungCap>();
         }
     
         public string taikhoan { get; set; }
@@ -50,10 +50,10 @@ namespace MayLocNuoc.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<infodelete> infodeletes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NhaCungCap> NhaCungCaps { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<liKe1> liKe1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<liKedg> liKedgs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NhaCungCap> NhaCungCaps { get; set; }
     }
 }

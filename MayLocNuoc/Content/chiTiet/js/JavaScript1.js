@@ -25,24 +25,24 @@ $('#submitDangNhap').click(function () {
     }
     else {
         $.ajax({
-            url: "chiTiet/dangnhap1123",
-            data: { a: a, b: b },
-            dataType: "JSON",
-            type: "POST",
-            success: function (e) {
+            url: '/chiTiet/dangnhap1123',
+            dataType : 'json',
+            type: 'Post',
+            data : { a: a, b: b },
+            success : function (e) {
                 if (e != 0) {
-                    // location.reload();
+                     location.reload();
                 }
                 else {
                     alert("Tài Khoản Không Chính Xác");
                 }
             },
             error: function (r) {
-                alert('Có Lỗi sảy ra'+r);
+                alert('Có Lỗi sảy ra' + r);
             }
         });
     }
-   
+
 });
 
 function checkEmail() {
@@ -78,7 +78,7 @@ $('#submitDangKy').click(function () {
         } else {
             if (matkhau === matkhauagain) {
                 $.ajax({
-                    url: 'themtaikhoan',
+                    url: '/chiTiet/themtaikhoan',
                     method: "POST",
                     data: { a: taikhoan, b: matkhau, c: diachi, d: ten, e: tuoi, g: email },
                     Type: "json",
@@ -129,13 +129,13 @@ $("#danhgia112").click(function () {
         }
         else {
             $.ajax({
-                url: 'themDanhGia',
+                url: '/chiTiet/themDanhGia',
                 method: "POST",
                 data: { a: noidung, b: sosao },
                 Type: "json",
                 success: function (e) {
                     if (e == "1") {
-                       // location.reload();
+                         location.reload();
                     }
                     else {
                         alert(e)
@@ -152,15 +152,15 @@ $("#danhgia112").click(function () {
 
 $(".like").off().on('click', function () {
     var idcdg = this.id;
-    
+
     $.ajax({
-        url: 'themlikedg',
+        url: '/chiTiet/themlikedg',
         method: "POST",
         data: { a: idcdg },
         Type: "json",
         success: function (e) {
             if (e === "1") {
-              //  location.reload();
+                 location.reload();
             }
             else if (e == "-2") {
                 alert('Có Lỗi Sảy Ra');
@@ -183,16 +183,16 @@ $(".like").off().on('click', function () {
 
 $(".butt").off().on('click', function () {
     var idcdg = this.id;
-    
-       var noi=$('.'+idcdg +'').val();
-   $.ajax({
-       url: 'themcommentdg',
+
+    var noi = $('.' + idcdg + '').val();
+    $.ajax({
+        url: '/chiTiet/themcommentdg',
         method: "POST",
-        data: { a: idcdg , b:noi },
+        data: { a: idcdg, b: noi },
         Type: "json",
         success: function (e) {
             if (e === "1") {
-             //   location.reload();
+                   location.reload();
             }
             else if (e == "-2") {
                 alert('Có Lỗi Sảy Ra');

@@ -10,10 +10,12 @@
     <link href='//fonts.googleapis.com/css?family=Raleway:400,500,600,700,300' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="~/Content/chiTiet/css/style.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/jquery-3.3.1.slim.js"></script>
+    <!-- First include jquery js -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -27,10 +29,10 @@
                 <div class="container-full">
                     <div class="row">
                         <div class="product-image col-xs-12 col-sm-12	col-md-12 col-lg-6 col-xl-6">
-                            <div class="mag">
+                            <div class="mag" style="width:100%; height:100%;">
                                 <div class="magnify">
-                                    <img data-toggle="magnify" src="~/Content/home/images/5e593b4caf944aca1385.jpg" alt="" style="width:60%;">
-                                    <div class="magnify-large" style="background: url('~/Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;">
+                                    <img data-toggle="magnify" src="~/Content/home/images/4.png" alt="">
+                                    <div class="magnify-large" style="background: url('~/Content/home/images/4.png') no-repeat;">
                                     </div>
                                 </div>
                             </div>
@@ -82,10 +84,7 @@
                                     <input id="submitDangKy" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Đăng Ký" />
                                     <input id="submitDangNhap" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Đăng Nhập" />
                                     <input id="submitlaymk" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Lấy Mật Khẩu" />
-                                    <input id="submitdoimk" style="padding: 0 10px; background-color:blue; color:azure;" type="submit" class="btn btn-default" value="Đổi Mật Khẩu" />
-
-                                    <div>
-                                    </div>
+                                    <input id="submitdoimk" style="padding: 0 10px;background-color: blue;color: azure;" type="submit" class="btn btn-default" value="Đổi Mật Khẩu" />
                                 </div>
                             }
                             else
@@ -153,8 +152,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="magnify" src="~/Content/home/images/5e593b4caf944aca1385.jpg" alt="">
-                                            <div class="magnify-large" style="background: url('~/Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham2" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham2') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -162,8 +161,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="magnify" src="~/Content/home/images/5e593b4caf944aca1385.jpg" alt="">
-                                            <div class="magnify-large" style="background: url('~/Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham3" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -171,8 +170,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="magnify" src="~/Content/home/images/5e593b4caf944aca1385.jpg" alt="">
-                                            <div class="magnify-large" style="background: url('~/Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham3" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -180,8 +179,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="magnify" src="~/Content/home/images/5e593b4caf944aca1385.jpg" alt="">
-                                            <div class="magnify-large" style="background: url('~/Content/home/images/5e593b4caf944aca1385.jpg') no-repeat;">
+                                            <img data-toggle="@sp.anhsanpham3" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -195,21 +194,11 @@
                     <label for="ac-3">Sản Phẩm Cùng Hãng </label>
                     <article class="ac-medium">
                         <div class="container-full">
-                            <div class="row">
-                                <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" style="padding-bottom:2%;">
-                                    <div class="card">
-                                        <img src="" class="card-img-top" alt="...">
-                                        <div class="card-body">
-                                            <h5 class="">Card title</h5>
-                                            <i class="card-text"></i>
-                                            <a href="@Url.Action("Index", "chiTiet",new{id=6})" class=" butttt btn btn-primary">Xem Chi Tiết</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="row">  
                                 @{ var a = db.F_cungHang(sp.idSP).ToList(); }
                                 @if (a.Count() == 0)
                                 {
-                                    <h1>Chưa Có Phần Tử Nào</h1>
+                                    <h1>Sản Phẩm Cùng Hãng Giống </h1>
                                 }
                                 else
                                 {
@@ -296,8 +285,8 @@
     <div class="copyright">
         <p>  © 2019 Web Bán Máy lọc Nước Ro | Thiết Kế Web  <a href="http://facebook.com/MeoDongBim">Hải Nam </a></p>
     </div>
-    
     <script src="~/Content/chiTiet/js/JavaScript.js"></script>
     <script src="~/Content/chiTiet/js/JavaScript1.js"></script>
 </body>
+
 </html>

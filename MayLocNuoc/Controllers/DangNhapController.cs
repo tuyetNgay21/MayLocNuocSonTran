@@ -13,5 +13,6 @@ namespace MayLocNuoc.Controllers
         {
             return View();
         }
+       
     }
 }
