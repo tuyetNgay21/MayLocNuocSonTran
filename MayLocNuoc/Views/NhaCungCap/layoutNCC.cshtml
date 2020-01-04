@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nhà Cung Cấp Máy Lọc Nước Sơn Trần </title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/NCC/all/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/NCC/all/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/NCC/all/css/lightbox.css" type="text/css" media="all" /><!--gallery-popup-css-->
+    <link href="~/Content/NCC/all/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--fonts-->
+    <link href="//fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!--//fonts-->
+</head>
+<body>
+    <!-- banner -->
+    <div class="banner" id="home">
+        <div class="container">
+            <div class="header">
+                <div class="hainam_agile_logo">
+                    <h1><a href="index.html">Fine Shape<span>fitness lifestyle</span></a></h1>
+                </div>
+                <div class="hainam_menu">
+                    <div class="mobile-nav-button">
+                        <div class="mobile-nav-button__line"></div>
+                        <div class="mobile-nav-button__line"></div>
+                        <div class="mobile-nav-button__line"></div>
+                    </div>
+                    <nav class="mobile-menu">
+                        <ul>
+                            <li><a href="@Url.Action("TrangChu","NhaCungCap")" class="active scroll">Home</a></li>
+                            <li><a href="@Url.Action("Info","NhaCungCap")" class="scroll">Thông Tin Bản Thân</a></li>
+                            <li><a href="@Url.Action("ThemSanPham","NhaCungCap")" class="scroll">Thêm Sản Phẩm</a></li>
+                            <li><a href="@Url.Action("xemNCC","NhaCungCap")" class="scroll">Chế Độ Xem</a></li>
+                            <li><a href="@Url.Action("RepComment","NhaCungCap")" class="scroll">Thông Báo</a></li>
+                            <li><a href="@Url.Action("xemDoanhthu","NhaCungCap")" class="scroll">Biểu Đồ</a></li>
+                            <li><a href="@Url.Action("TrangChu","NhaCungCap")" class="scroll">IB Admin</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="agile_banner_info">
+                <h3><span>C</span>hào  <span>M</span>ừng  <span>N</span>hà  <span>C</span>ung  Cấp   Trần Hữu Sơn </h3>
+            </div>
+            <div class="hainam_agileits_social_media">
+                <ul>
+                    <li class="agileinfo_share">Share On</li>
+                    <li><a href="#" class="wthree_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="wthree_dribbble"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="wthree_behance"><i class="fa fa-mobile" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+    @RenderBody()
+
+    <div class="footer-bottom wtrhee-agileinfo">
+        <div class="container">
+            <section class="col-md-3 social-agileits">
+                <ul>
+                    <li><a href="#" class="wthree_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="wthree_dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                    <li><a href="#" class="wthree_behance"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                </ul>
+            </section>
+            <p class="col-md-6 copy">Máy Lọc Nước Sơn Trần  | Design  <a href="">HaiNam</a></p>
+            <div class=" col-md-3 top-hainamls">
+                <a href="#home" class="scroll"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>Lên Đầu Trang</a>
+            </div>
+        </div>
+    </div>
+    <!--//footer-->
+    <!-- js -->
+    <script type="text/javascript" src="~/Content/NCC/all/js/jquery-2.1.4.min.js"></script>
+
+
+    <!-- Navigation-JavaScript -->
+    <!-- menu -->
+    <script>
+        $(document).ready(function () {
+            $('.mobile-nav-button').on('click', function () {
+                $(".mobile-nav-button .mobile-nav-button__line:nth-of-type(1)").toggleClass("mobile-nav-button__line--1");
+                $(".mobile-nav-button .mobile-nav-button__line:nth-of-type(2)").toggleClass("mobile-nav-button__line--2");
+                $(".mobile-nav-button .mobile-nav-button__line:nth-of-type(3)").toggleClass("mobile-nav-button__line--3");
+
+                $('.mobile-menu').toggleClass('mobile-menu--open');
+                return false;
+            });
+        });
+    </script>
+    <!-- //menu -->
+    <!-- //Navigation-JavaScript -->
+    <!--gallery -->
+    <script src="~/Content/NCC/all/js/lightbox.js"></script>
+    <!-- //gallery -->
+    <script type="text/javascript">
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 4,
+                animationSpeed: 1000,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 2
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 3
+                    }
+                }
+            });
+
+        });
+    </script>
+    <script type="text/javascript" src="~/Content/NCC/all/js/jquery.flexisel.js"></script>
+    <!-- jarallax-js -->
+    <script src="~/Content/NCC/all/js/jarallax.js"></script>
+    <script src="~/Content/NCC/all/js/SmoothScroll.min.js"></script>
+    <script type="text/javascript">
+        /* init Jarallax */
+        $('.jarallax').jarallax({
+            speed: 0.5,
+            imgWidth: 1366,
+            imgHeight: 768
+        })
+    </script>
+    <!-- //jarallax-js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Content/NCC/all/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Content/NCC/all/js/easing.js"></script>
+    <script src="~/Content/NCC/all/jsThemSanPham/Themanh.js"></script>
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/Content/NCC/all/js/bootstrap-3.1.1.min.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="86e1cca0b44c4a088228e84a99ded14d" Name="Diagram1">
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.acc" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.chucvu" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.comment" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.danhgia" Width="1.5" PointX="9.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.giohang" Width="1.5" PointX="12.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.gioithieu" Width="1.5" PointX="9.75" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.info" Width="1.5" PointX="5.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.infodelete" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.liKe1" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.liKedg" Width="1.5" PointX="12" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.loai" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.NhaCungCap" Width="1.5" PointX="5.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.sanpham" Width="1.5" PointX="7.5" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModelAdmin.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__acc__chucvu__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__acc__taikhoanqua__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__comment__taikhoa__25518C17" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__danhgia__taikhoa__1EA48E88" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__giohang__taikhoa__2B0A656D" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__info__taikhoan__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__infodelet__taikh__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__liKe1__taikhoan__70A8B9AE" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__liKedg__taikhoan__7755B73D" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__NhaCungCa__taikh__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__comment__idDG__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__liKe1__idCM__6FB49575" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__danhgia__idSP__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__liKedg__idDG__76619304" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__giohang__idSP__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__gioithieu__idSP__2EDAF651" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModelAdmin.FK__sanpham__idIfncc__160F4887" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

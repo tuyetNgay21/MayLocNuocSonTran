@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "ThemSanPham";
+    Layout = "~/Views/NhaCungCap/layoutNCC.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
+            <h2>Ảnh Của Sản Phẩm</h2>
+            <div>
+                <img id="ImgShowChinh" style="height:70%; top:0px;width:100%;" />
+                <div style="height:18%; padding-top:2%;width:100%;">
+                    <img id="ImgShowMat1"  style="height:100%; width:23%;" />
+                    <img id="ImgShowMat2"  style="height:100%; width:23%;" />
+                    <img id="ImgShowMat3"  style="height:100%; width: 23%;" />
+                    <img id="ImgShowMat4"  style="height:100%; width: 23%;" />
+                </div>
+                <div style="height:10%; padding-top:2%;width:100%;">
+                    <input type="file" accept="image/*" name="image" id="filechinh" class="inputfile " />
+                    <label id="Imgchinh" for="filechinh" class="btn btn-default">ảnh Chính</label>
+                    <input type="file" accept="image/*" name="file" id="file1" class="inputfile " />
+                    <label id="Imgmat1" for="file1" class="btn btn-default">ảnh Mặt 1</label>
+                    <input type="file" accept="image/*" name="file" id="file2" class="inputfile " />
+                    <label id="Imgmat2" for="file2" class="btn btn-default">ảnh Mặt 2</label>
+                    <input type="file" accept="image/*" name="file" id="file3" class="inputfile " />
+                    <label id="Imgmat3" for="file3" class="btn btn-default">ảnh Mặt 3</label>
+                    <input type="file" accept="image/*" name="file" id="file4" class="inputfile " />
+                    <label id="Imgmat4" for="file4" class="btn btn-default">ảnh Mặt 4</label>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-6 col-xs-12 col-md-6 col-sm-12" style="float:left;">
+            <b><i>Cơ Bản</i></b>
+            <input type="text" id="name_product" placeholder="Tên Sản Phẩm" style=" width:100%;" />
+            <input type="number" id="length_product" placeholder="Chiều Dài (Mét)" style=" width:30%;" />
+            <input type="number" id="with_product" placeholder="Chiều Rộng (Mét)" style=" width:30%;" />
+            <input type="number" id="height_product" placeholder="Chiều Cao (Mét)" style=" width:30%;" />
+            <input type="text" id="title_product" placeholder="Tiêu Đề Sản Phẩm" style=" width: 100%;" />
+            <input type="number" id="number_product" placeholder="Số Lượng (Chiếc)" style=" width:100%;" />
+            <b><i>Thông Số</i></b>
+            <input type="number" id="core_product" placeholder="Số Lõi Lọc" style=" width:100%;" />
+            <input type="number" id="producttion_product" placeholder="Công Xuất (KW/H)" style=" width:100%;" />
+            <input type="number" id="speed_product" placeholder="Tốc Độ Lọc (Lít/H)" style=" width:100%;" />
+            <input type="text"   id="technology_product"placeholder="Công Nghệ Kháng Khuẩn" style=" width:100%;" />
+            <input type="number" id="pump_product" placeholder="Công Xuất Bơm (Lít/H)" style=" width:100%;" />
+            <b><i>Giá Cả</i></b>
+            <input type="number" id="price_product" placeholder="Giá (Đồng)" style=" width:100%;" />
+            <input type="text" id="free_product" placeholder="Mã Giảm Giá" style=" width:65%;" />
+            <input type="number" id="number_free_product" placeholder="Số Phần Trăm" style=" width: 30%;" />
+            <b><i>Nguồn Gốc</i></b>
+            <input type="text"id="brand_product" placeholder="Thương Hiệu" style=" width:100%;" />
+            <input type="text" id="quality_product" placeholder="Chất Lượng" style=" width:100%;" />
+            <input type="text" id="where_production" placeholder="Nơi Sản Xuất" style=" width:100%;" />
+        </div>
+    </div>
+</div>
+<div class="container-fluid" style="padding:3%;">
+    <div class="row">
+        <input type="submit" value="Thêm" id="Add_product" class=" col-lg-12 col-xs-12 col-md-12 col-sm-12 btn btn-success" style="width:100%;" /> 
+    </div>
+</div>
+
