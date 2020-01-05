@@ -1,8 +1,9 @@
 ﻿@using MayLocNuoc.Models
-@{ 
-     mayLocNuocEntities db = new mayLocNuocEntities();
-            List<F_Top10DanhGiaCao_Result> danhgiacao = db.F_Top10DanhGiaCao(10).ToList();   ViewBag.danhgiacao=danhgiacao;
-            List<F_TopBanChay_Result> sanphamBanChay = db.F_TopBanChay(10).ToList(); ViewBag.sanphambanchay = sanphamBanChay;
+
+@{
+    mayLocNuocEntities db = new mayLocNuocEntities();
+    List<F_Top10DanhGiaCao_Result> danhgiacao = db.F_Top10DanhGiaCao(10).ToList(); ViewBag.danhgiacao = danhgiacao;
+    List<F_TopBanChay_Result> sanphamBanChay = db.F_TopBanChay(10).ToList(); ViewBag.sanphambanchay = sanphamBanChay;
 }
 <html>
 <head>
@@ -37,8 +38,8 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.html">
-                                <h1>Bistro</h1>
+                            <a class="navbar-brand" href="@Url.Action("Index,Product")">
+                                <h1>Sơn Trần</h1>
                             </a>
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
@@ -58,26 +59,37 @@
         <div class="slider">
             <ul class="slider-main">
                 <li>
-                    <img src="~/Content/home/images/about1.jpg" />
+                    <img src="../Content/CONTM/IMG_Product/03925163081487291_713017568811886_175939172947346396_n.jpg" />
                     <div class="banner-w3ls">
                         <h3>Bistro - Enjoy the Difference.</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tristique varius vulputate.</p>
                     </div>
                 </li>
-                <li>
-                    <img src="~/Content/home/images/banner2.jpg" alt="">
-                    <div class="banner-w1">
-                        <h3>Bistro - Let the Good times roll.</h3>
-                        <p>Mauris vel erat nec diam molestie consequat eu at sem. Duis sagittis sollicitudin nisl vitae consectetur. </p>
-                    </div>
-                </li>
-                <li>
-                    <img src="~/Content/home/images/banner2.jpg" alt="">
-                    <div class="banner-w1">
-                        <h3>Bistro - Let the Good times roll.</h3>
-                        <p>Mauris vel erat nec diam molestie consequat eu at sem. Duis sagittis sollicitudin nisl vitae consectetur. </p>
-                    </div>
-                </li>
+                @{
+                    var gioithieusanpham = db.gioithieux.Where(n => n.daxoa == false).ToList();
+                    int gioithieu = 0;
+                }
+                @foreach (var k in gioithieusanpham)
+                {
+                    if (gioithieu < 10)
+                    {
+                        <li>
+                            <img src="@k.anh" />
+                            <div class="banner-w3ls">
+                                <h3>Bistro - Enjoy the Difference.</h3>
+                                <a href="@k.idSP"><input value="Xem" class="btn btn-success" /></a>
+                                <p>@k.cmoment</p>
+                            </div>
+                        </li>
+                        gioithieu++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+
             </ul>
         </div>
     </section>
@@ -111,12 +123,11 @@
                                 </tr>
                             </tbody>
                         }
-
                     </table>
                 </div>
             </div>
             <div class="col-lg-1 col-md-1 deal-agileits3" data-aos="zoom-in">
-                <h3 class="deal-agile2">Sản Phẩm Mua Nhiều</h3>
+                <h3 class="deal-agile2" ">Sản Phẩm Mua Nhiều</h3>
             </div>
             <div class="col-lg-5 col-md-5 deal-agileits2" data-aos="zoom-in">
                 <div class="table-responsive">
@@ -141,7 +152,6 @@
                                 </tr>
                             </tbody>
                         }
-
                     </table>
                 </div>
             </div>
@@ -150,34 +160,8 @@
     </section>
     <!-- /deals -->
     <!-- about section -->
-    <section class="about-w3l" id="about">
-        <div class="container-fluid">
-            <div class="col-lg-6 col-md-6 col-sm-6 about-agileinfo1" data-aos="flip-right">
-                <div class="pogoSlider" id="js-main-slider">
-                    <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style="background-image:url(~/Content/home/images/about1.jpg);background-position:center;"></div>
-                    <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style="background-image:url(~/Content/home/images/about2.jpg);background-position:center;"></div>
-                    <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style="background-image:url(~/Content/home/images/about3.jpg);background-position:center;"></div>
-                </div>
-                <!-- .pogoSlider -->
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 about-agileinfo2" data-aos="flip-left">
-                <div class="aboutinfo">
-                    <h2>Sản Phẩm Nổi Bật</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam convallis sem at commodo maximus. Vivamus a urna et arcu semper sodales at ut nulla. Curabitur nunc ex, sollicitudin eu consequat eu, consequat non nulla. Ut nec mauris
-                        velit. Quisque felis urna, vulputate quis euismod nec, vulputate a tortor. Etiam nec nulla lacinia, venenatis velit id, consequat urna. Duis quis molestie risus, cursus convallis metus.
-                    </p>
-                    <p>
-                        Etiam nec nulla lacinia, venenatis velit id, consequat urna. Duis quis molestie risus, cursus convallis metus. Phasellus massa lacus, faucibus sit amet pretium sit amet, imperdiet ut purus.Cras laoreet nunc vitae nisl rutrum pretium.
-                        Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                    </p>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </section>
     <!-- /about section -->
-  @RenderBody()
+    @RenderBody()
     <section class="footer-agileits-ws " id="contact ">
         <div class="container ">
             <div class="col-lg-3 col-md-3 col-sm-6 footer-w3-agile1 " data-aos="flip-left ">
@@ -306,6 +290,13 @@
             speed: 3000,
             autoPlay: true
         });
+    </script>
+    <script>
+        $("#ClickTimSanPham").click(function () {
+            var noidung = $("#TimSanPham").val();
+            location.href = "/Product/IndexS?TimKiem=" + noidung + "";
+        });
+
     </script>
     <!-- /banner section -->
     <!-- /js files -->

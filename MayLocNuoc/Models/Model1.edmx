@@ -390,6 +390,41 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="f_DanhGiaCaoNhat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idSP" Type="int" />
+                <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+                <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+                <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="gia" Type="money" />
+                <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="soluong" Type="int" />
+                <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+                <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+                <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+                <Property Name="soLoiLoc" Type="int" />
+                <Property Name="congxuat" Type="varchar" MaxLength="30" />
+                <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+                <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+                <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+                <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+                <Property Name="daxoa" Type="bit" />
+                <Property Name="hethang" Type="bit" />
+                <Property Name="idIfncc" Type="int" />
+                <Property Name="soluongdaban" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="F_HienThiTatCarTaiKhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -471,6 +506,42 @@
         </Function>
         <Function Name="F_soLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="idCM" Type="int" Mode="In" />
+        </Function>
+        <Function Name="f_TimKiemTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="truyenvao" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idSP" Type="int" />
+                <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+                <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+                <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="gia" Type="money" />
+                <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="soluong" Type="int" />
+                <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+                <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+                <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+                <Property Name="soLoiLoc" Type="int" />
+                <Property Name="congxuat" Type="varchar" MaxLength="30" />
+                <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+                <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+                <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+                <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+                <Property Name="daxoa" Type="bit" />
+                <Property Name="hethang" Type="bit" />
+                <Property Name="idIfncc" Type="int" />
+                <Property Name="soluongdaban" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
         </Function>
         <Function Name="F_Top10DanhGiaCao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="top" Type="int" Mode="In" />
@@ -1053,7 +1124,11 @@
             <End Role="liKedg" EntitySet="liKedgs" />
           </AssociationSet>
           <FunctionImport Name="F_cungHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_cungHang_Result)">
-            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <Parameter Name="idsp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
+          <FunctionImport Name="f_TimKiemTheoTen" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_TimKiemTheoTen_Result)">
+            <Parameter Name="truyenvao" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="liKe1">
@@ -1176,6 +1251,64 @@
           <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
           <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="f_DanhGiaCaoNhat_Result">
+          <Property Type="Int32" Name="idSP" Nullable="true" />
+          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="sophantram" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
+          <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="daxoa" Nullable="true" />
+          <Property Type="Boolean" Name="hethang" Nullable="true" />
+          <Property Type="Int32" Name="idIfncc" Nullable="true" />
+          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="f_TimKiemTheoTen_Result">
+          <Property Type="Int32" Name="idSP" Nullable="true" />
+          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="sophantram" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
+          <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="daxoa" Nullable="true" />
+          <Property Type="Boolean" Name="hethang" Nullable="true" />
+          <Property Type="Int32" Name="idIfncc" Nullable="true" />
+          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1461,6 +1594,72 @@
                 <ScalarProperty Name="tensp" ColumnName="tensp" />
                 <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
                 <ScalarProperty Name="gia" ColumnName="gia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_DanhGiaCaoNhat" FunctionName="mayLocNuocModel.Store.f_DanhGiaCaoNhat">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_DanhGiaCaoNhat_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+                <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+                <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+                <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+                <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+                <ScalarProperty Name="rong" ColumnName="rong" />
+                <ScalarProperty Name="dai" ColumnName="dai" />
+                <ScalarProperty Name="cao" ColumnName="cao" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+                <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+                <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+                <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+                <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+                <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+                <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="hethang" ColumnName="hethang" />
+                <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_TimKiemTheoTen" FunctionName="mayLocNuocModel.Store.f_TimKiemTheoTen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_TimKiemTheoTen_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+                <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+                <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+                <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+                <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+                <ScalarProperty Name="rong" ColumnName="rong" />
+                <ScalarProperty Name="dai" ColumnName="dai" />
+                <ScalarProperty Name="cao" ColumnName="cao" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+                <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+                <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+                <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+                <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+                <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+                <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="hethang" ColumnName="hethang" />
+                <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -124,5 +124,21 @@ namespace MayLocNuoc.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_cungHang_Result>("[mayLocNuocEntities].[F_cungHang](@idsp)", idspParameter);
         }
+    
+        [DbFunction("mayLocNuocEntities", "f_DanhGiaCaoNhat")]
+        public virtual IQueryable<f_DanhGiaCaoNhat_Result> f_DanhGiaCaoNhat()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaCaoNhat_Result>("[mayLocNuocEntities].[f_DanhGiaCaoNhat]()");
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_TimKiemTheoTen")]
+        public virtual IQueryable<f_TimKiemTheoTen_Result> f_TimKiemTheoTen(string truyenvao)
+        {
+            var truyenvaoParameter = truyenvao != null ?
+                new ObjectParameter("truyenvao", truyenvao) :
+                new ObjectParameter("truyenvao", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_TimKiemTheoTen_Result>("[mayLocNuocEntities].[f_TimKiemTheoTen](@truyenvao)", truyenvaoParameter);
+        }
     }
 }

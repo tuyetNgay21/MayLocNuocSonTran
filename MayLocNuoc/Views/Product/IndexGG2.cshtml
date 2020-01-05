@@ -1,0 +1,202 @@
+﻿@using MayLocNuoc.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<sanpham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/layuot/Index.cshtml";
+}
+@{ mayLocNuocEntities db = new mayLocNuocEntities();
+    var va = db.f_DanhGiaCaoNhat().FirstOrDefault();}
+<section class="about-w3l" id="about">
+    <div class="container-fluid">
+        <div class="col-lg-6 col-md-6 col-sm-6 about-agileinfo1" data-aos="flip-right">
+            <div class="pogoSlider" id="js-main-slider">
+                <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style=" background-image:url( @va.anhsanpham1.Substring(2) ); background-position:center; "></div>
+                <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style=" background-image:url( @va.anhsanpham2.Substring(2) ); background-position:center; "></div>
+                <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style=" background-image:url( @va.anhsanpham3.Substring(2) ); background-position:center; "></div>
+                <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style=" background-image:url( @va.anhsanpham4.Substring(2) ); background-position:center; "></div>
+                <div class="pogoSlider-slide" data-transition="shrinkReveal" data-duration="1000" style=" background-image:url( @va.anhsanpham5.Substring(2) ); background-position:center; "></div>
+            </div>
+            <!-- .pogoSlider -->
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 about-agileinfo2" data-aos="flip-left" style="height:66%;">
+
+            <div class="aboutinfo">
+                <h2>Sản Phẩm Nổi Bật</h2>
+                <p>
+                    <table cellpadding="5" cellspacing="5" width="100%">
+                        <tr style="text-align:left;">
+                            <td>Tên Sản Phẩm </td>
+                            <td>@va.tensp</td>
+                            <td>Thương Hiệu</td>
+                            <td>@va.thuongHieu</td>
+                        </tr>
+                        <tr style="text-align:left;">
+                            <td>Chiều Dài</td>
+                            <td>@va.dai</td>
+                            <td>Chất Lượng</td>
+                            <td>@va.chatluong</td>
+                        </tr>
+                        <tr style="text-align:left;">
+                            <td>Chiều Rộng</td>
+                            <td>@va.rong</td>
+                            <td>Giá</td>
+                            <td>@va.gia</td>
+                        </tr>
+                        <tr style="text-align:left;">
+                            <td>Chiều Cao</td>
+                            <td>@va.cao</td>
+                            <td>Mã Giảm Giá</td>
+                            <td>@va.magiamgia</td>
+                        </tr>
+                        <tr style="text-align:left;">
+                            <td>Số Lượng</td>
+                            <td>@va.soluong</td>
+                            <td>Giảm Giá</td>
+                            <td>@va.sophantram</td>
+                        </tr>
+                        <tr style="text-align:left;">
+                            <td>Số Lõi Lọc</td>
+                            <td>@va.soLoiLoc</td>
+                            <td>Tốc Độ Lọc</td>
+                            <td>@va.tocdoloc</td>
+                        </tr>
+                        <tr style="text-align:left;">
+                            <td>Công Xuất</td>
+                            <td>@va.congxuat</td>
+                            <td>Công xuất Bơm</td>
+                            <td>@va.congXuatBom</td>
+                        </tr>
+                        <tr style="text-align:left;">
+                            <td>Công Nghệ Kháng Khuẩn</td>
+                            <td>@va.congnghekhangkhuan</td>
+                            <td>Số Lượng Đã Bán </td>
+                            <td>@va.soluongdaban</td>
+                        </tr>
+                    </table>
+                </p>
+                <p>Giới Thiệu Sản Phẩm : @va.tieude</p>
+                <a href="@Url.Action("IndexGG", "chiTiet", new { id = va.idSP })"> <input type="submit" class="btn btn-warning" value="Xem" /></a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>
+<!-- services section -->
+<section class="services-w3l" id="services">
+    <div class="container">
+        <h3 class="text-center" data-aos="flip-up">Tìm Kiếm</h3>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 w3-agile">
+            <div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5d" data-aos="flip-up">
+                <i class="hi-icon fa fa-money" aria-hidden="true"><a href="#0"></a></i>
+            </div>
+            <h4 data-aos="flip-up">Sắp Xếp</h4>
+            <p data-aos="flip-up">
+                <li data-aos="flip-up"><a href="@Url.Action("IndexG", "Product")"> <input type="checkbox" name="" id=""> Cao-Thấp</a></li>
+                <li data-aos="flip-up"><a href="@Url.Action("IndexT", "Product")"><input type="checkbox" name="" id=""> Thấp-Cap</a></li>
+                <li data-aos="flip-up"><a href="@Url.Action("Index", "Product")"><input type="checkbox" name="" id=""> Tất cả Sản Phẩm</a></li>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 w3-agile">
+            <div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5d" data-aos="flip-up">
+                <i class="hi-icon fa fa-birthday-cake" aria-hidden="true"><a href="#0"></a></i>
+            </div>
+            <h4 data-aos="flip-up">Khuyến Mãi</h4>
+            <p data-aos="flip-up">
+                <li data-aos="flip-up"> <a href="@Url.Action("IndexGG", "Product")"><input type="checkbox" name="" id=""> Lớn Hơn 50%</a></li>
+                <li data-aos="flip-up"> <a href="@Url.Action("IndexGG1", "Product")"><input type="checkbox" name="" id=""> 50%-30%</a></li>
+                <li data-aos="flip-up"> <a href="@Url.Action("IndexGG2", "Product")"><input type="checkbox" name="" id=""> 30%-10%</a></li>
+                <li data-aos="flip-up"> <a href="@Url.Action("IndexGG3", "Product")"><input type="checkbox" name="" id=""> Nhỏ Hơn 10%</a></li>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 w3-agile">
+            <div class="hi-icon-wrap hi-icon-effect-5 hi-icon-effect-5d" data-aos="flip-up">
+                <i class="hi-icon fa fa-search" aria-hidden="true"></i>
+                <a href="#0"></a>
+            </div>
+            <h4 data-aos="flip-up">Tìm Kiếm</h4>
+            <p data-aos="flip-up">
+                <li data-aos="flip-up">
+                    <input type="text" id="TimSanPham" style="height: 30px; width: 100%;" placeholder="Tìm Sản Phẩm">
+                    <input type="submit" id="ClickTimSanPham" class="btn btn-success" value="Tìm Kiếm">
+                </li>
+            </p>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</section>
+<!-- /services section -->
+<div class="container">
+    <div class="row">
+        @if (Model.Count() == 0)
+        {
+            <h1 style="color:black;">Không Có Sản Phẩm Nào</h1>
+        }
+        else
+        {
+            foreach (var im in Model)
+            {
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xl-3 col-xs-6" style="padding-top:2% ;">
+                    <div class="mag">
+                        <div class="magnify">
+                            <img data-toggle="magnify" class="cardtexxt" src="@im.anhsanpham1" alt="Sản phẩm 1" style="border-radius:10%;">
+                            <div class="magnify-large" style="background: url('@im.anhsanpham1') no-repeat;"></div>
+                        </div>
+                        <div class="cardtexxt1">@im.tensp</div>
+                        <div>
+                            <div style="float:left;">Giá Gốc: @im.gia</div>
+                            <div style="float:right;">Giảm: @im.sophantram %</div>
+                        </div>
+                        <a style="clear:both;" href="@Url.Action("Index", "chiTiet", new { id = im.idSP })" class=" btn btn-block btnsp" type="submit">Chi Tiết</a>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+    <div style="margin-left:40%;"> @Html.PagedListPager(Model, Page => Url.Action("IndexGG2", new { Page }));</div>
+</div>
+@{
+    var sanphambanchay = db.sanphams.OrderByDescending(n => n.soluongdaban).ToList();
+    int demsoluong = 0;
+}
+<!-- team section -->
+<section class="team-w3l ">
+    <div class="container ">
+        <h3 class="text-center " data-aos="flip-up ">Sản Phẩm Bán chạy</h3>
+        @foreach (var key in sanphambanchay)
+        {
+            if (demsoluong < 6)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xl-4 col-xs-6 team-agile " data-aos="zoom-in ">
+                    <div class="view view-third ">
+                        <img src="@key.anhsanpham1" alt=" " class="img-responsive " />
+                        <div class="mask ">
+                            <h4>@key.tensp</h4>
+                            <ul class="social-icons1 ">
+                                <li><a href="@Url.Action("Index", "chiTiet", new { id = key.idSP })"><i class="fa fa-money " aria-hidden="true" style="background-color:rgba(24, 172, 54, 0.90); border-radius:100%;"></i></a></li>
+                                <li><a href="@Url.Action("MyCart", "GioHang", new { id = key.idSP })"><i class="fa fa-shopping-cart " aria-hidden="true" style="background-color:rgba(63, 185, 202, 0.91); border-radius:100%;"></i></a></li>
+                            </ul>
+                            <p class="info ">
+                                Giá Gốc: @key.gia
+                            </p>
+                            <p class="info ">Giảm Giá: @key.sophantram %</p>
+                            <p class="info ">Số Sản Phẩm Đã Bán : @key.soluongdaban</p>
+                        </div>
+                    </div>
+                </div>
+                demsoluong++;
+            }
+            else
+            {
+                break;
+            }
+
+        }
+
+        <div class="clearfix "></div>
+    </div>
+</section>
+<!-- /team section -->

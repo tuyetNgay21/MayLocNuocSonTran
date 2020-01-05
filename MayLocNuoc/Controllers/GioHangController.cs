@@ -9,7 +9,7 @@ namespace MayLocNuoc.Controllers
     public class GioHangController : Controller
     {
         // GET: GioHang
-        public ActionResult Index()
+        public ActionResult MyCart()
         {
             return View();
         }

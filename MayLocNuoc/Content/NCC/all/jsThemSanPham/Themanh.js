@@ -198,7 +198,20 @@
                         Img4: Img4
                     },
                     success: function (e) {
-                        alert("sdjvkfd;dg" + e[0]);
+                        if (e === "1") {
+                            location.replace("/QuanTri/DN");
+                        }
+                        else if (e === "2") {
+                            location.replace("/DangNhap/Info");
+                        }
+                        else if (e === "3") {
+                            alert("Hãy Xem lại Dữ liệu");
+                        }
+                        else {
+                            var g = e.toString().substring(2);
+                            alert(g);
+                            location.replace("/NhaCungCap/SuaProduct?ma=" + g);
+                        }
                     },
                     error: function () {
                         alert("loi");

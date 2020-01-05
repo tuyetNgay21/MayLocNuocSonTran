@@ -18,8 +18,10 @@ namespace MayLocNuoc.Controllers
         {
 
             idcuasanpham = Convert.ToInt32(id);
-            if(idcuasanpham==0)
+           int  sanpham1 = db.F_laySanPham(id).Count();
+            if (idcuasanpham ==0 || sanpham1==0)
             {
+                return RedirectToAction("Error","Error1");
             }
             else
             {
@@ -36,6 +38,7 @@ namespace MayLocNuoc.Controllers
                 else
                 {
                     ViewBag.taikhoan = save.taikhoan;
+                    
                 }
             }
             return View();

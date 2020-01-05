@@ -15,8 +15,6 @@ namespace MayLocNuoc.Controllers
         {
             return View();
         }
-
-
         [HttpPost]
         public JsonResult checkDN(string a, string p)
         {
@@ -70,10 +68,8 @@ namespace MayLocNuoc.Controllers
                 //goi ve gmail bao cho quan ly biet loi he thong nam dau
                 trave = "0";
             }
-
             return Json(trave);
         }
-
         public JsonResult laymk(string taikhoan, string gmail)
         {
             string trave = "";

@@ -14,35 +14,84 @@ namespace MayLocNuoc.Controllers
         [HttpGet]
         public ActionResult TrangChu()
         {
-            return View();
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult ThemSanPham()
         {
-            return View();
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+
         }
         public ActionResult xemDoanhthu()
         {
-            return View();
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
         }
-        public ActionResult SuaProduct()
+        public ActionResult SuaProduct(string ma)
         {
-            return View();
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                int ma1 = Convert.ToInt32(ma);
+                var sanpham=db.sanphams.Where(n => n.idSP == ma1).FirstOrDefault();
+                return View(sanpham);
+            }
         }
-        public ActionResult ChinhSuaSanPham()
-        {
-            return View();
-        }
+       
         public ActionResult xemNCC()
         {
-            return View();
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult Info()
         {
-            return View();
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult RepComment()
         {
-            return View();
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpPost]
         //sua san pham//////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,6 +142,7 @@ namespace MayLocNuoc.Controllers
              * 1 là tài khoản hiện tại rỗng
              * 2 là nha cung cấp chưa đăng ký
              * 3 là đã gặp vấn đề về dữ liệu
+             * 4 laf hoàn thành
              */
             if (save.taikhoan == null || save.taikhoan == "")
             {
@@ -100,7 +150,8 @@ namespace MayLocNuoc.Controllers
             }
             else
             {
-                var manhacungcap = db.infoes.Where(n => n.taikhoan == save.taikhoan).FirstOrDefault().idIf;
+
+                var manhacungcap = db.NhaCungCaps.Where(n => n.taikhoan == save.taikhoan).FirstOrDefault().idIfncc;
                 if (manhacungcap == null)
                 {
                     trave = "2";
@@ -121,18 +172,33 @@ namespace MayLocNuoc.Controllers
                         sp.tocdoloc = speed_product;
                         sp.congnghekhangkhuan = technology_product;
                         sp.congXuatBom = pump_product;
-                        sp.gia =Convert.ToInt32( price_product);
+                        sp.gia = Convert.ToInt32(price_product);
                         sp.thuongHieu = brand_product;
                         sp.chatluong = quality_product;
                         sp.noisanxuat = where_production;
-                        sp.magiamgia= free_product;
-                        sp.sophantram= Convert.ToInt32(number_free_product);
+                        sp.magiamgia = free_product;
+                        sp.sophantram = Convert.ToInt32(number_free_product);
                         sp.anhsanpham1 = Imgchinh;
                         sp.anhsanpham2 = Img1;
                         sp.anhsanpham3 = Img2;
                         sp.anhsanpham4 = Img3;
                         sp.anhsanpham5 = Img4;
+                        sp.daxoa = false;
+                        sp.hethang = false;
+                        sp.idIfncc = manhacungcap;
+                        sp.soluongdaban = 0;
+                        db.sanphams.Add(sp);
+                        db.SaveChanges();
 
+                       var xyz= db.sanphams.Where(n => n.idIfncc == manhacungcap &&
+                                             n.tensp == name_product &&
+                                             n.anhsanpham2 == Img1 &&
+                                             n.anhsanpham3 == Img2 &&
+                                             n.anhsanpham4 == Img3 &&
+                                             n.anhsanpham5 == Img4 &&
+                                             n.anhsanpham1 == Imgchinh
+                                          ).FirstOrDefault();
+                        trave = "kd" + xyz.idSP;
                     }
                     catch (Exception)
                     {
@@ -145,9 +211,18 @@ namespace MayLocNuoc.Controllers
 
         public string Upadate_Img_Product(HttpPostedFileBase anh)
         {
-            anh.SaveAs(Server.MapPath("~/Content/CONTM/IMG_Product/" + save.taikhoan + anh.FileName));
-            string avc = "../Content/CONTM/IMG_Product/" + save.taikhoan + anh.FileName;
-            return avc;
+            try
+            {
+                anh.SaveAs(Server.MapPath("~/Content/CONTM/IMG_Product/" + save.taikhoan + anh.FileName));
+                string avc = "../Content/CONTM/IMG_Product/" + save.taikhoan + anh.FileName;
+                return avc;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+
+           
         }
         //ket thuc them san pham /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }

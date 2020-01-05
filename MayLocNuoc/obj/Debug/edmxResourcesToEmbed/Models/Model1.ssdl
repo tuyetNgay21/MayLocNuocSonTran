@@ -385,6 +385,41 @@
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="f_DanhGiaCaoNhat" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idSP" Type="int" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+          <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+          <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="money" />
+          <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+          <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+          <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+          <Property Name="soLoiLoc" Type="int" />
+          <Property Name="congxuat" Type="varchar" MaxLength="30" />
+          <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+          <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+          <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+          <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="hethang" Type="bit" />
+          <Property Name="idIfncc" Type="int" />
+          <Property Name="soluongdaban" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="F_HienThiTatCarTaiKhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <ReturnType>
       <CollectionType>
@@ -466,6 +501,42 @@
   </Function>
   <Function Name="F_soLike" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
     <Parameter Name="idCM" Type="int" Mode="In" />
+  </Function>
+  <Function Name="f_TimKiemTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="truyenvao" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idSP" Type="int" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+          <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+          <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="money" />
+          <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+          <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+          <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+          <Property Name="soLoiLoc" Type="int" />
+          <Property Name="congxuat" Type="varchar" MaxLength="30" />
+          <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+          <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+          <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+          <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="hethang" Type="bit" />
+          <Property Name="idIfncc" Type="int" />
+          <Property Name="soluongdaban" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
   </Function>
   <Function Name="F_Top10DanhGiaCao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="top" Type="int" Mode="In" />

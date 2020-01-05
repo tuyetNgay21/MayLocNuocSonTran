@@ -31,8 +31,8 @@
                         <div class="product-image col-xs-12 col-sm-12	col-md-12 col-lg-6 col-xl-6">
                             <div class="mag" style="width:100%; height:100%;">
                                 <div class="magnify">
-                                    <img data-toggle="magnify" src="~/Content/home/images/4.png" alt="">
-                                    <div class="magnify-large" style="background: url('~/Content/home/images/4.png') no-repeat;">
+                                    <img data-toggle="magnify" src="@sp.anhsanpham1.Substring(2)" alt="">
+                                    <div class="magnify-large" style="background: url('@sp.anhsanpham1.Substring(2)') no-repeat;">
                                     </div>
                                 </div>
                             </div>
@@ -152,8 +152,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="magnify" src="@sp.anhsanpham2" alt="">
-                                            <div class="magnify-large" style="background: url('@sp.anhsanpham2') no-repeat;">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham2.Substring(2)" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham2.Substring(2)') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -161,8 +161,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="magnify" src="@sp.anhsanpham3" alt="">
-                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3') no-repeat;">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham3.Substring(2)" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3.Substring(2)') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -170,8 +170,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="magnify" src="@sp.anhsanpham3" alt="">
-                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3') no-repeat;">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham4.Substring(2)" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham4.Substring(2)') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -179,8 +179,8 @@
                                 <div class="col-md-3">
                                     <div class="mag">
                                         <div class="magnify">
-                                            <img data-toggle="@sp.anhsanpham3" alt="">
-                                            <div class="magnify-large" style="background: url('@sp.anhsanpham3') no-repeat;">
+                                            <img data-toggle="magnify" src="@sp.anhsanpham5.Substring(2)" alt="">
+                                            <div class="magnify-large" style="background: url('@sp.anhsanpham5.Substring(2)') no-repeat;">
                                             </div>
                                         </div>
                                     </div>
@@ -194,26 +194,36 @@
                     <label for="ac-3">Sản Phẩm Cùng Hãng </label>
                     <article class="ac-medium">
                         <div class="container-full">
-                            <div class="row">  
-                                @{ var a = db.F_cungHang(sp.idSP).ToList(); }
+                            <div class="row">
+                                @{ var a = db.F_cungHang(sp.idSP).ToList(); int dembalabala = 0; }
                                 @if (a.Count() == 0)
                                 {
-                                    <h1>Sản Phẩm Cùng Hãng Giống </h1>
+                                    <h1>Chưa Cập Nhật Sản Phẩm Nào Của Hãng</h1>
                                 }
                                 else
                                 {
                                     foreach (var keyyy in a)
                                     {
-                                        <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" style="padding-bottom:2%;">
-                                            <div class="card">
-                                                <img src="@keyyy.anhsanpham1" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="@keyyy.tensp">Card title</h5>
-                                                    <i class="card-text">@keyyy.gia</i>
-                                                    <button class=" butttt btn btn-primary" id="@keyyy.idSP">Xem Chi Tiết</button>
+                                        if (dembalabala < 8)
+                                        {
+                                            <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3" style="padding-bottom:2%;">
+                                                <div class="card">
+                                                    <img src="@keyyy.anhsanpham1.Substring(2)" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">@keyyy.tensp</h5>
+                                                        <i class="card-text">@keyyy.gia</i>
+                                                        <br />
+                                                        <a href="@Url.Action("Index", "chiTiet", new { id = keyyy.idSP })"><button type="submit" src="" class="butttt btn btn-primary">Xem Chi Tiết</button></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            dembalabala++;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+
                                     }
                                 }
 
