@@ -361,7 +361,6 @@
     <Content Include="Content\chiTiet\images\day.png" />
     <Content Include="Content\chiTiet\images\home.png" />
     <Content Include="Content\chiTiet\images\product-1.jpg" />
-    <Content Include="Content\chiTiet\images\product-2.jpg" />
     <Content Include="Content\chiTiet\images\product-3.jpg" />
     <Content Include="Content\chiTiet\images\star.png" />
     <Content Include="Content\chiTiet\images\star1.png" />
@@ -745,7 +744,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\image\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Views\TroGiup\" />
   </ItemGroup>
