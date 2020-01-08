@@ -234,5 +234,91 @@ namespace MayLocNuoc.Controllers
             }
             return Json(trave);
         }
+
+        public JsonResult MuaHang(string idsp, string soluongmua, string magiamgia)
+        {
+            /*
+             * 1 la chua dang nhap
+             * 2 la idsanpham loi
+             * 3 la san pham het hang xin loi 
+             * 4 la so luong  con lai ko du
+             * 5 da gui ve controller va dua ve trang cj\ho mua hang 
+             * 6 gap van de ve he thong
+             * 7 kiem tra lai ma giam gia
+             */
+            string trave = "";
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                trave = "1";
+            }
+            else
+            {
+                try
+                {
+                    var idcuasp = Convert.ToInt32(idsp);
+                    if (db.sanphams.Where(n=>n.daxoa==true && n.idSP== idcuasp).Count()==1)
+                    {
+                        trave = "2";
+                    }
+                    else
+                    {
+                        var soluong = db.sanphams.Where(n => n.idSP == idcuasp).FirstOrDefault();
+                        if (soluong.soluong<Convert.ToInt32(soluongmua))
+                        {
+                            trave = "3";
+                        }
+                        else
+                        {
+                            if (magiamgia==null || magiamgia=="") {
+                                var sophantram = db.sanphams.Where(n => n.idSP == idcuasp).FirstOrDefault();
+
+                                dangMua dm = new dangMua();
+                                dm.taikhoan = save.taikhoan;
+                                dm.idSP = Convert.ToInt32(idsp);
+                                dm.daxoa = false;
+                                dm.sophantram =0;
+                                dm.gia = sophantram.gia;
+                                dm.soluong = Convert.ToInt32(soluongmua);
+
+                                db.dangMuas.Add(dm);
+
+                                db.SaveChanges();
+                                trave = "5";
+                            }
+                            else
+                            {
+                                var sophantram2 = db.sanphams.Where(n => n.idSP == idcuasp && n.magiamgia == magiamgia);
+
+                                if(sophantram2.Count()==1)
+                                {
+                                    dangMua dm = new dangMua();
+                                    dm.taikhoan = save.taikhoan;
+                                    dm.idSP = Convert.ToInt32(idsp);
+                                    dm.daxoa = false;
+                                    dm.sophantram = sophantram2.FirstOrDefault().sophantram;
+                                    dm.gia = sophantram2.FirstOrDefault().gia;
+                                    dm.soluong = Convert.ToInt32(soluongmua);
+
+                                    db.dangMuas.Add(dm);
+
+                                    db.SaveChanges();
+                                    trave = "5";
+                                }
+                                else
+                                {
+                                    trave = "7";
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+
+                    trave = "6";
+                }
+            }
+            return Json(trave);
+        }
     }
 }

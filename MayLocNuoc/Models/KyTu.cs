@@ -10,7 +10,7 @@ namespace MayLocNuoc.Models
         public static bool kiemtra(string a)
         {
             if(a.Contains("<")==true || a.Contains("&") == true || a.Contains(">") == true ||
-                a.Contains("%") == true || a.Contains(";") == true || a.Contains("@") == true ||
+                a.Contains("%") == true || a.Contains(";") == true || 
                 a.Contains("}") == true || a.Contains("{") == true || a.Contains("]") == true || 
                 a.Contains("[") == true || a.Contains("?") == true )
             {

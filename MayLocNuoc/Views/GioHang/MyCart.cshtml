@@ -1,17 +1,98 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@using MayLocNuoc.Models;
 
-<!DOCTYPE html>
-
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>MyCart</title>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- First include jquery js -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link href="~/Content/home/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-    <div> 
-    </div>
+<body style="background-color:#0094ff;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="@Url.Action("Index","Product")">Sơn Trần</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Vận Chuyển</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Lịch sử</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Tài Khoản</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Trợ Giúp</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Mua</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Giá</th>
+                <th scope="col">Giảm Giá</th>
+                <th scope="col">Số Lượng/Tổng</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                mayLocNuocEntities db = new mayLocNuocEntities();
+                var ggg = db.dangMuas.Where(n => n.taikhoan == save.taikhoan && n.daxoa == false).ToList();
+            }
+
+            @foreach (var key in ggg)
+            {
+                <tr>
+                    @{
+                        var anhsp = db.sanphams.Where(m => m.idSP == key.idSP).FirstOrDefault();
+                    }
+                    <th scope="row"><button data-id="@key.idDM" class="CamOnMuaSanPham fa fa-download" style="color:#4cff00; background-color:rgba(0, 0, 0, 0.00)"></button></th>
+                    <td>@anhsp.tensp</td>
+                    <td><img style="width:100px; height:100px; " src="@anhsp.anhsanpham1" /></td>
+                    <td class="GiaCuaSanPham" data-id="@key.idDM">@key.gia</td>
+                    <td>@key.sophantram</td>
+                    @{
+                        var tong = (key.gia * (key.sophantram + 100) / 100) * key.soluong;
+                    }
+                    <td width="5%">
+                        <input id="@key.idDM" type="number" min="0" max="10" value="@key.soluong" style="background-color:rgba(0, 0, 0, 0.00); color:white;" class="number_product" />
+                        <i class="HomNayDuocNghi fa fa-check" data-idsanpham="@key.idSP" data-id="@key.idDM" data-gia-id="@key.gia" data-giam-gia="@key.sophantram"></i>
+
+                        <b id="@key.idSP">@tong</b>
+                    </td>
+                    <td>
+                        <button class="XinLoiViBatKeLyDoGi fa fa-times" data-id="@key.idDM" style="color:darkred; background-color:rgba(0, 0, 0, 0.00)"></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/Content/chiTiet/js/dungKhocMotMinhEmOi.js"></script>
 </body>
 </html>

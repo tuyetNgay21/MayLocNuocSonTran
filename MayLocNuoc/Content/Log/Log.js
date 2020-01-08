@@ -16,7 +16,7 @@ $("#btnLog_DanhNhap").click(function () {
                 alert("Mật Khẩu Không chính Xác");
             }
             else if (e === "2") {
-                location.href = "Product/Index";
+                location.href = "/Product/Index";
             }
             else if (e === "3") {
                 alert("Xin Chào Vui Lòng Đăng Nhập Tại Đây");
@@ -96,7 +96,7 @@ $("#btnChangePassword").click(function () {
                     alert("Mật Khẩu Đã Thay đổi");
                     location.href = "/DangNhap/Log";
                 }
-                else {}
+                else { }
             },
             error: function (e) {
 
@@ -118,27 +118,57 @@ $("#Btn_Registration").click(function () {
     var numberPhoneRegistration = $("#numberPhoneRegistration").val();
     var AdressRegistration = $("#AdressRegistration").val();
     var EmailRegistration = $("#EmailRegistration").val();
-    if (PassRegistration === PassAgainRegistration) {
-        $.ajax({
-            type: 'Post',
-            url: '/DangNhap/RegistrationJson',
-            dataType: 'Json',
-            data: {
-                AccRegistration: AccRegistration, PassRegistration: PassRegistration,
-                NameRegistration: NameRegistration, numberPhoneRegistration: numberPhoneRegistration,
-                AdressRegistration: AdressRegistration, EmailRegistration: EmailRegistration
-            },
-            success: function (e) {
-            },
-            error: function (e) {
-
-            }
-
-        });
+    if (AccRegistration == null || AccRegistration == "" ||
+        PassRegistration == null || PassRegistration == "" ||
+        NameRegistration == null || NameRegistration == "" ||
+        numberPhoneRegistration == null || numberPhoneRegistration == "" ||
+        AdressRegistration == null || AdressRegistration == "" ||
+        EmailRegistration == null || EmailRegistration == "") {
+        alert("Chưa Nhập gì cả");
     }
     else {
+        if (PassRegistration === PassAgainRegistration) {
+            $.ajax({
+                type: 'Post',
+                url: '/DangNhap/RegistrationJson',
+                dataType: 'Json',
+                data: {
+                    AccRegistration: AccRegistration, PassRegistration: PassRegistration,
+                    NameRegistration: NameRegistration, numberPhoneRegistration: numberPhoneRegistration,
+                    AdressRegistration: AdressRegistration, EmailRegistration: EmailRegistration
+                },
+                success: function (e) {
+                    if (e == "1") {
+                        alert("Chỉ được nhập các ký tự a-z A-Z 0-9");
+                    }
+                    else if (e == "2") {
+                        alert("Tài Khoản Này Đã Tồn tại");
+                    }
+                    else if (e == "3") {
+                        alert("Email Này Đã Tồn tại");
+                    }
+                    else if (e == "4") {
+                        alert("Hệ Thống này Đang Bảo trì");
+                    }
+                    else if (e == "5") {
+                        alert("Thành Công");
+                        location.href="/DangNhap/Log";
+                    }
+                    else if (e == "6") {
+                        alert("Đã Bảo đừng có cố");
+                    }
+                },
+                error: function (e) {
+
+                }
+
+            });
+        }
+        else {
+            alert("Mật Khẩu Không Giống Nhau");
+        }
 
     }
-
+    
 
 })

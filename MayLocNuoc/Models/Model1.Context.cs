@@ -30,22 +30,80 @@ namespace MayLocNuoc.Models
         public virtual DbSet<acc> accs { get; set; }
         public virtual DbSet<chucvu> chucvus { get; set; }
         public virtual DbSet<comment> comments { get; set; }
+        public virtual DbSet<daMua> daMuas { get; set; }
+        public virtual DbSet<dangMua> dangMuas { get; set; }
         public virtual DbSet<danhgia> danhgias { get; set; }
         public virtual DbSet<giohang> giohangs { get; set; }
         public virtual DbSet<gioithieu> gioithieux { get; set; }
         public virtual DbSet<info> infoes { get; set; }
         public virtual DbSet<infodelete> infodeletes { get; set; }
+        public virtual DbSet<liKe1> liKe1 { get; set; }
+        public virtual DbSet<liKedg> liKedgs { get; set; }
         public virtual DbSet<loai> loais { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; }
         public virtual DbSet<sanpham> sanphams { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<liKe1> liKe1 { get; set; }
-        public virtual DbSet<liKedg> liKedgs { get; set; }
+    
+        [DbFunction("mayLocNuocEntities", "F_cungHang")]
+        public virtual IQueryable<F_cungHang_Result> F_cungHang(Nullable<int> idsp)
+        {
+            var idspParameter = idsp.HasValue ?
+                new ObjectParameter("idsp", idsp) :
+                new ObjectParameter("idsp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_cungHang_Result>("[mayLocNuocEntities].[F_cungHang](@idsp)", idspParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_DanhGiaCaoNhat")]
+        public virtual IQueryable<f_DanhGiaCaoNhat_Result> f_DanhGiaCaoNhat()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaCaoNhat_Result>("[mayLocNuocEntities].[f_DanhGiaCaoNhat]()");
+        }
     
         [DbFunction("mayLocNuocEntities", "F_HienThiTatCarTaiKhoan")]
         public virtual IQueryable<F_HienThiTatCarTaiKhoan_Result> F_HienThiTatCarTaiKhoan()
         {
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_HienThiTatCarTaiKhoan_Result>("[mayLocNuocEntities].[F_HienThiTatCarTaiKhoan]()");
+        }
+    
+        [DbFunction("mayLocNuocEntities", "F_layComment")]
+        public virtual IQueryable<F_layComment_Result> F_layComment(Nullable<int> idDG)
+        {
+            var idDGParameter = idDG.HasValue ?
+                new ObjectParameter("idDG", idDG) :
+                new ObjectParameter("idDG", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_layComment_Result>("[mayLocNuocEntities].[F_layComment](@idDG)", idDGParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "F_laydanhdia")]
+        public virtual IQueryable<F_laydanhdia_Result> F_laydanhdia(Nullable<int> idsp)
+        {
+            var idspParameter = idsp.HasValue ?
+                new ObjectParameter("idsp", idsp) :
+                new ObjectParameter("idsp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_laydanhdia_Result>("[mayLocNuocEntities].[F_laydanhdia](@idsp)", idspParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "F_laySanPham")]
+        public virtual IQueryable<F_laySanPham_Result> F_laySanPham(Nullable<int> idsp)
+        {
+            var idspParameter = idsp.HasValue ?
+                new ObjectParameter("idsp", idsp) :
+                new ObjectParameter("idsp", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_laySanPham_Result>("[mayLocNuocEntities].[F_laySanPham](@idsp)", idspParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_TimKiemTheoTen")]
+        public virtual IQueryable<f_TimKiemTheoTen_Result> f_TimKiemTheoTen(string truyenvao)
+        {
+            var truyenvaoParameter = truyenvao != null ?
+                new ObjectParameter("truyenvao", truyenvao) :
+                new ObjectParameter("truyenvao", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_TimKiemTheoTen_Result>("[mayLocNuocEntities].[f_TimKiemTheoTen](@truyenvao)", truyenvaoParameter);
         }
     
         [DbFunction("mayLocNuocEntities", "F_Top10DanhGiaCao")]
@@ -85,60 +143,107 @@ namespace MayLocNuoc.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_themtaikhoan", taikhoanParameter, matkhauParameter, emailParameter, themtaikhoantrave);
         }
     
-        [DbFunction("mayLocNuocEntities", "F_layComment")]
-        public virtual IQueryable<F_layComment_Result> F_layComment(Nullable<int> idDG)
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
-            var idDGParameter = idDG.HasValue ?
-                new ObjectParameter("idDG", idDG) :
-                new ObjectParameter("idDG", typeof(int));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_layComment_Result>("[mayLocNuocEntities].[F_layComment](@idDG)", idDGParameter);
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
     
-        [DbFunction("mayLocNuocEntities", "F_laydanhdia")]
-        public virtual IQueryable<F_laydanhdia_Result> F_laydanhdia(Nullable<int> idsp)
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
-            var idspParameter = idsp.HasValue ?
-                new ObjectParameter("idsp", idsp) :
-                new ObjectParameter("idsp", typeof(int));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_laydanhdia_Result>("[mayLocNuocEntities].[F_laydanhdia](@idsp)", idspParameter);
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
         }
     
-        [DbFunction("mayLocNuocEntities", "F_laySanPham")]
-        public virtual IQueryable<F_laySanPham_Result> F_laySanPham(Nullable<int> idsp)
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
         {
-            var idspParameter = idsp.HasValue ?
-                new ObjectParameter("idsp", idsp) :
-                new ObjectParameter("idsp", typeof(int));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_laySanPham_Result>("[mayLocNuocEntities].[F_laySanPham](@idsp)", idspParameter);
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
-        [DbFunction("mayLocNuocEntities", "F_cungHang")]
-        public virtual IQueryable<F_cungHang_Result> F_cungHang(Nullable<int> idsp)
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
         {
-            var idspParameter = idsp.HasValue ?
-                new ObjectParameter("idsp", idsp) :
-                new ObjectParameter("idsp", typeof(int));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_cungHang_Result>("[mayLocNuocEntities].[F_cungHang](@idsp)", idspParameter);
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
         }
     
-        [DbFunction("mayLocNuocEntities", "f_DanhGiaCaoNhat")]
-        public virtual IQueryable<f_DanhGiaCaoNhat_Result> f_DanhGiaCaoNhat()
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaCaoNhat_Result>("[mayLocNuocEntities].[f_DanhGiaCaoNhat]()");
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
-        [DbFunction("mayLocNuocEntities", "f_TimKiemTheoTen")]
-        public virtual IQueryable<f_TimKiemTheoTen_Result> f_TimKiemTheoTen(string truyenvao)
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
         {
-            var truyenvaoParameter = truyenvao != null ?
-                new ObjectParameter("truyenvao", truyenvao) :
-                new ObjectParameter("truyenvao", typeof(string));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_TimKiemTheoTen_Result>("[mayLocNuocEntities].[f_TimKiemTheoTen](@truyenvao)", truyenvaoParameter);
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
 }

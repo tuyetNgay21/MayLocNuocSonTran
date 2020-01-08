@@ -23,6 +23,28 @@ namespace MayLocNuoc.Controllers
                 return View();
             }
         }
+        public ActionResult Product_To()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult Product_From()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
         public ActionResult ThemSanPham()
         {
             if (save.taikhoan == null || save.taikhoan == "")

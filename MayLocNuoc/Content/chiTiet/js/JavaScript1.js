@@ -26,12 +26,12 @@ $('#submitDangNhap').click(function () {
     else {
         $.ajax({
             url: '/chiTiet/dangnhap1123',
-            dataType : 'json',
+            dataType: 'json',
             type: 'Post',
-            data : { a: a, b: b },
-            success : function (e) {
+            data: { a: a, b: b },
+            success: function (e) {
                 if (e != 0) {
-                     location.reload();
+                    location.reload();
                 }
                 else {
                     alert("Tài Khoản Không Chính Xác");
@@ -135,7 +135,7 @@ $("#danhgia112").click(function () {
                 Type: "json",
                 success: function (e) {
                     if (e == "1") {
-                         location.reload();
+                        location.reload();
                     }
                     else {
                         alert(e)
@@ -160,7 +160,7 @@ $(".like").off().on('click', function () {
         Type: "json",
         success: function (e) {
             if (e === "1") {
-                 location.reload();
+                location.reload();
             }
             else if (e == "-2") {
                 alert('Có Lỗi Sảy Ra');
@@ -192,7 +192,7 @@ $(".butt").off().on('click', function () {
         Type: "json",
         success: function (e) {
             if (e === "1") {
-                   location.reload();
+                location.reload();
             }
             else if (e == "-2") {
                 alert('Có Lỗi Sảy Ra');
@@ -208,4 +208,53 @@ $(".butt").off().on('click', function () {
             alert('Có Biến');
         }
     });
+});
+
+//chuyen ve gio hang 
+
+$("#muaSanPham").click(function () {
+    var idsp = $("#muaSanPham").data('id');
+    var soluongmua = $('#soluongmua').val();
+    var magiamgia = $('#magiamgia').val();
+    if (soluongmua == null || soluongmua == '-' || soluongmua == "") {
+        alert("Cần Nhập số Lượng mua");
+    }
+    else {
+        $.ajax({
+            url: '/chiTiet/MuaHang',
+            method: "POST",
+            data: { idsp: idsp, soluongmua: soluongmua, magiamgia: magiamgia },
+            Type: "json",
+            success: function (e) {
+                if (e === "1") {
+                    alert("Tài Khoản Chưa Đăng Nhập")
+                }
+                else if (e == "2") {
+                    alert('Xin Lỗi Quý Khách sản phẩm đã hết mất rùi :((');
+                }
+                else if (e == "3") {
+                    alert("Sản Phẩm đã hết Hàng , Xin Lỗi quý Khách :((");
+                } else if (e == "4") {
+                    alert('Số Lượng Trong Kho Không đủ , vui lòng Liên Hệ Nhà cung Cấp');
+                }
+                else if (e == "5") {
+                    alert("Kiểm Tra Giỏ Hàng");
+                    location.href = "/GioHang/MyCart";
+                }
+                else if (e == "6") {
+                    alert('Hệ Thống Đang Bảo trì');
+                }
+                else if (e == "7") {
+                    alert('Kiểm Tra Mã Giảm Giá');
+                }
+                else
+                {
+
+                }
+            },
+            error: function () {
+                alert('Có Biến');
+            }
+        });
+    }
 });

@@ -4,38 +4,44 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ca307fe5101462c9da7e5005f33b112" Name="Diagram1">
-        <EntityTypeShape EntityType="mayLocNuocModel.acc" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.chucvu" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.comment" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.danhgia" Width="1.5" PointX="9.75" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.giohang" Width="1.5" PointX="12.75" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.gioithieu" Width="1.5" PointX="9.75" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.info" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.infodelete" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
+      <Diagram DiagramId="48d1088935bc4c4ebc7e1d417443c158" Name="Diagram1">
+        <EntityTypeShape EntityType="mayLocNuocModel.acc" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.chucvu" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.comment" Width="1.5" PointX="5.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.daMua" Width="1.5" PointX="9.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.dangMua" Width="1.5" PointX="12.75" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.danhgia" Width="1.5" PointX="12.75" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.giohang" Width="1.5" PointX="9.75" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.gioithieu" Width="1.5" PointX="9.75" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.info" Width="1.5" PointX="5.25" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.infodelete" Width="1.5" PointX="5.25" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.liKe1" Width="1.5" PointX="7.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.liKedg" Width="1.5" PointX="15" PointY="20.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mayLocNuocModel.loai" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.NhaCungCap" Width="1.5" PointX="5.25" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="mayLocNuocModel.sanpham" Width="1.5" PointX="7.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.NhaCungCap" Width="1.5" PointX="5.25" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mayLocNuocModel.sanpham" Width="1.5" PointX="7.5" PointY="36.25" IsExpanded="true" />
         <EntityTypeShape EntityType="mayLocNuocModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="mayLocNuocModel.FK__acc__chucvu__00200768" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__acc__taikhoanqua__01142BA1" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__comment__taikhoa__25518C17" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__daMua__taikhoan__24285DB4" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__dangMua__taikhoa__1B9317B3" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__danhgia__taikhoa__1EA48E88" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__giohang__taikhoa__2B0A656D" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__info__taikhoan__04E4BC85" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__infodelet__taikh__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__liKe1__taikhoan__70A8B9AE" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__liKedg__taikhoan__7755B73D" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__NhaCungCa__taikh__0F624AF8" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__comment__idDG__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__liKe1__idCM__6FB49575" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__daMua__idSP__2334397B" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__dangMua__idSP__1A9EF37A" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__danhgia__idSP__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="mayLocNuocModel.FK__liKedg__idDG__76619304" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__giohang__idSP__2A164134" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__gioithieu__idSP__2EDAF651" ManuallyRouted="false" />
         <AssociationConnector Association="mayLocNuocModel.FK__sanpham__idIfncc__160F4887" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mayLocNuocModel.liKe1" Width="1.5" PointX="7.5" PointY="12.625" />
-        <AssociationConnector Association="mayLocNuocModel.FK__liKe1__taikhoan__70A8B9AE" />
-        <AssociationConnector Association="mayLocNuocModel.FK__liKe1__idCM__6FB49575" />
-        <EntityTypeShape EntityType="mayLocNuocModel.liKedg" Width="1.5" PointX="12" PointY="16.25" />
-        <AssociationConnector Association="mayLocNuocModel.FK__liKedg__taikhoan__7755B73D" />
-        <AssociationConnector Association="mayLocNuocModel.FK__liKedg__idDG__76619304" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -52,7 +52,7 @@
 
                             <p>
                                 <span>Số Lượng</span>
-                                <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
+                                <select id="soluongmua" class="dropdown" tabindex="10" data-settings='{"wrapperClass":"flat"}'>
                                     <option value="">-</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -64,7 +64,7 @@
                                 <input style="width:30%; height:30px; font-size:120%; border-radius:5px;" id="magiamgia" type="text" placeholder="Mã Giảm Giá" />
                                 <input class="btn btn-default" type="submit" id="kiemtracode" onclick="kiemtra()" value="Kiểm Tra">
                             </div>
-                            <div class="cart"><a href="#">Mua</a><a href="#">Liên Hệ </a></div>
+                            <div class="cart btn btn-block " style="background-color:#4cff00;" data-id="@sp.idSP" id="muaSanPham" >Mua</div>
                             @if (save.taikhoan == null)
                             {
                                 <div id="taikhoanhienthi" style=" border: 1px solid black; display:block;padding:5%; margin:30px;">
@@ -76,7 +76,7 @@
                                     </label>
                                     <input id="dnsdt" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="text" placeholder="Số Điện Thoại " />
                                     <input id="dnpass" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="password" placeholder="Mật Khẩu" />
-                                    <input id="dkPassAgain" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="password" placeholder="Mật Khẩu" />
+                                    <input id="dkPassAgain" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="password" placeholder=" Nhập Lại Mật Khẩu" />
                                     <input id="dkdc" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="text" placeholder="Địa Chỉ" />
                                     <input id="tendc" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="text" placeholder="Tên" />
                                     <input id="tuoidc" style="width:100%; height:30px; font-size:120%; border-radius:5px;" type="number" placeholder="Tuổi" />

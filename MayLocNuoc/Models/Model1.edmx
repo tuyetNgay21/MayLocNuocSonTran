@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="mayLocNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="mayLocNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="acc">
           <Key>
             <PropertyRef Name="taikhoan" />
@@ -33,6 +33,34 @@
           <Property Name="solike" Type="int" />
           <Property Name="idDG" Type="int" />
           <Property Name="daxoa" Type="bit" />
+          <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="daMua">
+          <Key>
+            <PropertyRef Name="idDM" />
+          </Key>
+          <Property Name="idDM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="gia" Type="money" Nullable="false" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="dangChuanBi" Type="bit" />
+          <Property Name="ngaymua" Type="date" />
+          <Property Name="ngayLapDat" Type="date" />
+          <Property Name="dangVanChuyen" Type="bit" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="idSP" Type="int" />
+          <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="dangMua">
+          <Key>
+            <PropertyRef Name="idDM" />
+          </Key>
+          <Property Name="idDM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="gia" Type="money" Nullable="false" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="idSP" Type="int" />
           <Property Name="taikhoan" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="danhgia">
@@ -173,6 +201,12 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="V_timsosao">
+          <Property Name="idSP" Type="int" />
+          <Property Name="sosao" Type="int" />
+        </EntityType>-->
         <Association Name="FK__acc__chucvu__00200768">
           <End Role="chucvu" Type="Self.chucvu" Multiplicity="0..1" />
           <End Role="acc" Type="Self.acc" Multiplicity="*" />
@@ -217,6 +251,54 @@
               <PropertyRef Name="taikhoan" />
             </Principal>
             <Dependent Role="comment">
+              <PropertyRef Name="taikhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__daMua__idSP__2334397B">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="idSP" />
+            </Principal>
+            <Dependent Role="daMua">
+              <PropertyRef Name="idSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__daMua__taikhoan__24285DB4">
+          <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
+          <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc">
+              <PropertyRef Name="taikhoan" />
+            </Principal>
+            <Dependent Role="daMua">
+              <PropertyRef Name="taikhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dangMua__idSP__1A9EF37A">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="dangMua" Type="Self.dangMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="idSP" />
+            </Principal>
+            <Dependent Role="dangMua">
+              <PropertyRef Name="idSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dangMua__taikhoa__1B9317B3">
+          <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
+          <End Role="dangMua" Type="Self.dangMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc">
+              <PropertyRef Name="taikhoan" />
+            </Principal>
+            <Dependent Role="dangMua">
               <PropertyRef Name="taikhoan" />
             </Dependent>
           </ReferentialConstraint>
@@ -569,16 +651,49 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="P_themtaikhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="taikhoan" Type="varchar" Mode="In" />
           <Parameter Name="matkhau" Type="varchar" Mode="In" />
           <Parameter Name="email" Type="nvarchar" Mode="In" />
           <Parameter Name="themtaikhoantrave" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="mayLocNuocModelStoreContainer">
           <EntitySet Name="acc" EntityType="Self.acc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="chucvu" EntityType="Self.chucvu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="daMua" EntityType="Self.daMua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dangMua" EntityType="Self.dangMua" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="danhgia" EntityType="Self.danhgia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="giohang" EntityType="Self.giohang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="gioithieu" EntityType="Self.gioithieu" Schema="dbo" store:Type="Tables" />
@@ -605,6 +720,22 @@
           <AssociationSet Name="FK__comment__taikhoa__25518C17" Association="Self.FK__comment__taikhoa__25518C17">
             <End Role="acc" EntitySet="acc" />
             <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__daMua__idSP__2334397B" Association="Self.FK__daMua__idSP__2334397B">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="daMua" EntitySet="daMua" />
+          </AssociationSet>
+          <AssociationSet Name="FK__daMua__taikhoan__24285DB4" Association="Self.FK__daMua__taikhoan__24285DB4">
+            <End Role="acc" EntitySet="acc" />
+            <End Role="daMua" EntitySet="daMua" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dangMua__idSP__1A9EF37A" Association="Self.FK__dangMua__idSP__1A9EF37A">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="dangMua" EntitySet="dangMua" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dangMua__taikhoa__1B9317B3" Association="Self.FK__dangMua__taikhoa__1B9317B3">
+            <End Role="acc" EntitySet="acc" />
+            <End Role="dangMua" EntitySet="dangMua" />
           </AssociationSet>
           <AssociationSet Name="FK__danhgia__idSP__1DB06A4F" Association="Self.FK__danhgia__idSP__1DB06A4F">
             <End Role="sanpham" EntitySet="sanpham" />
@@ -659,10 +790,46 @@
             <End Role="sanpham" EntitySet="sanpham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mayLocNuocModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="F_cungHang_Result">
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="anhsanpham1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="f_DanhGiaCaoNhat_Result">
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="anhsanpham1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="magiamgia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="thuongHieu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="tieude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="chatluong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="soLoiLoc" Type="Int32" />
+          <Property Name="congxuat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tocdoloc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congnghekhangkhuan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congXuatBom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="noisanxuat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="hethang" Type="Boolean" />
+          <Property Name="idIfncc" Type="Int32" />
+          <Property Name="soluongdaban" Type="Int32" />
+        </ComplexType>
         <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="matkhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -670,6 +837,79 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="chucvu" Type="Int32" />
           <Property Name="taikhoanquanly" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="F_layComment_Result">
+          <Property Name="idCM" Type="Int32" />
+          <Property Name="noidung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="solike" Type="Int32" />
+          <Property Name="idDG" Type="Int32" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="F_laydanhdia_Result">
+          <Property Name="idDG" Type="Int32" />
+          <Property Name="noidung" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="sosao" Type="Int32" />
+          <Property Name="solike" Type="Int32" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="F_laySanPham_Result">
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="anhsanpham1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="magiamgia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="soluongdaban" Type="Int32" />
+          <Property Name="thuongHieu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="tieude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="chatluong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="soLoiLoc" Type="Int32" />
+          <Property Name="congxuat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tocdoloc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congnghekhangkhuan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congXuatBom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="noisanxuat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="hethang" Type="Boolean" />
+        </ComplexType>
+        <ComplexType Name="f_TimKiemTheoTen_Result">
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="anhsanpham1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="magiamgia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="thuongHieu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="tieude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="chatluong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="soLoiLoc" Type="Int32" />
+          <Property Name="congxuat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tocdoloc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congnghekhangkhuan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congXuatBom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="noisanxuat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="hethang" Type="Boolean" />
+          <Property Name="idIfncc" Type="Int32" />
+          <Property Name="soluongdaban" Type="Int32" />
         </ComplexType>
         <ComplexType Name="F_Top10DanhGiaCao_Result">
           <Property Name="idSP" Type="Int32" />
@@ -697,13 +937,15 @@
           <NavigationProperty Name="acc1" Relationship="Self.FK__acc__taikhoanqua__01142BA1" FromRole="acc" ToRole="acc1" />
           <NavigationProperty Name="acc2" Relationship="Self.FK__acc__taikhoanqua__01142BA1" FromRole="acc1" ToRole="acc" />
           <NavigationProperty Name="comments" Relationship="Self.FK__comment__taikhoa__25518C17" FromRole="acc" ToRole="comment" />
+          <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__taikhoan__24285DB4" FromRole="acc" ToRole="daMua" />
+          <NavigationProperty Name="dangMuas" Relationship="Self.FK__dangMua__taikhoa__1B9317B3" FromRole="acc" ToRole="dangMua" />
           <NavigationProperty Name="danhgias" Relationship="Self.FK__danhgia__taikhoa__1EA48E88" FromRole="acc" ToRole="danhgia" />
           <NavigationProperty Name="giohangs" Relationship="Self.FK__giohang__taikhoa__2B0A656D" FromRole="acc" ToRole="giohang" />
           <NavigationProperty Name="infoes" Relationship="Self.FK__info__taikhoan__04E4BC85" FromRole="acc" ToRole="info" />
           <NavigationProperty Name="infodeletes" Relationship="Self.FK__infodelet__taikh__09A971A2" FromRole="acc" ToRole="infodelete" />
+          <NavigationProperty Name="liKe1" Relationship="Self.FK__liKe1__taikhoan__70A8B9AE" FromRole="acc" ToRole="liKe1" />
+          <NavigationProperty Name="liKedgs" Relationship="Self.FK__liKedg__taikhoan__7755B73D" FromRole="acc" ToRole="liKedg" />
           <NavigationProperty Name="NhaCungCaps" Relationship="Self.FK__NhaCungCa__taikh__0F624AF8" FromRole="acc" ToRole="NhaCungCap" />
-          <NavigationProperty Name="liKe1" Relationship="mayLocNuocModel.FK__liKe1__taikhoan__70A8B9AE" FromRole="acc" ToRole="liKe1" />
-          <NavigationProperty Name="liKedgs" Relationship="mayLocNuocModel.FK__liKedg__taikhoan__7755B73D" FromRole="acc" ToRole="liKedg" />
         </EntityType>
         <EntityType Name="chucvu">
           <Key>
@@ -726,7 +968,39 @@
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="acc" Relationship="Self.FK__comment__taikhoa__25518C17" FromRole="comment" ToRole="acc" />
           <NavigationProperty Name="danhgia" Relationship="Self.FK__comment__idDG__236943A5" FromRole="comment" ToRole="danhgia" />
-          <NavigationProperty Name="liKe1" Relationship="mayLocNuocModel.FK__liKe1__idCM__6FB49575" FromRole="comment" ToRole="liKe1" />
+          <NavigationProperty Name="liKe1" Relationship="Self.FK__liKe1__idCM__6FB49575" FromRole="comment" ToRole="liKe1" />
+        </EntityType>
+        <EntityType Name="daMua">
+          <Key>
+            <PropertyRef Name="idDM" />
+          </Key>
+          <Property Name="idDM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="dangChuanBi" Type="Boolean" />
+          <Property Name="ngaymua" Type="DateTime" Precision="0" />
+          <Property Name="ngayLapDat" Type="DateTime" Precision="0" />
+          <Property Name="dangVanChuyen" Type="Boolean" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="acc" Relationship="Self.FK__daMua__taikhoan__24285DB4" FromRole="daMua" ToRole="acc" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK__daMua__idSP__2334397B" FromRole="daMua" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="dangMua">
+          <Key>
+            <PropertyRef Name="idDM" />
+          </Key>
+          <Property Name="idDM" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="acc" Relationship="Self.FK__dangMua__taikhoa__1B9317B3" FromRole="dangMua" ToRole="acc" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK__dangMua__idSP__1A9EF37A" FromRole="dangMua" ToRole="sanpham" />
         </EntityType>
         <EntityType Name="danhgia">
           <Key>
@@ -742,7 +1016,7 @@
           <NavigationProperty Name="acc" Relationship="Self.FK__danhgia__taikhoa__1EA48E88" FromRole="danhgia" ToRole="acc" />
           <NavigationProperty Name="comments" Relationship="Self.FK__comment__idDG__236943A5" FromRole="danhgia" ToRole="comment" />
           <NavigationProperty Name="sanpham" Relationship="Self.FK__danhgia__idSP__1DB06A4F" FromRole="danhgia" ToRole="sanpham" />
-          <NavigationProperty Name="liKedgs" Relationship="mayLocNuocModel.FK__liKedg__idDG__76619304" FromRole="danhgia" ToRole="liKedg" />
+          <NavigationProperty Name="liKedgs" Relationship="Self.FK__liKedg__idDG__76619304" FromRole="danhgia" ToRole="liKedg" />
         </EntityType>
         <EntityType Name="giohang">
           <Key>
@@ -792,6 +1066,29 @@
           <Property Name="daxoa" Type="Boolean" />
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="acc" Relationship="Self.FK__infodelet__taikh__09A971A2" FromRole="infodelete" ToRole="acc" />
+        </EntityType>
+        <EntityType Name="liKe1">
+          <Key>
+            <PropertyRef Name="idL" />
+          </Key>
+          <Property Name="idL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="solike" Type="Int32" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="idCM" Type="Int32" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="acc" Relationship="Self.FK__liKe1__taikhoan__70A8B9AE" FromRole="liKe1" ToRole="acc" />
+          <NavigationProperty Name="comment" Relationship="Self.FK__liKe1__idCM__6FB49575" FromRole="liKe1" ToRole="comment" />
+        </EntityType>
+        <EntityType Name="liKedg">
+          <Key>
+            <PropertyRef Name="idL" />
+          </Key>
+          <Property Name="idL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="idDG" Type="Int32" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="acc" Relationship="Self.FK__liKedg__taikhoan__7755B73D" FromRole="liKedg" ToRole="acc" />
+          <NavigationProperty Name="danhgia" Relationship="Self.FK__liKedg__idDG__76619304" FromRole="liKedg" ToRole="danhgia" />
         </EntityType>
         <EntityType Name="loai">
           <Key>
@@ -847,6 +1144,8 @@
           <Property Name="hethang" Type="Boolean" />
           <Property Name="idIfncc" Type="Int32" />
           <Property Name="soluongdaban" Type="Int32" />
+          <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__idSP__2334397B" FromRole="sanpham" ToRole="daMua" />
+          <NavigationProperty Name="dangMuas" Relationship="Self.FK__dangMua__idSP__1A9EF37A" FromRole="sanpham" ToRole="dangMua" />
           <NavigationProperty Name="danhgias" Relationship="Self.FK__danhgia__idSP__1DB06A4F" FromRole="sanpham" ToRole="danhgia" />
           <NavigationProperty Name="giohangs" Relationship="Self.FK__giohang__idSP__2A164134" FromRole="sanpham" ToRole="giohang" />
           <NavigationProperty Name="gioithieux" Relationship="Self.FK__gioithieu__idSP__2EDAF651" FromRole="sanpham" ToRole="gioithieu" />
@@ -894,6 +1193,30 @@
               <PropertyRef Name="taikhoan" />
             </Principal>
             <Dependent Role="comment">
+              <PropertyRef Name="taikhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__daMua__taikhoan__24285DB4">
+          <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
+          <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc">
+              <PropertyRef Name="taikhoan" />
+            </Principal>
+            <Dependent Role="daMua">
+              <PropertyRef Name="taikhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dangMua__taikhoa__1B9317B3">
+          <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
+          <End Role="dangMua" Type="Self.dangMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc">
+              <PropertyRef Name="taikhoan" />
+            </Principal>
+            <Dependent Role="dangMua">
               <PropertyRef Name="taikhoan" />
             </Dependent>
           </ReferentialConstraint>
@@ -946,6 +1269,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__liKe1__taikhoan__70A8B9AE">
+          <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
+          <End Role="liKe1" Type="Self.liKe1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc">
+              <PropertyRef Name="taikhoan" />
+            </Principal>
+            <Dependent Role="liKe1">
+              <PropertyRef Name="taikhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__liKedg__taikhoan__7755B73D">
+          <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
+          <End Role="liKedg" Type="Self.liKedg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="acc">
+              <PropertyRef Name="taikhoan" />
+            </Principal>
+            <Dependent Role="liKedg">
+              <PropertyRef Name="taikhoan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__NhaCungCa__taikh__0F624AF8">
           <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
           <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="*" />
@@ -970,6 +1317,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__liKe1__idCM__6FB49575">
+          <End Role="comment" Type="Self.comment" Multiplicity="0..1" />
+          <End Role="liKe1" Type="Self.liKe1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="idCM" />
+            </Principal>
+            <Dependent Role="liKe1">
+              <PropertyRef Name="idCM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__daMua__idSP__2334397B">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="idSP" />
+            </Principal>
+            <Dependent Role="daMua">
+              <PropertyRef Name="idSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__dangMua__idSP__1A9EF37A">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="dangMua" Type="Self.dangMua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="idSP" />
+            </Principal>
+            <Dependent Role="dangMua">
+              <PropertyRef Name="idSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__danhgia__idSP__1DB06A4F">
           <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
           <End Role="danhgia" Type="Self.danhgia" Multiplicity="*" />
@@ -979,6 +1362,18 @@
             </Principal>
             <Dependent Role="danhgia">
               <PropertyRef Name="idSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__liKedg__idDG__76619304">
+          <End Role="danhgia" Type="Self.danhgia" Multiplicity="0..1" />
+          <End Role="liKedg" Type="Self.liKedg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danhgia">
+              <PropertyRef Name="idDG" />
+            </Principal>
+            <Dependent Role="liKedg">
+              <PropertyRef Name="idDG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1022,11 +1417,15 @@
           <EntitySet Name="accs" EntityType="Self.acc" />
           <EntitySet Name="chucvus" EntityType="Self.chucvu" />
           <EntitySet Name="comments" EntityType="Self.comment" />
+          <EntitySet Name="daMuas" EntityType="Self.daMua" />
+          <EntitySet Name="dangMuas" EntityType="Self.dangMua" />
           <EntitySet Name="danhgias" EntityType="Self.danhgia" />
           <EntitySet Name="giohangs" EntityType="Self.giohang" />
           <EntitySet Name="gioithieux" EntityType="Self.gioithieu" />
           <EntitySet Name="infoes" EntityType="Self.info" />
           <EntitySet Name="infodeletes" EntityType="Self.infodelete" />
+          <EntitySet Name="liKe1" EntityType="Self.liKe1" />
+          <EntitySet Name="liKedgs" EntityType="Self.liKedg" />
           <EntitySet Name="loais" EntityType="Self.loai" />
           <EntitySet Name="NhaCungCaps" EntityType="Self.NhaCungCap" />
           <EntitySet Name="sanphams" EntityType="Self.sanpham" />
@@ -1042,6 +1441,14 @@
           <AssociationSet Name="FK__comment__taikhoa__25518C17" Association="Self.FK__comment__taikhoa__25518C17">
             <End Role="acc" EntitySet="accs" />
             <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__daMua__taikhoan__24285DB4" Association="Self.FK__daMua__taikhoan__24285DB4">
+            <End Role="acc" EntitySet="accs" />
+            <End Role="daMua" EntitySet="daMuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dangMua__taikhoa__1B9317B3" Association="Self.FK__dangMua__taikhoa__1B9317B3">
+            <End Role="acc" EntitySet="accs" />
+            <End Role="dangMua" EntitySet="dangMuas" />
           </AssociationSet>
           <AssociationSet Name="FK__danhgia__taikhoa__1EA48E88" Association="Self.FK__danhgia__taikhoa__1EA48E88">
             <End Role="acc" EntitySet="accs" />
@@ -1059,6 +1466,14 @@
             <End Role="acc" EntitySet="accs" />
             <End Role="infodelete" EntitySet="infodeletes" />
           </AssociationSet>
+          <AssociationSet Name="FK__liKe1__taikhoan__70A8B9AE" Association="Self.FK__liKe1__taikhoan__70A8B9AE">
+            <End Role="acc" EntitySet="accs" />
+            <End Role="liKe1" EntitySet="liKe1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__liKedg__taikhoan__7755B73D" Association="Self.FK__liKedg__taikhoan__7755B73D">
+            <End Role="acc" EntitySet="accs" />
+            <End Role="liKedg" EntitySet="liKedgs" />
+          </AssociationSet>
           <AssociationSet Name="FK__NhaCungCa__taikh__0F624AF8" Association="Self.FK__NhaCungCa__taikh__0F624AF8">
             <End Role="acc" EntitySet="accs" />
             <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
@@ -1067,9 +1482,25 @@
             <End Role="danhgia" EntitySet="danhgias" />
             <End Role="comment" EntitySet="comments" />
           </AssociationSet>
+          <AssociationSet Name="FK__liKe1__idCM__6FB49575" Association="Self.FK__liKe1__idCM__6FB49575">
+            <End Role="comment" EntitySet="comments" />
+            <End Role="liKe1" EntitySet="liKe1" />
+          </AssociationSet>
+          <AssociationSet Name="FK__daMua__idSP__2334397B" Association="Self.FK__daMua__idSP__2334397B">
+            <End Role="sanpham" EntitySet="sanphams" />
+            <End Role="daMua" EntitySet="daMuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__dangMua__idSP__1A9EF37A" Association="Self.FK__dangMua__idSP__1A9EF37A">
+            <End Role="sanpham" EntitySet="sanphams" />
+            <End Role="dangMua" EntitySet="dangMuas" />
+          </AssociationSet>
           <AssociationSet Name="FK__danhgia__idSP__1DB06A4F" Association="Self.FK__danhgia__idSP__1DB06A4F">
             <End Role="sanpham" EntitySet="sanphams" />
             <End Role="danhgia" EntitySet="danhgias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__liKedg__idDG__76619304" Association="Self.FK__liKedg__idDG__76619304">
+            <End Role="danhgia" EntitySet="danhgias" />
+            <End Role="liKedg" EntitySet="liKedgs" />
           </AssociationSet>
           <AssociationSet Name="FK__giohang__idSP__2A164134" Association="Self.FK__giohang__idSP__2A164134">
             <End Role="sanpham" EntitySet="sanphams" />
@@ -1083,12 +1514,28 @@
             <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
             <End Role="sanpham" EntitySet="sanphams" />
           </AssociationSet>
+          <FunctionImport Name="F_cungHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_cungHang_Result)">
+            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
           <FunctionImport Name="F_HienThiTatCarTaiKhoan" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result)" />
+          <FunctionImport Name="F_layComment" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_layComment_Result)">
+            <Parameter Name="idDG" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="F_laydanhdia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laydanhdia_Result)">
+            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="F_laySanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laySanPham_Result)">
+            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_TimKiemTheoTen" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_TimKiemTheoTen_Result)">
+            <Parameter Name="truyenvao" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="F_Top10DanhGiaCao" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_Top10DanhGiaCao_Result)">
-          <Parameter Name="top" Mode="In" Type="Int32" />
+            <Parameter Name="top" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_TopBanChay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_TopBanChay_Result)">
-          <Parameter Name="top" Mode="In" Type="Int32" />
+            <Parameter Name="top" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="P_themtaikhoan">
             <Parameter Name="taikhoan" Mode="In" Type="String" />
@@ -1096,219 +1543,47 @@
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="themtaikhoantrave" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="liKe1" EntityType="mayLocNuocModel.liKe1" />
-          <AssociationSet Name="FK__liKe1__taikhoan__70A8B9AE" Association="mayLocNuocModel.FK__liKe1__taikhoan__70A8B9AE">
-            <End Role="acc" EntitySet="accs" />
-            <End Role="liKe1" EntitySet="liKe1" />
-          </AssociationSet>
-          <AssociationSet Name="FK__liKe1__idCM__6FB49575" Association="mayLocNuocModel.FK__liKe1__idCM__6FB49575">
-            <End Role="comment" EntitySet="comments" />
-            <End Role="liKe1" EntitySet="liKe1" />
-          </AssociationSet>
-          <FunctionImport Name="F_layComment" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_layComment_Result)">
-          <Parameter Name="idDG" Mode="In" Type="Int32" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
           </FunctionImport>
-          <FunctionImport Name="F_laydanhdia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laydanhdia_Result)">
-          <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
           </FunctionImport>
-          <FunctionImport Name="F_laySanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laySanPham_Result)">
-          <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="liKedgs" EntityType="mayLocNuocModel.liKedg" />
-          <AssociationSet Name="FK__liKedg__taikhoan__7755B73D" Association="mayLocNuocModel.FK__liKedg__taikhoan__7755B73D">
-            <End Role="acc" EntitySet="accs" />
-            <End Role="liKedg" EntitySet="liKedgs" />
-          </AssociationSet>
-          <AssociationSet Name="FK__liKedg__idDG__76619304" Association="mayLocNuocModel.FK__liKedg__idDG__76619304">
-            <End Role="danhgia" EntitySet="danhgias" />
-            <End Role="liKedg" EntitySet="liKedgs" />
-          </AssociationSet>
-          <FunctionImport Name="F_cungHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_cungHang_Result)">
-          <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(mayLocNuocModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
-          <FunctionImport Name="f_TimKiemTheoTen" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_TimKiemTheoTen_Result)">
-            <Parameter Name="truyenvao" Mode="In" Type="String" />
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(mayLocNuocModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <EntityType Name="liKe1">
-          <Key>
-            <PropertyRef Name="idL" />
-          </Key>
-          <Property Name="idL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="solike" Type="Int32" />
-          <Property Name="daxoa" Type="Boolean" />
-          <Property Name="idCM" Type="Int32" />
-          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="acc" Relationship="mayLocNuocModel.FK__liKe1__taikhoan__70A8B9AE" FromRole="liKe1" ToRole="acc" />
-          <NavigationProperty Name="comment" Relationship="mayLocNuocModel.FK__liKe1__idCM__6FB49575" FromRole="liKe1" ToRole="comment" />
-        </EntityType>
-        <Association Name="FK__liKe1__taikhoan__70A8B9AE">
-          <End Type="mayLocNuocModel.acc" Role="acc" Multiplicity="0..1" />
-          <End Type="mayLocNuocModel.liKe1" Role="liKe1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="acc">
-              <PropertyRef Name="taikhoan" />
-            </Principal>
-            <Dependent Role="liKe1">
-              <PropertyRef Name="taikhoan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__liKe1__idCM__6FB49575">
-          <End Type="mayLocNuocModel.comment" Role="comment" Multiplicity="0..1" />
-          <End Type="mayLocNuocModel.liKe1" Role="liKe1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="comment">
-              <PropertyRef Name="idCM" />
-            </Principal>
-            <Dependent Role="liKe1">
-              <PropertyRef Name="idCM" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="F_layComment_Result">
-          <Property Type="Int32" Name="idCM" Nullable="true" />
-          <Property Type="String" Name="noidung" Nullable="true" MaxLength="300" />
-          <Property Type="Int32" Name="solike" Nullable="true" />
-          <Property Type="Int32" Name="idDG" Nullable="true" />
-          <Property Type="Boolean" Name="daxoa" Nullable="true" />
-          <Property Type="String" Name="taikhoan" Nullable="true" MaxLength="30" />
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="F_laydanhdia_Result">
-          <Property Type="Int32" Name="idDG" Nullable="true" />
-          <Property Type="String" Name="noidung" Nullable="true" MaxLength="300" />
-          <Property Type="Int32" Name="sosao" Nullable="true" />
-          <Property Type="Int32" Name="solike" Nullable="true" />
-          <Property Type="Boolean" Name="daxoa" Nullable="true" />
-          <Property Type="String" Name="taikhoan" Nullable="true" MaxLength="30" />
-        </ComplexType>
-        <ComplexType Name="F_laySanPham_Result">
-          <Property Type="Int32" Name="idSP" Nullable="true" />
-          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="sophantram" Nullable="true" />
-          <Property Type="Int32" Name="soluong" Nullable="true" />
-          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
-          <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
-          <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
-          <Property Type="Boolean" Name="daxoa" Nullable="true" />
-          <Property Type="Boolean" Name="hethang" Nullable="true" />
-        </ComplexType>
-        <EntityType Name="liKedg">
-          <Key>
-            <PropertyRef Name="idL" />
-          </Key>
-          <Property Name="idL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="daxoa" Type="Boolean" />
-          <Property Name="idDG" Type="Int32" />
-          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="acc" Relationship="mayLocNuocModel.FK__liKedg__taikhoan__7755B73D" FromRole="liKedg" ToRole="acc" />
-          <NavigationProperty Name="danhgia" Relationship="mayLocNuocModel.FK__liKedg__idDG__76619304" FromRole="liKedg" ToRole="danhgia" />
-        </EntityType>
-        <Association Name="FK__liKedg__taikhoan__7755B73D">
-          <End Type="mayLocNuocModel.acc" Role="acc" Multiplicity="0..1" />
-          <End Type="mayLocNuocModel.liKedg" Role="liKedg" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="acc">
-              <PropertyRef Name="taikhoan" />
-            </Principal>
-            <Dependent Role="liKedg">
-              <PropertyRef Name="taikhoan" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__liKedg__idDG__76619304">
-          <End Type="mayLocNuocModel.danhgia" Role="danhgia" Multiplicity="0..1" />
-          <End Type="mayLocNuocModel.liKedg" Role="liKedg" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="danhgia">
-              <PropertyRef Name="idDG" />
-            </Principal>
-            <Dependent Role="liKedg">
-              <PropertyRef Name="idDG" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="F_cungHang_Result">
-          <Property Type="Int32" Name="idSP" Nullable="true" />
-          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
-        </ComplexType>
-        <ComplexType Name="f_DanhGiaCaoNhat_Result">
-          <Property Type="Int32" Name="idSP" Nullable="true" />
-          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="sophantram" Nullable="true" />
-          <Property Type="Int32" Name="soluong" Nullable="true" />
-          <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
-          <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
-          <Property Type="Boolean" Name="daxoa" Nullable="true" />
-          <Property Type="Boolean" Name="hethang" Nullable="true" />
-          <Property Type="Int32" Name="idIfncc" Nullable="true" />
-          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="f_TimKiemTheoTen_Result">
-          <Property Type="Int32" Name="idSP" Nullable="true" />
-          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
-          <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
-          <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="sophantram" Nullable="true" />
-          <Property Type="Int32" Name="soluong" Nullable="true" />
-          <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
-          <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
-          <Property Type="Boolean" Name="daxoa" Nullable="true" />
-          <Property Type="Boolean" Name="hethang" Nullable="true" />
-          <Property Type="Int32" Name="idIfncc" Nullable="true" />
-          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1345,6 +1620,36 @@
                 <ScalarProperty Name="solike" ColumnName="solike" />
                 <ScalarProperty Name="idDG" ColumnName="idDG" />
                 <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="daMuas">
+            <EntityTypeMapping TypeName="mayLocNuocModel.daMua">
+              <MappingFragment StoreEntitySet="daMua">
+                <ScalarProperty Name="idDM" ColumnName="idDM" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="dangChuanBi" ColumnName="dangChuanBi" />
+                <ScalarProperty Name="ngaymua" ColumnName="ngaymua" />
+                <ScalarProperty Name="ngayLapDat" ColumnName="ngayLapDat" />
+                <ScalarProperty Name="dangVanChuyen" ColumnName="dangVanChuyen" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dangMuas">
+            <EntityTypeMapping TypeName="mayLocNuocModel.dangMua">
+              <MappingFragment StoreEntitySet="dangMua">
+                <ScalarProperty Name="idDM" ColumnName="idDM" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
                 <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1406,6 +1711,27 @@
                 <ScalarProperty Name="number_phone" ColumnName="number_phone" />
                 <ScalarProperty Name="adress" ColumnName="adress" />
                 <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="liKe1">
+            <EntityTypeMapping TypeName="mayLocNuocModel.liKe1">
+              <MappingFragment StoreEntitySet="liKe1">
+                <ScalarProperty Name="idL" ColumnName="idL" />
+                <ScalarProperty Name="solike" ColumnName="solike" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="idCM" ColumnName="idCM" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="liKedgs">
+            <EntityTypeMapping TypeName="mayLocNuocModel.liKedg">
+              <MappingFragment StoreEntitySet="liKedg">
+                <ScalarProperty Name="idL" ColumnName="idL" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="idDG" ColumnName="idDG" />
                 <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1477,117 +1803,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_HienThiTatCarTaiKhoan" FunctionImportName="F_HienThiTatCarTaiKhoan">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result">
-                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
-                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="chucvu" ColumnName="chucvu" />
-                <ScalarProperty Name="taikhoanquanly" ColumnName="taikhoanquanly" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_Top10DanhGiaCao" FunctionImportName="F_Top10DanhGiaCao">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="mayLocNuocModel.F_Top10DanhGiaCao_Result">
-                <ScalarProperty Name="idSP" ColumnName="idSP" />
-                <ScalarProperty Name="soluongdamua" ColumnName="soluongdamua" />
-                <ScalarProperty Name="tensp" ColumnName="tensp" />
-                <ScalarProperty Name="sosao" ColumnName="sosao" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_TopBanChay" FunctionImportName="F_TopBanChay">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="mayLocNuocModel.F_TopBanChay_Result">
-                <ScalarProperty Name="idSP" ColumnName="idSP" />
-                <ScalarProperty Name="sodaBan" ColumnName="sodaBan" />
-                <ScalarProperty Name="soluongconlai" ColumnName="soluongconlai" />
-                <ScalarProperty Name="tensp" ColumnName="tensp" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="P_themtaikhoan" FunctionName="mayLocNuocModel.Store.P_themtaikhoan" />
-          <EntitySetMapping Name="liKe1">
-            <EntityTypeMapping TypeName="mayLocNuocModel.liKe1">
-              <MappingFragment StoreEntitySet="liKe1">
-                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
-                <ScalarProperty Name="idCM" ColumnName="idCM" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
-                <ScalarProperty Name="solike" ColumnName="solike" />
-                <ScalarProperty Name="idL" ColumnName="idL" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="F_layComment" FunctionName="mayLocNuocModel.Store.F_layComment">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="mayLocNuocModel.F_layComment_Result">
-                <ScalarProperty Name="idCM" ColumnName="idCM" />
-                <ScalarProperty Name="noidung" ColumnName="noidung" />
-                <ScalarProperty Name="solike" ColumnName="solike" />
-                <ScalarProperty Name="idDG" ColumnName="idDG" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
-                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="F_laydanhdia" FunctionName="mayLocNuocModel.Store.F_laydanhdia">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="mayLocNuocModel.F_laydanhdia_Result">
-                <ScalarProperty Name="idDG" ColumnName="idDG" />
-                <ScalarProperty Name="noidung" ColumnName="noidung" />
-                <ScalarProperty Name="sosao" ColumnName="sosao" />
-                <ScalarProperty Name="solike" ColumnName="solike" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
-                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="F_laySanPham" FunctionName="mayLocNuocModel.Store.F_laySanPham">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="mayLocNuocModel.F_laySanPham_Result">
-                <ScalarProperty Name="idSP" ColumnName="idSP" />
-                <ScalarProperty Name="tensp" ColumnName="tensp" />
-                <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
-                <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
-                <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
-                <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
-                <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
-                <ScalarProperty Name="rong" ColumnName="rong" />
-                <ScalarProperty Name="dai" ColumnName="dai" />
-                <ScalarProperty Name="cao" ColumnName="cao" />
-                <ScalarProperty Name="gia" ColumnName="gia" />
-                <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
-                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
-                <ScalarProperty Name="soluong" ColumnName="soluong" />
-                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
-                <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
-                <ScalarProperty Name="tieude" ColumnName="tieude" />
-                <ScalarProperty Name="chatluong" ColumnName="chatluong" />
-                <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
-                <ScalarProperty Name="congxuat" ColumnName="congxuat" />
-                <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
-                <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
-                <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
-                <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
-                <ScalarProperty Name="hethang" ColumnName="hethang" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="liKedgs">
-            <EntityTypeMapping TypeName="mayLocNuocModel.liKedg">
-              <MappingFragment StoreEntitySet="liKedg">
-                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
-                <ScalarProperty Name="idDG" ColumnName="idDG" />
-                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
-                <ScalarProperty Name="idL" ColumnName="idL" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="F_cungHang" FunctionName="mayLocNuocModel.Store.F_cungHang">
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_cungHang" FunctionImportName="F_cungHang">
             <ResultMapping>
               <ComplexTypeMapping TypeName="mayLocNuocModel.F_cungHang_Result">
                 <ScalarProperty Name="idSP" ColumnName="idSP" />
@@ -1597,7 +1813,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="f_DanhGiaCaoNhat" FunctionName="mayLocNuocModel.Store.f_DanhGiaCaoNhat">
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DanhGiaCaoNhat" FunctionImportName="f_DanhGiaCaoNhat">
             <ResultMapping>
               <ComplexTypeMapping TypeName="mayLocNuocModel.f_DanhGiaCaoNhat_Result">
                 <ScalarProperty Name="idSP" ColumnName="idSP" />
@@ -1630,7 +1846,75 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="f_TimKiemTheoTen" FunctionName="mayLocNuocModel.Store.f_TimKiemTheoTen">
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_HienThiTatCarTaiKhoan" FunctionImportName="F_HienThiTatCarTaiKhoan">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result">
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="chucvu" ColumnName="chucvu" />
+                <ScalarProperty Name="taikhoanquanly" ColumnName="taikhoanquanly" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_layComment" FunctionImportName="F_layComment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_layComment_Result">
+                <ScalarProperty Name="idCM" ColumnName="idCM" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="solike" ColumnName="solike" />
+                <ScalarProperty Name="idDG" ColumnName="idDG" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_laydanhdia" FunctionImportName="F_laydanhdia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_laydanhdia_Result">
+                <ScalarProperty Name="idDG" ColumnName="idDG" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="sosao" ColumnName="sosao" />
+                <ScalarProperty Name="solike" ColumnName="solike" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_laySanPham" FunctionImportName="F_laySanPham">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_laySanPham_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+                <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+                <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+                <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+                <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+                <ScalarProperty Name="rong" ColumnName="rong" />
+                <ScalarProperty Name="dai" ColumnName="dai" />
+                <ScalarProperty Name="cao" ColumnName="cao" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+                <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+                <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+                <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+                <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+                <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+                <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="hethang" ColumnName="hethang" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_TimKiemTheoTen" FunctionImportName="f_TimKiemTheoTen">
             <ResultMapping>
               <ComplexTypeMapping TypeName="mayLocNuocModel.f_TimKiemTheoTen_Result">
                 <ScalarProperty Name="idSP" ColumnName="idSP" />
@@ -1663,6 +1947,51 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_Top10DanhGiaCao" FunctionImportName="F_Top10DanhGiaCao">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_Top10DanhGiaCao_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="soluongdamua" ColumnName="soluongdamua" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="sosao" ColumnName="sosao" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_TopBanChay" FunctionImportName="F_TopBanChay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_TopBanChay_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="sodaBan" ColumnName="sodaBan" />
+                <ScalarProperty Name="soluongconlai" ColumnName="soluongconlai" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_themtaikhoan" FunctionName="mayLocNuocModel.Store.P_themtaikhoan" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="mayLocNuocModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="mayLocNuocModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="mayLocNuocModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="mayLocNuocModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="mayLocNuocModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="mayLocNuocModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="mayLocNuocModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

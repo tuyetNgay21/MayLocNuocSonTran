@@ -138,8 +138,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdMinController.cs" />
-    <Compile Include="Controllers\adminproController.cs" />
     <Compile Include="Controllers\chiTietController.cs" />
+    <Compile Include="Controllers\DaMuaController.cs" />
     <Compile Include="Controllers\DangNhapController.cs" />
     <Compile Include="Controllers\Error1Controller.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -147,31 +147,23 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\QuanTriController.cs" />
     <Compile Include="Controllers\TroGiupController.cs" />
+    <Compile Include="Controllers\UseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\acc.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\admin.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>admin.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\admin.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>admin.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\admin.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>admin.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\chucvu.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\comment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\daMua.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dangMua.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\danhgia.cs">
@@ -217,6 +209,9 @@
     <Compile Include="Models\infodelete.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KeyBox.cs" />
+    <Compile Include="Models\KeyCloseData.cs" />
+    <Compile Include="Models\KeyOpenData.cs" />
     <Compile Include="Models\KyTu.cs" />
     <Compile Include="Models\liKe1.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -244,37 +239,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\NhacungCap.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NhacungCap.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\NhaCungCap.cs">
       <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhacungCap.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NhacungCap.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\NhacungCap1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NhacungCap.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ran.cs" />
     <Compile Include="Models\sanpham.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>NhacungCap.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>NhacungCap.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\unKeyBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="save.cs" />
   </ItemGroup>
@@ -285,6 +266,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chiTiet\js\dungKhocMotMinhEmOi.js" />
     <Content Include="Content\dangNhap\dangnhap.css" />
     <Content Include="Content\dangNhap\dangnhap.js" />
     <Content Include="Content\dangNhap\N2c.js" />
@@ -497,16 +479,6 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Models\admin.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>admin.edmx</DependentUpon>
-      <LastGenOutput>admin.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\admin.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>admin.edmx</DependentUpon>
-      <LastGenOutput>admin.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -516,16 +488,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\NhacungCap.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhacungCap.edmx</DependentUpon>
-      <LastGenOutput>NhacungCap.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\NhacungCap.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NhacungCap.edmx</DependentUpon>
-      <LastGenOutput>NhacungCap1.cs</LastGenOutput>
     </Content>
     <Content Include="obj\Debug\MayLocNuoc.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\MayLocNuoc.dll" />
@@ -539,13 +501,6 @@
     <Content Include="Content\home\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\home\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\home\fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="bin\MayLocNuoc.dll.config" />
     <Content Include="bin\roslyn\csc.exe.config" />
     <Content Include="bin\roslyn\csc.rsp" />
@@ -564,20 +519,6 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Model1.ssdl" />
     <Content Include="obj\Debug\MayLocNuoc.csproj.CopyComplete" />
     <Content Include="obj\Debug\MayLocNuoc.csprojAssemblyReference.cache" />
-    <EntityDeploy Include="Models\admin.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>admin.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\admin.edmx.diagram">
-      <DependentUpon>admin.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\NhacungCap.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NhacungCap.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\NhacungCap.edmx.diagram">
-      <DependentUpon>NhacungCap.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\NCC\all\css\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\NCC\all\css\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\NCC\all\css\fonts\fontawesome-webfont.woff" />
@@ -613,6 +554,13 @@
     <Content Include="Content\Log\fonts\fontomas-webfont.eot" />
     <Content Include="Content\Log\fonts\fontomas-webfont.ttf" />
     <Content Include="Content\Log\fonts\fontomas-webfont.woff" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -711,7 +659,6 @@
     <Content Include="Views\AdMin\TrangChu.cshtml" />
     <Content Include="Views\NhaCungCap\layoutNCC.cshtml" />
     <Content Include="Views\NhaCungCap\TrangChu.cshtml" />
-    <Content Include="Views\adminpro\AdMinVip.cshtml" />
     <Content Include="Views\NhaCungCap\xemNCC.cshtml" />
     <Content Include="Views\NhaCungCap\ThemSanPham.cshtml" />
     <Content Include="Views\NhaCungCap\xemDoanhthu.cshtml" />
@@ -741,11 +688,23 @@
     <Content Include="Views\DangNhap\changePassword.cshtml" />
     <Content Include="Views\DangNhap\registGetPasswordration.cshtml" />
     <Content Include="Views\DangNhap\registration.cshtml" />
+    <Content Include="Views\DaMua\layUot.cshtml" />
+    <Content Include="Views\DaMua\LichSu.cshtml" />
+    <Content Include="Views\AdMin\NhaCungCap.cshtml" />
+    <Content Include="Views\AdMin\NguoiDung.cshtml" />
+    <Content Include="Views\AdMin\DoanhThu.cshtml" />
+    <Content Include="Views\AdMin\CaiDat.cshtml" />
+    <Content Include="Views\AdMin\ThongTin.cshtml" />
+    <Content Include="Views\AdMin\XemduLieu.cshtml" />
+    <Content Include="Views\NhaCungCap\Product_To.cshtml" />
+    <Content Include="Views\NhaCungCap\Product_From.cshtml" />
+    <Content Include="Views\DaMua\DangMua.cshtml" />
+    <Content Include="Views\TroGiup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Shared\" />
-    <Folder Include="Views\TroGiup\" />
+    <Folder Include="Views\Use\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -17,6 +17,8 @@ namespace MayLocNuoc.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public sanpham()
         {
+            this.daMuas = new HashSet<daMua>();
+            this.dangMuas = new HashSet<dangMua>();
             this.danhgias = new HashSet<danhgia>();
             this.giohangs = new HashSet<giohang>();
             this.gioithieux = new HashSet<gioithieu>();
@@ -50,6 +52,10 @@ namespace MayLocNuoc.Models
         public Nullable<int> idIfncc { get; set; }
         public Nullable<int> soluongdaban { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<daMua> daMuas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<dangMua> dangMuas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<danhgia> danhgias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

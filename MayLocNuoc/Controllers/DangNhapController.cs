@@ -216,10 +216,10 @@ namespace MayLocNuoc.Controllers
                 }
                 else
                 {
-                    if(db.accs.Where(n=>n.taikhoan==taikhoanthaydoi).Count()==1)
+                    if (db.accs.Where(n => n.taikhoan == taikhoanthaydoi).Count() == 1)
                     {
-                       var mkOld= MD5.ToMD5(passOld.Trim());
-                        if (db.accs.Where(n => n.taikhoan == taikhoanthaydoi && n.matkhau==mkOld).Count() == 1)
+                        var mkOld = MD5.ToMD5(passOld.Trim());
+                        if (db.accs.Where(n => n.taikhoan == taikhoanthaydoi && n.matkhau == mkOld).Count() == 1)
                         {
                             var ChangPassss = db.accs.Where(n => n.taikhoan == taikhoanthaydoi && n.matkhau == mkOld).FirstOrDefault();
 
@@ -244,9 +244,92 @@ namespace MayLocNuoc.Controllers
 
                 avg = "2";
             }
-            
+
 
             return Json(avg);
+        }
+
+        //add product in database
+        //changPass
+        public JsonResult RegistrationJson(string AccRegistration, string PassRegistration,
+                string NameRegistration, string numberPhoneRegistration,
+               string AdressRegistration, string EmailRegistration)
+        {
+            /*
+             * 1 trong co ky tu dac biet
+             * 2 kiem tra nay tai khoan da co chuwa 
+             * 3 kiem tra xem da co gmail nay chua
+             * 4 co loi he thong
+             * 5  thanh cong 
+             */
+            string Trave = "";
+            try
+            {
+                if (AccRegistration==null || AccRegistration==""||
+                    PassRegistration == null || PassRegistration == "" ||
+                    NameRegistration == null || NameRegistration == "" ||
+                    numberPhoneRegistration == null || numberPhoneRegistration == "" ||
+                    AdressRegistration == null || AdressRegistration == "" ||
+                    EmailRegistration == null || EmailRegistration == "" )
+                {
+                    Trave = "6";
+                }
+                else
+                {
+                    if (KyTu.kiemtra(AccRegistration) == true || KyTu.kiemtra(PassRegistration) == true ||
+                                        KyTu.kiemtra(NameRegistration) == true || KyTu.kiemtra(numberPhoneRegistration) == true ||
+                                        KyTu.kiemtra(AdressRegistration) == true || KyTu.kiemtra(EmailRegistration) == true)
+                    {
+                        Trave = "1";
+                    }
+                    else
+                    {
+                        if (db.accs.Where(n => n.taikhoan == AccRegistration).Count() == 0)
+                        {
+                            if (db.accs.Where(n => n.email == EmailRegistration).Count() == 0)
+                            {
+                                acc ac = new acc();
+                                ac.taikhoan = AccRegistration;
+                                ac.matkhau = MD5.ToMD5(PassRegistration.Trim());
+                                ac.daxoa = false;
+                                ac.email = EmailRegistration;
+                                ac.chucvu = 3;
+                                ac.taikhoanquanly = "ADminVip";
+
+                                info inf = new info();
+                                inf.nameFull = NameRegistration;
+                                inf.age = Convert.ToInt32(18);
+                                inf.adress = AdressRegistration;
+                                inf.number_phone = numberPhoneRegistration;
+                                inf.taikhoan = AccRegistration;
+
+                                db.accs.Add(ac);
+                                db.infoes.Add(inf);
+                                db.SaveChanges();
+
+                                Trave = "5";
+                            }
+                            else
+                            {
+                                Trave = "3";
+                            }
+                        }
+                        else
+                        {
+                            Trave = "2";
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception)
+            {
+
+                Trave = "4";
+            }
+
+
+            return Json(Trave);
         }
     }
 }
