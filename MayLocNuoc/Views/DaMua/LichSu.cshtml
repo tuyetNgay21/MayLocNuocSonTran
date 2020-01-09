@@ -1,8 +1,76 @@
-﻿
+﻿@using MayLocNuoc.Models;
 @{
-    ViewBag.Title = "LichSu";
-    Layout = "~/Views/layuot/Index.cshtml";
+    ViewBag.Title = "DangMua";
+    Layout = "~/Views/DaMua/layUot.cshtml";
 }
+@{
+    mayLocNuocEntities db = new mayLocNuocEntities();
+    var dangmua1 = db.daMuas.Where(n => n.taikhoan == save.taikhoan && n.daxoa == true);
+}
+<i> <h1><p style="text-align:center; color:rgba(69, 186, 224, 0.91)">Sản Phẩm Đã Lựa Chọn</p></h1></i>
+<table class="table table-dark">
+    @foreach (var key in dangmua1)
+    {
+        <tbody>
+            <tr>
+                <td style="width:30%; height:auto;" colspan="2" rowspan="7">
+                    @{
+                        var tensap = db.sanphams.Where(m => m.idSP == key.idSP).FirstOrDefault();
+                    }
+                    <img style="width:100%; height:auto;" src="@tensap.anhsanpham1" />
+                </td>
+                <td colspan="5">Tên Sản Phẩm : @tensap.tensp</td>
+            </tr>
+            <tr>
+                <td>Giá : @key.gia</td>
+                <td>Số Phần Trăm Giảm Giá : @key.sophantram (%)</td>
+                <td>Số Lượng : @key.soluong</td>
+                @{
+                    var tongso = ((key.gia * (key.sophantram + 100)) / 100) * key.soluong;
+                }
+                <td colspan="2">Tổng : @tongso</td>
+            </tr>
+            <tr>
+                @{
+                    var khachHang = db.infoes.Where(k => k.taikhoan == save.taikhoan).FirstOrDefault();
+                }
+                <td colspan="2">Tên Khách: @khachHang.nameFull</td>
+                <td colspan="3">Địa chỉ : @khachHang.adress</td>
+            </tr>
+            <tr>
+                <td colspan="1">Bên Khách</td>
+                <td colspan="1">Ngay Đặt : @key.ngaymua</td>
+                <td colspan="1">Thời Gian Chờ : 3-7 ngày</td>
+            </tr>
+            <tr>
+                <td colspan="1">Bên Nhà Cung Cấp</td>
+                @if (key.dangChuanBi == false && key.dangVanChuyen == false)
+                {
+                    <td colspan="1">Đang Chuẩn Bị : Chưa</td>
+                    <td colspan="1">Đang Vận chuyển : Chưa</td>
+                }
+                else if (key.dangChuanBi == true && key.dangVanChuyen == false)
+                {
+                    <td colspan="1">Đang Chuẩn Bị : Đã Xong</td>
+                    <td colspan="1">Đang Vận chuyển : Xác Nhận</td>
+                }
+                else if (key.dangChuanBi == true && key.dangVanChuyen == true)
+                {
+                    <td colspan="1">Đang Chuẩn Bị : Đã Xong</td>
+                    <td colspan="1">Đang Vận chuyển : Xác Nhận</td>
+                }
+                <td colspan="1">Ngày Lắp Đặt Dự Kiến : @key.ngayLapDat</td>
+            </tr>
+            <tr>
+                <td colspan="5">LƯU Ý : Khách Hàng có thể liên hệ với nhà cung cấp để biết thêm thông tin chi tiết</td>
+            </tr>
+            <tr>
+                <td><input class="btn btn-success" type="submit" value="Liên Hệ " /></td>
+                <td><a href="@Url.Action("Index","ChiTiet",new {id=key.idSP})"><input class="btn btn-success" type="submit" value="Đánh Giá" /></a></td>
+                <td><input class=" KhoiPhucDaXoa btn btn-success" type="submit" value="Khôi Phục" data-id="@key.idDM" /></td>
+            </tr>
+        </tbody>
+    }
+</table>
 
-<h2>LichSu</h2>
 

@@ -9,7 +9,7 @@ namespace MayLocNuoc.Controllers
 {
     public class NhaCungCapController : Controller
     {
-        mayLocNuocEntitiesNhaCungCap db = new mayLocNuocEntitiesNhaCungCap();
+        mayLocNuocEntities db = new mayLocNuocEntities();
         // GET: NhaCungCap
         [HttpGet]
         public ActionResult TrangChu()
