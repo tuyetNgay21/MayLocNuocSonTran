@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MayLocNuoc.Models;
+using PagedList;
 
 namespace MayLocNuoc.Controllers
 {
@@ -12,7 +13,13 @@ namespace MayLocNuoc.Controllers
         mayLocNuocEntities db = new mayLocNuocEntities();
         // GET: NhaCungCap
         [HttpGet]
-        public ActionResult TrangChu()
+        public ActionResult Index(string tk, int page = 1, int size = 9)
+        {
+            int TL = Convert.ToInt32(tk);
+            var model = db.sanphams.Where(m => m.idIfncc == TL).OrderBy(n => n.soluong).ToPagedList(page, size);
+            return View(model);
+        }
+        public ActionResult TrangChu(int page = 1, int size = 9)
         {
             if (save.taikhoan == null || save.taikhoan == "")
             {
@@ -20,21 +27,14 @@ namespace MayLocNuoc.Controllers
             }
             else
             {
-                return View();
+                var id = db.NhaCungCaps.Where(n => n.taikhoan == save.taikhoan).FirstOrDefault();
+                int TL = Convert.ToInt32(id.idIfncc);
+                var model = db.sanphams.Where(m => m.idIfncc == TL).OrderBy(n => n.soluong).ToPagedList(page, size);
+                return View(model);
             }
         }
+
         public ActionResult Product_To()
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                return View();
-            }
-        }
-        public ActionResult Product_From()
         {
             if (save.taikhoan == null || save.taikhoan == "")
             {
@@ -57,6 +57,7 @@ namespace MayLocNuoc.Controllers
             }
 
         }
+        // doanh thu////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public ActionResult xemDoanhthu()
         {
             if (save.taikhoan == null || save.taikhoan == "")
@@ -68,21 +69,8 @@ namespace MayLocNuoc.Controllers
                 return View();
             }
         }
-        public ActionResult SuaProduct(string ma)
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                int ma1 = Convert.ToInt32(ma);
-                var sanpham=db.sanphams.Where(n => n.idSP == ma1).FirstOrDefault();
-                return View(sanpham);
-            }
-        }
-       
-        public ActionResult xemNCC()
+        //trong thang
+        public ActionResult In_Month()
         {
             if (save.taikhoan == null || save.taikhoan == "")
             {
@@ -93,7 +81,31 @@ namespace MayLocNuoc.Controllers
                 return View();
             }
         }
-        public ActionResult Info()
+        //san pham trong mot ngay trong thang
+        public ActionResult Product_In_Day_inMonth()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        //đánh Giá Của Tất cả sản phẩm chuyển qua trang chi tiết
+        public ActionResult Evaluate_Product()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult Product_not_to()
         {
             if (save.taikhoan == null || save.taikhoan == "")
             {
@@ -115,6 +127,66 @@ namespace MayLocNuoc.Controllers
                 return View();
             }
         }
+        public ActionResult chưathem1()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult chưathem2()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult chưathem3()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+
+        public ActionResult SuaProduct(string ma)
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                int ma1 = Convert.ToInt32(ma);
+                var sanpham = db.sanphams.Where(n => n.idSP == ma1).FirstOrDefault();
+                return View(sanpham);
+            }
+        }
+        public ActionResult Info()
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         [HttpPost]
         //sua san pham//////////////////////////////////////////////////////////////////////////////////////////////
         public JsonResult docsanpham(string MaSanPham)
@@ -212,14 +284,14 @@ namespace MayLocNuoc.Controllers
                         db.sanphams.Add(sp);
                         db.SaveChanges();
 
-                       var xyz= db.sanphams.Where(n => n.idIfncc == manhacungcap &&
-                                             n.tensp == name_product &&
-                                             n.anhsanpham2 == Img1 &&
-                                             n.anhsanpham3 == Img2 &&
-                                             n.anhsanpham4 == Img3 &&
-                                             n.anhsanpham5 == Img4 &&
-                                             n.anhsanpham1 == Imgchinh
-                                          ).FirstOrDefault();
+                        var xyz = db.sanphams.Where(n => n.idIfncc == manhacungcap &&
+                                               n.tensp == name_product &&
+                                               n.anhsanpham2 == Img1 &&
+                                               n.anhsanpham3 == Img2 &&
+                                               n.anhsanpham4 == Img3 &&
+                                               n.anhsanpham5 == Img4 &&
+                                               n.anhsanpham1 == Imgchinh
+                                           ).FirstOrDefault();
                         trave = "kd" + xyz.idSP;
                     }
                     catch (Exception)
@@ -244,8 +316,104 @@ namespace MayLocNuoc.Controllers
                 return "";
             }
 
-           
+
         }
         //ket thuc them san pham /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //product_to su ly json //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public JsonResult daLapDat(string idcuano, string idsanpham)
+        {
+            /*
+             * 1 co loi he thong  
+             * 2 san pham nay khong phai cua ban 
+             * 3 thanh cong
+             */
+            string trave = "";
+            try
+            {
+                var iddamua = Convert.ToInt32(idcuano);
+                var idsp = Convert.ToInt32(idsanpham);
+                var idnhacungcap = db.sanphams.Where(n => n.idSP == idsp).FirstOrDefault();
+                if (db.NhaCungCaps.Where(v => v.idIfncc == idnhacungcap.idIfncc).FirstOrDefault().taikhoan == save.taikhoan)
+                {
+                    var sanphamhientai = db.daMuas.Where(m => m.idDM == iddamua).FirstOrDefault();
+                    sanphamhientai.dalapdat = DateTime.Now;
+                    db.SaveChanges();
+                    trave = "3";
+                }
+                else
+                {
+                    trave = "2";
+                }
+            }
+            catch (Exception)
+            {
+                trave = "1";
+            }
+            return Json(trave);
+        }
+
+        public JsonResult dangVanChuyen(string idcuano, string idsanpham)
+        {
+            /*
+            * 1 co loi he thong  
+            * 2 san pham nay khong phai cua ban 
+            * 3 thanh cong
+            */
+            string trave = "";
+            try
+            {
+                var iddamua = Convert.ToInt32(idcuano);
+                var idsp = Convert.ToInt32(idsanpham);
+                var idnhacungcap = db.sanphams.Where(n => n.idSP == idsp).FirstOrDefault();
+                if (db.NhaCungCaps.Where(v => v.idIfncc == idnhacungcap.idIfncc).FirstOrDefault().taikhoan == save.taikhoan)
+                {
+                    var sanphamhientai = db.daMuas.Where(m => m.idDM == iddamua).FirstOrDefault();
+                    sanphamhientai.dangVanChuyen = true;
+                    db.SaveChanges();
+                    trave = "3";
+                }
+                else
+                {
+                    trave = "2";
+                }
+            }
+            catch (Exception)
+            {
+                trave = "1";
+            }
+            return Json(trave);
+        }
+        public JsonResult thayDoiNgayLapDat(string idcuano, string idsanpham, string ngay, string thang, string nam)
+        {
+            /*
+            * 1 co loi he thong  
+            * 2 san pham nay khong phai cua ban 
+            * 3 thanh cong
+            */
+            string trave = "";
+            try
+            {
+                var iddamua = Convert.ToInt32(idcuano);
+                var idsp = Convert.ToInt32(idsanpham);
+                var idnhacungcap = db.sanphams.Where(n => n.idSP == idsp).FirstOrDefault();
+                if (db.NhaCungCaps.Where(v => v.idIfncc == idnhacungcap.idIfncc).FirstOrDefault().taikhoan == save.taikhoan)
+                {
+                        var sanphamhientai = db.daMuas.Where(m => m.idDM == iddamua).FirstOrDefault();
+                        sanphamhientai.ngayLapDat = new DateTime(Convert.ToInt32(nam), Convert.ToInt32(thang), Convert.ToInt32(ngay));
+                        db.SaveChanges();
+                        trave = "3";
+                    
+                }
+                else
+                {
+                    trave = "2";
+                }
+            }
+            catch (Exception)
+            {
+                trave = "1";
+            }
+            return Json(trave);
+        }
     }
 }

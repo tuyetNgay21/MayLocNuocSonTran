@@ -60,6 +60,16 @@ namespace MayLocNuoc.Models
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaCaoNhat_Result>("[mayLocNuocEntities].[f_DanhGiaCaoNhat]()");
         }
     
+        [DbFunction("mayLocNuocEntities", "f_DanhGiaCuaHang")]
+        public virtual IQueryable<f_DanhGiaCuaHang_Result> f_DanhGiaCuaHang(string tk)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaCuaHang_Result>("[mayLocNuocEntities].[f_DanhGiaCuaHang](@tk)", tkParameter);
+        }
+    
         [DbFunction("mayLocNuocEntities", "F_HienThiTatCarTaiKhoan")]
         public virtual IQueryable<F_HienThiTatCarTaiKhoan_Result> F_HienThiTatCarTaiKhoan()
         {
@@ -84,6 +94,26 @@ namespace MayLocNuoc.Models
                 new ObjectParameter("idsp", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_laydanhdia_Result>("[mayLocNuocEntities].[F_laydanhdia](@idsp)", idspParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong")]
+        public virtual IQueryable<F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result> F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong(string tk)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result>("[mayLocNuocEntities].[F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong](@tk)", tkParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua")]
+        public virtual IQueryable<F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result> F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua(string tk)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result>("[mayLocNuocEntities].[F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua](@tk)", tkParameter);
         }
     
         [DbFunction("mayLocNuocEntities", "F_laySanPham")]

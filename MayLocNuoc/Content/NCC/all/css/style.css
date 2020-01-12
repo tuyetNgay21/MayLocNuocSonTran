@@ -63,16 +63,7 @@ label {
     z-index: -1;
 }
 
-.banner {
-    background: url(../images/banner.jpg) no-repeat 0px 0px;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    min-height: 770px;
-    position: relative;
-}
+
 
 .hainam_agile_logo {
     float: left;
@@ -327,16 +318,7 @@ li.dropdown.act a.hainam_icons_act {
     padding: 100px 0px;
 }
 
-.about {
-    background: url(../images/about.jpg)no-repeat 0px 0px;
-    background-size: cover;
-    padding: 0;
-    min-height: 800px;
-    position: relative;
-    text-align: center;
-    z-index: 999;
-    margin: 0;
-}
+
 
 .jarallax {
     position: relative;

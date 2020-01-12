@@ -11,7 +11,7 @@ namespace MayLocNuoc.Models
 {
     using System;
     
-    public partial class f_DanhGiaCaoNhat_Result
+    public partial class f_DanhGiaCuaHang_Result
     {
         public Nullable<int> idSP { get; set; }
         public string tensp { get; set; }

@@ -10,13 +10,12 @@
 namespace MayLocNuoc.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class daMua
+    public partial class F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result
     {
-        public int idDM { get; set; }
+        public Nullable<int> idDM { get; set; }
         public Nullable<int> soluong { get; set; }
-        public decimal gia { get; set; }
+        public Nullable<decimal> gia { get; set; }
         public Nullable<int> sophantram { get; set; }
         public Nullable<bool> dangChuanBi { get; set; }
         public Nullable<System.DateTime> ngaymua { get; set; }
@@ -26,8 +25,5 @@ namespace MayLocNuoc.Models
         public Nullable<bool> daxoa { get; set; }
         public Nullable<int> idSP { get; set; }
         public string taikhoan { get; set; }
-    
-        public virtual acc acc { get; set; }
-        public virtual sanpham sanpham { get; set; }
     }
 }

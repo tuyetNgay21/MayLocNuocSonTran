@@ -1,4 +1,11 @@
-﻿
+﻿@using MayLocNuoc.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<sanpham>
+
+@{
+    mayLocNuocEntities db = new mayLocNuocEntities();
+    var ifnhacungcap = Model.FirstOrDefault().idIfncc;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +34,10 @@
         <div class="container">
             <div class="header">
                 <div class="hainam_agile_logo">
-                    <h1><a href="index.html">Fine Shape<span>fitness lifestyle</span></a></h1>
+                    @{
+                        var tennhacungcap = db.NhaCungCaps.Where(n => n.idIfncc == ifnhacungcap).FirstOrDefault();
+                    }
+                    <h1><a href="@Url.Action("Index","Product")">SƠN TRẦN<span>Máy Lọc Nước</span></a></h1>
                 </div>
                 <div class="hainam_menu">
                     <div class="mobile-nav-button">
@@ -37,28 +47,18 @@
                     </div>
                     <nav class="mobile-menu">
                         <ul>
-                            <li><a href="#home" class="active scroll">Home</a></li>
-                            <li><a href="#about" class="scroll">About</a></li>
-                            <li><a href="#team" class="scroll">Team</a></li>
-                            <li><a href="#classes" class="scroll">Classes</a></li>
-                            <li><a href="#gallery" class="scroll">Gallery</a></li>
-                            <li><a href="#contact" class="scroll">Contact</a></li>
+                            <li class="active"><a style="color:aqua;" href="@Url.Action("Index","Product")">Home</a></li>
+                            <li><a style="color:aqua;" href="@Url.Action("DangMua","DaMua")" class="scroll">Hàng Chờ</a></li>
+                            <li><a style="color:aqua;" href="@Url.Action("MyCart","GioHang")" class="scroll">Giỏ Hàng</a></li>
+                            <li><a style="color:aqua;" href="@Url.Action("Log","DangNhap")" class="scroll">Đăng Nhập</a></li>
+                            <li><a style="color:aqua;" href="@Url.Action("MyCart","GioHang")" class="scroll">Trợ Giúp</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="clearfix"> </div>
             </div>
             <div class="agile_banner_info">
-                <h3><span>C</span>hào  <span>M</span>ừng  <span>N</span>hà  <span>C</span>ung  Cấp   Trần Hữu Sơn </h3>
-            </div>
-            <div class="hainam_agileits_social_media">
-                <ul>
-                    <li class="agileinfo_share">Share On</li>
-                    <li><a href="#" class="wthree_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_behance"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-                </ul>
+                <h3><span>C</span>hào  <span>M</span>ừng  <span>N</span>hà  <span>C</span>ung  Cấp   @tennhacungcap.nameFull </h3>
             </div>
         </div>
     </div>
@@ -66,77 +66,87 @@
     <!-- about -->
     <div class="jarallax about" id="about">
         <div class="about-bar-hainam-agile">
-            <h3 class="hainam_head hainam_head1">about</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Text Modal Window Nullam at volutpat ipsum. Consectetur adipi lorem ipsum dolor sit amet, Nullam nec posuere ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ut metus sit amet magna.</p>
+            <h3 class="hainam_head hainam_head1">About</h3>
+            <p> @tennhacungcap.About </p>
         </div>
     </div>
+    <style>
+        .about {
+            background: url(../Content/NCC/all/images/5.jpg)no-repeat 0px 0px;
+            background-size: cover;
+            padding: 0;
+            min-height: 800px;
+            position: relative;
+            text-align: center;
+            z-index: 999;
+            margin: 0;
+        }
+    </style>
     <!-- //about-bottom -->
-    <!-- Modal2 -->
-    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4>Fine Shape</h4>
-                    <img src="~/Content/NCC/all/images/banner.jpg" alt=" " class="img-responsive">
-                    <h5>Start the fitness and get into shape today!</h5>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //Modal2 -->
     <!-- services -->
     <div class="services" id="classes">
         <div class="container">
-            <h3 class="hainam_head hainam_head1">Special Classes</h3>
+            <h3 class="hainam_head hainam_head1">Top Đánh Giá Cao</h3>
         </div>
         <div class="agileits_services_grids">
             <ul id="flexiselDemo1">
-                <li>
-                    <div class="agileits_services_grid" style="text-align:center;">
-                        <img src="~/Content/NCC/all/images/6.jpg" style="width:100%;" />
-                        <h5 style="padding-top:2%;">Trx Workout</h5>
-                        <p>Vivamus malesuada pellentesque nunc id condimentum.</p>
-                        <input type="submit" class="btn btn-danger" />
-                    </div>
-                </li>
+                @{
+                    var TopDanhGiaCao = db.f_DanhGiaCuaHang(ifnhacungcap.ToString());
+                }
+                @foreach (var topdanhGia in TopDanhGiaCao)
+                {
+                    <li>
+                        <div class="agileits_services_grid" style="text-align:center;">
+                            <img src="@topdanhGia.anhsanpham1" style="width:100%;" />
+                            <h5 style="padding-top:2%;">Tên Sản Phẩm : @topdanhGia.tensp</h5>
+                            <p>Giá Sản Phẩm : @topdanhGia.gia  VNĐ</p>
+                            <a href="@Url.Action("Index","ChiTiet", new {id=topdanhGia.idSP})"><input type="submit" class="btn btn-danger" value="Xem" /></a>
+                        </div>
+                    </li>
+                }
             </ul>
         </div>
+        <style>
+            .banner {
+                background: url(../Content/NCC/all/images/4.jpg) no-repeat 0px 0px;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                -ms-background-size: cover;
+                min-height: 770px;
+                position: relative;
+            }
+        </style>
         <div class="container">
-            <h3 class="hainam_head hainam_head1">Sanr Phaam</h3>
+            <h3 class="hainam_head hainam_head1">Sản Phẩm</h3>
         </div>
         <div class="agileits_services_grids_bottom">
             <div class="container">
-                <div class="col-md-4 agileits_service_grid_btm_left">
-                    <div class="agileits_service_grid_btm_left1">
-                        <img src="~/Content/NCC/all/images/4.jpg" alt=" " class="img-responsive" />
-                        <div class="agileits_service_grid_btm_left2">
-                            <h5>Pilates</h5>
-                            <P>dsjfghlasdfgba;i'</P>
-                            <p>1 hr  <span>$</span>30.00</p>
-                            <input type="submit" class="btn btn-danger" />
+                @foreach (var i in Model)
+                {
+                    <div class="col-md-4 agileits_service_grid_btm_left"style="margin-top:5px;">
+                        <div class="agileits_service_grid_btm_left1">
+                            <img src="@i.anhsanpham1" alt=" " class="img-responsive" style="height: 250px; width:100%;" />
+                            <div class="agileits_service_grid_btm_left2">
+                                <h5>@i.tensp</h5>
+                                <p>@i.gia <span>VNĐ</span> - Giảm Giá Đến :  <span>@i.sophantram</span> </p>
+                                <a href="@Url.Action("Index","ChiTiet", new {id=i.idSP})"><input type="submit" class="btn btn-danger" value="Xem" /></a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
+                <div style="margin-left:40%;"> @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, tk = ifnhacungcap }));</div>
                 <div class="clearfix"> </div>
             </div>
         </div>
     </div>
     <!-- //services -->
 
+
     <div class="footer-bottom wtrhee-agileinfo">
         <div class="container">
-            <section class="col-md-3 social-agileits">
-                <ul>
-                    <li><a href="#" class="wthree_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_behance"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-                </ul>
-            </section>
-            <p class="col-md-6 copy">Máy LỌc Nước Sơn Trần  | Design  <a href="">HaiNam</a></p>
+            <p class="col-md-6 copy">Máy Lọc Nước Sơn Trần  | Design  <a href="">HaiNam</a></p>
             <div class=" col-md-3 top-hainamls">
                 <a href="#home" class="scroll"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>Lên Đầu Trang</a>
             </div>
@@ -209,17 +219,10 @@
     <!-- start-smoth-scrolling -->
     <script type="text/javascript" src="~/Content/NCC/all/js/move-top.js"></script>
     <script type="text/javascript" src="~/Content/NCC/all/js/easing.js"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
-            });
-        });
-    </script>
+    <script src="~/Content/NCC/all/jsThemSanPham/Themanh.js"></script>
     <!-- start-smoth-scrolling -->
-
     <script type="text/javascript" src="~/Content/NCC/all/js/bootstrap-3.1.1.min.js"></script>
 
 </body>
 </html>
+

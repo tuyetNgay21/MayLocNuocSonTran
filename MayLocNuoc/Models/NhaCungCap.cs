@@ -29,6 +29,7 @@ namespace MayLocNuoc.Models
         public int idhopdong { get; set; }
         public Nullable<bool> daxoa { get; set; }
         public string taikhoan { get; set; }
+        public string About { get; set; }
     
         public virtual acc acc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

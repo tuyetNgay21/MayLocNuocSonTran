@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Evaluate_Product";
+    Layout = "~/Views/NhaCungCap/Lay_out_DoanhThu.cshtml";
+}
+<div style="width:100%;">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("xemDoanhthu","NhaCungCap")">Doang Thu Tổng Quan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("Product_In_Day_inMonth","NhaCungCap")">Theo Tháng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("chưathem1","NhaCungCap")">chưa thêm1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
+        </li>
+    </ul>
+</div>
+
+<div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
+    <h1 style="text-align:center">Thống Kê Đánh Giá</h1>
+    <div id="DanhGiaSosao"></div>
+</div>
+<div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
+    <div style="padding:3%;">
+        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:15%;" />
+        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:15%;" />
+        <select id="PhanTrangChonsosao" style="margin:2%; width:25%;" class="btn btn-success">
+            <option>Hiển Thị số Bản Ghi</option>
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>90</option>
+            <option>Tất Cả</option>
+        </select>
+        <select id="ChonThang" style="margin:2%; width:15%;" class="btn btn-success">
+            <option>Năm 1</option>
+            <option>Năm 2</option>
+            <option>Năm 3</option>
+
+        </select>
+        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:15%;" />
+    </div>
+    <table border="1" cellpadding="5" cellspacing="5" width="100%">
+        <tr style="text-align:center;">
+            <td>Mã Sản Phẩm</td>
+            <td>Tên Sản Phẩm</td>
+            <td>Số Sao</td>
+            <td>Đánh Giá</td>
+            <td>Ngày</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td>1</td>
+            <td>12</td>
+            <td>2</td>
+            <td><input type="submit" value="Xem" class="btn btn-link" /></td>
+            <td>1</td>
+        </tr>
+    </table>
+</div>
+<div style="width:100%;">
+    <div style="padding:1%;">
+        <h1 style="text-align:center">Chi Tiết Đánh Giá</h1>
+        <input type="text" class="btn btn-success" placeholder="Tìm Kiếm Sản Phẩm" style="margin:2% 0; width:15%;" />
+        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2% 0; width:5%;" />
+        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:10%;" />
+        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:10%;" />
+        <select id="PhanTrangChonThang" style="margin:1%; width:15%;" class="btn btn-success">
+            <option>Hiển Thị số Bản Ghi</option>
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>90</option>
+            <option>Tất Cả</option>
+        </select>
+        <select id="ChonThang" style="margin:2%; width:15%;" class="btn btn-success">
+            <option>Năm 1</option>
+            <option>Năm 2</option>
+            <option>Năm 3</option>
+        </select>
+    </div>
+    <table border="1" cellpadding="5" cellspacing="5" width="100%">
+        <tr style="text-align:center;">
+            <td>Mã Sản Phẩm</td>
+            <td>Tên Sản Phẩm</td>
+            <td>Số Sao</td>
+            <td>Đánh Giá</td>
+            <td>Ngày</td>
+        </tr>
+        <tr style="text-align:center;">
+            <td>1</td>
+            <td>12</td>
+            <td>2</td>
+            <td>ddddddddf dgdd dddd</td>
+            <td>1</td>
+        </tr>
+    </table>
+</div>
+<div style="margin:1%;"></div>
+
+<script type="text/javascript">
+    // googlae chart1  bieu do hinh tron cho cac thang do la doanh thu ban san pham ti le tang truong
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Năm', 'Doanh Thu'],
+            ['1 Sao', 30],
+            ['2 Sao', 30],
+            ['3 Sao', 10],
+            ['4 Sao', 10],
+            ['5 Sao', 20],
+
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = { 'title': '', 'width': 800, 'height': 600 };
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('DanhGiaSosao'));
+        chart.draw(data, options);
+    }
+
+</script>
+

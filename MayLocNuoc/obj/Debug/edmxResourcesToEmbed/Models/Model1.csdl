@@ -34,6 +34,37 @@
     <Property Name="hethang" Type="Boolean" />
     <Property Name="idIfncc" Type="Int32" />
     <Property Name="soluongdaban" Type="Int32" />
+    <Property Name="ngaythem" Type="DateTime" />
+  </ComplexType>
+  <ComplexType Name="f_DanhGiaCuaHang_Result">
+    <Property Name="idSP" Type="Int32" />
+    <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="anhsanpham1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="anhsanpham2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="anhsanpham3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="anhsanpham4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="anhsanpham5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="rong" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="dai" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="cao" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="magiamgia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="sophantram" Type="Int32" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="thuongHieu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="tieude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="chatluong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="soLoiLoc" Type="Int32" />
+    <Property Name="congxuat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="tocdoloc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="congnghekhangkhuan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="congXuatBom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="noisanxuat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="daxoa" Type="Boolean" />
+    <Property Name="hethang" Type="Boolean" />
+    <Property Name="idIfncc" Type="Int32" />
+    <Property Name="soluongdaban" Type="Int32" />
+    <Property Name="ngaythem" Type="DateTime" />
   </ComplexType>
   <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
     <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -57,6 +88,34 @@
     <Property Name="sosao" Type="Int32" />
     <Property Name="solike" Type="Int32" />
     <Property Name="daxoa" Type="Boolean" />
+    <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result">
+    <Property Name="idDM" Type="Int32" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="sophantram" Type="Int32" />
+    <Property Name="dangChuanBi" Type="Boolean" />
+    <Property Name="ngaymua" Type="DateTime" />
+    <Property Name="ngayLapDat" Type="DateTime" />
+    <Property Name="dalapdat" Type="DateTime" />
+    <Property Name="dangVanChuyen" Type="Boolean" />
+    <Property Name="daxoa" Type="Boolean" />
+    <Property Name="idSP" Type="Int32" />
+    <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result">
+    <Property Name="idDM" Type="Int32" />
+    <Property Name="soluong" Type="Int32" />
+    <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="sophantram" Type="Int32" />
+    <Property Name="dangChuanBi" Type="Boolean" />
+    <Property Name="ngaymua" Type="DateTime" />
+    <Property Name="ngayLapDat" Type="DateTime" />
+    <Property Name="dalapdat" Type="DateTime" />
+    <Property Name="dangVanChuyen" Type="Boolean" />
+    <Property Name="daxoa" Type="Boolean" />
+    <Property Name="idSP" Type="Int32" />
     <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </ComplexType>
   <ComplexType Name="F_laySanPham_Result">
@@ -115,6 +174,7 @@
     <Property Name="hethang" Type="Boolean" />
     <Property Name="idIfncc" Type="Int32" />
     <Property Name="soluongdaban" Type="Int32" />
+    <Property Name="ngaythem" Type="DateTime" />
   </ComplexType>
   <ComplexType Name="F_Top10DanhGiaCao_Result">
     <Property Name="idSP" Type="Int32" />
@@ -142,7 +202,7 @@
     <NavigationProperty Name="acc1" Relationship="Self.FK__acc__taikhoanqua__01142BA1" FromRole="acc" ToRole="acc1" />
     <NavigationProperty Name="acc2" Relationship="Self.FK__acc__taikhoanqua__01142BA1" FromRole="acc1" ToRole="acc" />
     <NavigationProperty Name="comments" Relationship="Self.FK__comment__taikhoa__25518C17" FromRole="acc" ToRole="comment" />
-    <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__taikhoan__24285DB4" FromRole="acc" ToRole="daMua" />
+    <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__taikhoan__41B8C09B" FromRole="acc" ToRole="daMua" />
     <NavigationProperty Name="dangMuas" Relationship="Self.FK__dangMua__taikhoa__1B9317B3" FromRole="acc" ToRole="dangMua" />
     <NavigationProperty Name="danhgias" Relationship="Self.FK__danhgia__taikhoa__1EA48E88" FromRole="acc" ToRole="danhgia" />
     <NavigationProperty Name="giohangs" Relationship="Self.FK__giohang__taikhoa__2B0A656D" FromRole="acc" ToRole="giohang" />
@@ -186,12 +246,13 @@
     <Property Name="dangChuanBi" Type="Boolean" />
     <Property Name="ngaymua" Type="DateTime" Precision="0" />
     <Property Name="ngayLapDat" Type="DateTime" Precision="0" />
+    <Property Name="dalapdat" Type="DateTime" Precision="0" />
     <Property Name="dangVanChuyen" Type="Boolean" />
     <Property Name="daxoa" Type="Boolean" />
     <Property Name="idSP" Type="Int32" />
     <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="acc" Relationship="Self.FK__daMua__taikhoan__24285DB4" FromRole="daMua" ToRole="acc" />
-    <NavigationProperty Name="sanpham" Relationship="Self.FK__daMua__idSP__2334397B" FromRole="daMua" ToRole="sanpham" />
+    <NavigationProperty Name="acc" Relationship="Self.FK__daMua__taikhoan__41B8C09B" FromRole="daMua" ToRole="acc" />
+    <NavigationProperty Name="sanpham" Relationship="Self.FK__daMua__idSP__40C49C62" FromRole="daMua" ToRole="sanpham" />
   </EntityType>
   <EntityType Name="dangMua">
     <Key>
@@ -315,6 +376,7 @@
     <Property Name="idhopdong" Type="Int32" Nullable="false" />
     <Property Name="daxoa" Type="Boolean" />
     <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="About" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="acc" Relationship="Self.FK__NhaCungCa__taikh__0F624AF8" FromRole="NhaCungCap" ToRole="acc" />
     <NavigationProperty Name="sanphams" Relationship="Self.FK__sanpham__idIfncc__160F4887" FromRole="NhaCungCap" ToRole="sanpham" />
   </EntityType>
@@ -349,7 +411,8 @@
     <Property Name="hethang" Type="Boolean" />
     <Property Name="idIfncc" Type="Int32" />
     <Property Name="soluongdaban" Type="Int32" />
-    <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__idSP__2334397B" FromRole="sanpham" ToRole="daMua" />
+    <Property Name="ngaythem" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__idSP__40C49C62" FromRole="sanpham" ToRole="daMua" />
     <NavigationProperty Name="dangMuas" Relationship="Self.FK__dangMua__idSP__1A9EF37A" FromRole="sanpham" ToRole="dangMua" />
     <NavigationProperty Name="danhgias" Relationship="Self.FK__danhgia__idSP__1DB06A4F" FromRole="sanpham" ToRole="danhgia" />
     <NavigationProperty Name="giohangs" Relationship="Self.FK__giohang__idSP__2A164134" FromRole="sanpham" ToRole="giohang" />
@@ -402,7 +465,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__daMua__taikhoan__24285DB4">
+  <Association Name="FK__daMua__taikhoan__41B8C09B">
     <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
     <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
     <ReferentialConstraint>
@@ -534,7 +597,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__daMua__idSP__2334397B">
+  <Association Name="FK__daMua__idSP__40C49C62">
     <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
     <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
     <ReferentialConstraint>
@@ -647,7 +710,7 @@
       <End Role="acc" EntitySet="accs" />
       <End Role="comment" EntitySet="comments" />
     </AssociationSet>
-    <AssociationSet Name="FK__daMua__taikhoan__24285DB4" Association="Self.FK__daMua__taikhoan__24285DB4">
+    <AssociationSet Name="FK__daMua__taikhoan__41B8C09B" Association="Self.FK__daMua__taikhoan__41B8C09B">
       <End Role="acc" EntitySet="accs" />
       <End Role="daMua" EntitySet="daMuas" />
     </AssociationSet>
@@ -691,7 +754,7 @@
       <End Role="comment" EntitySet="comments" />
       <End Role="liKe1" EntitySet="liKe1" />
     </AssociationSet>
-    <AssociationSet Name="FK__daMua__idSP__2334397B" Association="Self.FK__daMua__idSP__2334397B">
+    <AssociationSet Name="FK__daMua__idSP__40C49C62" Association="Self.FK__daMua__idSP__40C49C62">
       <End Role="sanpham" EntitySet="sanphams" />
       <End Role="daMua" EntitySet="daMuas" />
     </AssociationSet>
@@ -723,12 +786,21 @@
       <Parameter Name="idsp" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
+    <FunctionImport Name="f_DanhGiaCuaHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCuaHang_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="F_HienThiTatCarTaiKhoan" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result)" />
     <FunctionImport Name="F_layComment" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_layComment_Result)">
       <Parameter Name="idDG" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="F_laydanhdia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laydanhdia_Result)">
       <Parameter Name="idsp" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="F_laySanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laySanPham_Result)">
       <Parameter Name="idsp" Mode="In" Type="Int32" />

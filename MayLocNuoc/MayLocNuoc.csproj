@@ -175,6 +175,9 @@
     <Compile Include="Models\f_DanhGiaCaoNhat_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\f_DanhGiaCuaHang_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\F_HienThiTatCarTaiKhoan_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -182,6 +185,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\F_laydanhdia_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\F_laySanPham_Result.cs">
@@ -464,6 +473,7 @@
     <Content Include="Content\NCC\all\images\t3.jpg" />
     <Content Include="Content\NCC\all\images\t4.jpg" />
     <Content Include="Content\NCC\all\images\test.jpg" />
+    <Content Include="Content\NCC\all\jsThemSanPham\ProTo.js" />
     <Content Include="Content\NCC\all\jsThemSanPham\Themanh.js" />
     <Content Include="Content\NCC\all\js\bootstrap-3.1.1.min.js" />
     <Content Include="Content\NCC\all\js\easing.js" />
@@ -555,6 +565,7 @@
     <Content Include="Content\Log\fonts\fontomas-webfont.eot" />
     <Content Include="Content\Log\fonts\fontomas-webfont.ttf" />
     <Content Include="Content\Log\fonts\fontomas-webfont.woff" />
+    <Content Include="obj\Debug\Tsc.out" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -660,7 +671,6 @@
     <Content Include="Views\AdMin\TrangChu.cshtml" />
     <Content Include="Views\NhaCungCap\layoutNCC.cshtml" />
     <Content Include="Views\NhaCungCap\TrangChu.cshtml" />
-    <Content Include="Views\NhaCungCap\xemNCC.cshtml" />
     <Content Include="Views\NhaCungCap\ThemSanPham.cshtml" />
     <Content Include="Views\NhaCungCap\xemDoanhthu.cshtml" />
     <Content Include="Views\NhaCungCap\Info.cshtml" />
@@ -698,13 +708,22 @@
     <Content Include="Views\AdMin\ThongTin.cshtml" />
     <Content Include="Views\AdMin\XemduLieu.cshtml" />
     <Content Include="Views\NhaCungCap\Product_To.cshtml" />
-    <Content Include="Views\NhaCungCap\Product_From.cshtml" />
     <Content Include="Views\DaMua\DangMua.cshtml" />
     <Content Include="Views\TroGiup\Index.cshtml" />
     <Content Include="Views\DaMua\Shearch.cshtml" />
+    <Content Include="Views\NhaCungCap\Index.cshtml" />
+    <Content Include="Views\NhaCungCap\Lay_out_DoanhThu.cshtml" />
+    <Content Include="Views\NhaCungCap\In_Month.cshtml" />
+    <Content Include="Views\NhaCungCap\Product_In_Day_inMonth.cshtml" />
+    <Content Include="Views\NhaCungCap\Evaluate_Product.cshtml" />
+    <Content Include="Views\NhaCungCap\Product_not_to.cshtml" />
+    <Content Include="Views\NhaCungCap\chưathem1.cshtml" />
+    <Content Include="Views\NhaCungCap\chưathem2.cshtml" />
+    <Content Include="Views\NhaCungCap\chưathem3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\Release\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Views\Use\" />
   </ItemGroup>

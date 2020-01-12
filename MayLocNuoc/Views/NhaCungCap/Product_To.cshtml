@@ -1,8 +1,80 @@
-﻿
+﻿@using MayLocNuoc.Models;
+@model daMua
 @{
     ViewBag.Title = "Product_To";
     Layout = "~/Views/NhaCungCap/layoutNCC.cshtml";
 }
 
-<h2>Product_To</h2>
-
+<i> <h1><p style="text-align:center; color:rgba(69, 186, 224, 0.91)">Sản Phẩm Được Yêu Cầu</p></h1></i>
+<table class="table table-dark">
+    @{ 
+        mayLocNuocEntities db = new mayLocNuocEntities();
+        var dangmua1 = db.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua(save.taikhoan);
+    }
+    @foreach (var key in dangmua1)
+    {
+        <tbody>
+            <tr>
+                <td style="width:30%; height:auto;" colspan="2" rowspan="7">
+                    @{
+                        var tensap = db.sanphams.Where(m => m.idSP == key.idSP).FirstOrDefault();
+                    }
+                    <img style="width:100%; height:auto;" src="@tensap.anhsanpham1" />
+                </td>
+                <td colspan="5">Tên Sản Phẩm : @tensap.tensp</td>
+            </tr>
+            <tr>
+                <td>Giá : @key.gia</td>
+                <td>Số Phần Trăm Giảm Giá : @key.sophantram (%)</td>
+                <td>Số Lượng : @key.soluong</td>
+                @{
+                    var tongso = ((key.gia * (key.sophantram + 100)) / 100) * key.soluong;
+                }
+                <td colspan="2">Tổng : @tongso</td>
+            </tr>
+            <tr>
+                @{
+                    var khachHang = db.infoes.Where(k => k.taikhoan == save.taikhoan).FirstOrDefault();
+                }
+                <td colspan="2">Tên Khách: @khachHang.nameFull</td>
+                <td colspan="3">Địa chỉ : @khachHang.adress</td>
+            </tr>
+            <tr>
+                <td colspan="1">Bên Khách</td>
+                <td colspan="1">Ngay Đặt : @key.ngaymua</td>
+                <td colspan="1">Thời Gian Chờ : 3-7 ngày</td>
+            </tr>
+            <tr>
+                <td colspan="1">Bên Nhà Cung Cấp</td>
+                @if (key.dangChuanBi == false && key.dangVanChuyen == false)
+                {
+                    <td colspan="1">Đang Chuẩn Bị : Chưa</td>
+                    <td colspan="1">Đang Vận chuyển : Chưa</td>
+                }
+                else if (key.dangChuanBi == true && key.dangVanChuyen == false)
+                {
+                    <td colspan="1">Đang Chuẩn Bị : Đã Xong</td>
+                    <td colspan="1">Đang Vận chuyển : Xác Nhận</td>
+                }
+                else if (key.dangChuanBi == true && key.dangVanChuyen == true)
+                {
+                    <td colspan="1">Đang Chuẩn Bị : Đã Xong</td>
+                    <td colspan="1">Đang Vận chuyển : Đang Đến</td>
+                }
+                <td colspan="2">Ngày Lắp Đặt Dự Kiến (Tháng/ngày/Năm) : @key.ngayLapDat</td>
+            </tr>
+            <tr>
+                <td colspan="1">Ngày Lắp</td>
+                <td colspan="1"><input class="nam btn btn-block" data-id="@key.idDM" min="2020" max="2030" style="background-color:white; color:black; text-align:left;" type="number" value="2020" /></td>
+                <td colspan="1"><input class="thang btn btn-block" data-id="@key.idDM" min="1" max="12" style="background-color:white; color:black; text-align:left;" type="number" value="12" /></td>
+                <td colspan="1"><input class="ngay btn btn-block" data-id="@key.idDM" min="1" max="31" style="background-color:white; color:black; text-align:left;" type="number" value="1" /></td>
+                <td colspan="1"> <input class=" thayDoiNgayThan btn btn-success" data-id="@key.idDM" data-idcuasanpham="@key.idSP" type="submit" value="Chỉnh Sửa" /></td>
+            </tr>
+            <tr>
+                <td><input class="DaLapDat btn btn-success"  data-id="@key.idDM" data-idcuasanpham="@key.idSP" type="submit" value="Đã Lắp Đặt" /></td>
+                <td><input class="DangVanChuyen btn btn-success" data-id="@key.idDM" data-idcuasanpham="@key.idSP" type="submit" value="Đang Vận Chuyển" /></td>
+                <td><a href="@Url.Action("Index","ChiTiet",new {id=key.idSP})"><input class="btn btn-success" type="submit" value="Đánh Giá" /></a></td> 
+            </tr>
+        </tbody>
+    }
+</table>

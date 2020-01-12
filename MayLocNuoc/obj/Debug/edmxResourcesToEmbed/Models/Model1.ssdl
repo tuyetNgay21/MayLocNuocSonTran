@@ -41,6 +41,7 @@
     <Property Name="dangChuanBi" Type="bit" />
     <Property Name="ngaymua" Type="date" />
     <Property Name="ngayLapDat" Type="date" />
+    <Property Name="dalapdat" Type="date" />
     <Property Name="dangVanChuyen" Type="bit" />
     <Property Name="daxoa" Type="bit" />
     <Property Name="idSP" Type="int" />
@@ -153,6 +154,7 @@
     <Property Name="idhopdong" Type="int" Nullable="false" />
     <Property Name="daxoa" Type="bit" />
     <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+    <Property Name="About" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="sanpham">
     <Key>
@@ -185,6 +187,7 @@
     <Property Name="hethang" Type="bit" />
     <Property Name="idIfncc" Type="int" />
     <Property Name="soluongdaban" Type="int" />
+    <Property Name="ngaythem" Type="date" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -250,7 +253,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__daMua__idSP__2334397B">
+  <Association Name="FK__daMua__idSP__40C49C62">
     <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
     <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
     <ReferentialConstraint>
@@ -262,7 +265,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__daMua__taikhoan__24285DB4">
+  <Association Name="FK__daMua__taikhoan__41B8C09B">
     <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
     <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
     <ReferentialConstraint>
@@ -498,6 +501,44 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="hethang" Type="bit" />
           <Property Name="idIfncc" Type="int" />
           <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngaythem" Type="date" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_DanhGiaCuaHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idSP" Type="int" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+          <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+          <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="money" />
+          <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+          <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+          <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+          <Property Name="soLoiLoc" Type="int" />
+          <Property Name="congxuat" Type="varchar" MaxLength="30" />
+          <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+          <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+          <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+          <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="hethang" Type="bit" />
+          <Property Name="idIfncc" Type="int" />
+          <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngaythem" Type="date" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -541,6 +582,48 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="sosao" Type="int" />
           <Property Name="solike" Type="int" />
           <Property Name="daxoa" Type="bit" />
+          <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idDM" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="gia" Type="money" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="dangChuanBi" Type="bit" />
+          <Property Name="ngaymua" Type="date" />
+          <Property Name="ngayLapDat" Type="date" />
+          <Property Name="dalapdat" Type="date" />
+          <Property Name="dangVanChuyen" Type="bit" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="idSP" Type="int" />
+          <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idDM" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="gia" Type="money" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="dangChuanBi" Type="bit" />
+          <Property Name="ngaymua" Type="date" />
+          <Property Name="ngayLapDat" Type="date" />
+          <Property Name="dalapdat" Type="date" />
+          <Property Name="dangVanChuyen" Type="bit" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="idSP" Type="int" />
           <Property Name="taikhoan" Type="varchar" MaxLength="30" />
         </RowType>
       </CollectionType>
@@ -616,6 +699,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="hethang" Type="bit" />
           <Property Name="idIfncc" Type="int" />
           <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngaythem" Type="date" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -716,11 +800,11 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
       <End Role="acc" EntitySet="acc" />
       <End Role="comment" EntitySet="comment" />
     </AssociationSet>
-    <AssociationSet Name="FK__daMua__idSP__2334397B" Association="Self.FK__daMua__idSP__2334397B">
+    <AssociationSet Name="FK__daMua__idSP__40C49C62" Association="Self.FK__daMua__idSP__40C49C62">
       <End Role="sanpham" EntitySet="sanpham" />
       <End Role="daMua" EntitySet="daMua" />
     </AssociationSet>
-    <AssociationSet Name="FK__daMua__taikhoan__24285DB4" Association="Self.FK__daMua__taikhoan__24285DB4">
+    <AssociationSet Name="FK__daMua__taikhoan__41B8C09B" Association="Self.FK__daMua__taikhoan__41B8C09B">
       <End Role="acc" EntitySet="acc" />
       <End Role="daMua" EntitySet="daMua" />
     </AssociationSet>

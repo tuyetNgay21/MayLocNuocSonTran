@@ -46,6 +46,7 @@
           <Property Name="dangChuanBi" Type="bit" />
           <Property Name="ngaymua" Type="date" />
           <Property Name="ngayLapDat" Type="date" />
+          <Property Name="dalapdat" Type="date" />
           <Property Name="dangVanChuyen" Type="bit" />
           <Property Name="daxoa" Type="bit" />
           <Property Name="idSP" Type="int" />
@@ -158,6 +159,7 @@
           <Property Name="idhopdong" Type="int" Nullable="false" />
           <Property Name="daxoa" Type="bit" />
           <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+          <Property Name="About" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="sanpham">
           <Key>
@@ -190,6 +192,7 @@
           <Property Name="hethang" Type="bit" />
           <Property Name="idIfncc" Type="int" />
           <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngaythem" Type="date" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -255,7 +258,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__daMua__idSP__2334397B">
+        <Association Name="FK__daMua__idSP__40C49C62">
           <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
           <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
           <ReferentialConstraint>
@@ -267,7 +270,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__daMua__taikhoan__24285DB4">
+        <Association Name="FK__daMua__taikhoan__41B8C09B">
           <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
           <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
           <ReferentialConstraint>
@@ -503,6 +506,44 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <Property Name="hethang" Type="bit" />
                 <Property Name="idIfncc" Type="int" />
                 <Property Name="soluongdaban" Type="int" />
+                <Property Name="ngaythem" Type="date" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="f_DanhGiaCuaHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idSP" Type="int" />
+                <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+                <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+                <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="gia" Type="money" />
+                <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="soluong" Type="int" />
+                <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+                <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+                <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+                <Property Name="soLoiLoc" Type="int" />
+                <Property Name="congxuat" Type="varchar" MaxLength="30" />
+                <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+                <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+                <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+                <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+                <Property Name="daxoa" Type="bit" />
+                <Property Name="hethang" Type="bit" />
+                <Property Name="idIfncc" Type="int" />
+                <Property Name="soluongdaban" Type="int" />
+                <Property Name="ngaythem" Type="date" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -546,6 +587,48 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <Property Name="sosao" Type="int" />
                 <Property Name="solike" Type="int" />
                 <Property Name="daxoa" Type="bit" />
+                <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idDM" Type="int" />
+                <Property Name="soluong" Type="int" />
+                <Property Name="gia" Type="money" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="dangChuanBi" Type="bit" />
+                <Property Name="ngaymua" Type="date" />
+                <Property Name="ngayLapDat" Type="date" />
+                <Property Name="dalapdat" Type="date" />
+                <Property Name="dangVanChuyen" Type="bit" />
+                <Property Name="daxoa" Type="bit" />
+                <Property Name="idSP" Type="int" />
+                <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idDM" Type="int" />
+                <Property Name="soluong" Type="int" />
+                <Property Name="gia" Type="money" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="dangChuanBi" Type="bit" />
+                <Property Name="ngaymua" Type="date" />
+                <Property Name="ngayLapDat" Type="date" />
+                <Property Name="dalapdat" Type="date" />
+                <Property Name="dangVanChuyen" Type="bit" />
+                <Property Name="daxoa" Type="bit" />
+                <Property Name="idSP" Type="int" />
                 <Property Name="taikhoan" Type="varchar" MaxLength="30" />
               </RowType>
             </CollectionType>
@@ -621,6 +704,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <Property Name="hethang" Type="bit" />
                 <Property Name="idIfncc" Type="int" />
                 <Property Name="soluongdaban" Type="int" />
+                <Property Name="ngaythem" Type="date" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -721,11 +805,11 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <End Role="acc" EntitySet="acc" />
             <End Role="comment" EntitySet="comment" />
           </AssociationSet>
-          <AssociationSet Name="FK__daMua__idSP__2334397B" Association="Self.FK__daMua__idSP__2334397B">
+          <AssociationSet Name="FK__daMua__idSP__40C49C62" Association="Self.FK__daMua__idSP__40C49C62">
             <End Role="sanpham" EntitySet="sanpham" />
             <End Role="daMua" EntitySet="daMua" />
           </AssociationSet>
-          <AssociationSet Name="FK__daMua__taikhoan__24285DB4" Association="Self.FK__daMua__taikhoan__24285DB4">
+          <AssociationSet Name="FK__daMua__taikhoan__41B8C09B" Association="Self.FK__daMua__taikhoan__41B8C09B">
             <End Role="acc" EntitySet="acc" />
             <End Role="daMua" EntitySet="daMua" />
           </AssociationSet>
@@ -829,6 +913,37 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="hethang" Type="Boolean" />
           <Property Name="idIfncc" Type="Int32" />
           <Property Name="soluongdaban" Type="Int32" />
+          <Property Name="ngaythem" Type="DateTime" />
+        </ComplexType>
+        <ComplexType Name="f_DanhGiaCuaHang_Result">
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="tensp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="anhsanpham1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="anhsanpham5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="rong" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="magiamgia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="thuongHieu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="tieude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="chatluong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="soLoiLoc" Type="Int32" />
+          <Property Name="congxuat" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tocdoloc" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congnghekhangkhuan" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="congXuatBom" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="noisanxuat" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="hethang" Type="Boolean" />
+          <Property Name="idIfncc" Type="Int32" />
+          <Property Name="soluongdaban" Type="Int32" />
+          <Property Name="ngaythem" Type="DateTime" />
         </ComplexType>
         <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -852,6 +967,34 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="sosao" Type="Int32" />
           <Property Name="solike" Type="Int32" />
           <Property Name="daxoa" Type="Boolean" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result">
+          <Property Name="idDM" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="dangChuanBi" Type="Boolean" />
+          <Property Name="ngaymua" Type="DateTime" />
+          <Property Name="ngayLapDat" Type="DateTime" />
+          <Property Name="dalapdat" Type="DateTime" />
+          <Property Name="dangVanChuyen" Type="Boolean" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="idSP" Type="Int32" />
+          <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result">
+          <Property Name="idDM" Type="Int32" />
+          <Property Name="soluong" Type="Int32" />
+          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="sophantram" Type="Int32" />
+          <Property Name="dangChuanBi" Type="Boolean" />
+          <Property Name="ngaymua" Type="DateTime" />
+          <Property Name="ngayLapDat" Type="DateTime" />
+          <Property Name="dalapdat" Type="DateTime" />
+          <Property Name="dangVanChuyen" Type="Boolean" />
+          <Property Name="daxoa" Type="Boolean" />
+          <Property Name="idSP" Type="Int32" />
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </ComplexType>
         <ComplexType Name="F_laySanPham_Result">
@@ -910,6 +1053,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="hethang" Type="Boolean" />
           <Property Name="idIfncc" Type="Int32" />
           <Property Name="soluongdaban" Type="Int32" />
+          <Property Name="ngaythem" Type="DateTime" />
         </ComplexType>
         <ComplexType Name="F_Top10DanhGiaCao_Result">
           <Property Name="idSP" Type="Int32" />
@@ -937,7 +1081,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <NavigationProperty Name="acc1" Relationship="Self.FK__acc__taikhoanqua__01142BA1" FromRole="acc" ToRole="acc1" />
           <NavigationProperty Name="acc2" Relationship="Self.FK__acc__taikhoanqua__01142BA1" FromRole="acc1" ToRole="acc" />
           <NavigationProperty Name="comments" Relationship="Self.FK__comment__taikhoa__25518C17" FromRole="acc" ToRole="comment" />
-          <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__taikhoan__24285DB4" FromRole="acc" ToRole="daMua" />
+          <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__taikhoan__41B8C09B" FromRole="acc" ToRole="daMua" />
           <NavigationProperty Name="dangMuas" Relationship="Self.FK__dangMua__taikhoa__1B9317B3" FromRole="acc" ToRole="dangMua" />
           <NavigationProperty Name="danhgias" Relationship="Self.FK__danhgia__taikhoa__1EA48E88" FromRole="acc" ToRole="danhgia" />
           <NavigationProperty Name="giohangs" Relationship="Self.FK__giohang__taikhoa__2B0A656D" FromRole="acc" ToRole="giohang" />
@@ -981,12 +1125,13 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="dangChuanBi" Type="Boolean" />
           <Property Name="ngaymua" Type="DateTime" Precision="0" />
           <Property Name="ngayLapDat" Type="DateTime" Precision="0" />
+          <Property Name="dalapdat" Type="DateTime" Precision="0" />
           <Property Name="dangVanChuyen" Type="Boolean" />
           <Property Name="daxoa" Type="Boolean" />
           <Property Name="idSP" Type="Int32" />
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="acc" Relationship="Self.FK__daMua__taikhoan__24285DB4" FromRole="daMua" ToRole="acc" />
-          <NavigationProperty Name="sanpham" Relationship="Self.FK__daMua__idSP__2334397B" FromRole="daMua" ToRole="sanpham" />
+          <NavigationProperty Name="acc" Relationship="Self.FK__daMua__taikhoan__41B8C09B" FromRole="daMua" ToRole="acc" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK__daMua__idSP__40C49C62" FromRole="daMua" ToRole="sanpham" />
         </EntityType>
         <EntityType Name="dangMua">
           <Key>
@@ -1110,6 +1255,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="idhopdong" Type="Int32" Nullable="false" />
           <Property Name="daxoa" Type="Boolean" />
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="About" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="acc" Relationship="Self.FK__NhaCungCa__taikh__0F624AF8" FromRole="NhaCungCap" ToRole="acc" />
           <NavigationProperty Name="sanphams" Relationship="Self.FK__sanpham__idIfncc__160F4887" FromRole="NhaCungCap" ToRole="sanpham" />
         </EntityType>
@@ -1144,7 +1290,8 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="hethang" Type="Boolean" />
           <Property Name="idIfncc" Type="Int32" />
           <Property Name="soluongdaban" Type="Int32" />
-          <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__idSP__2334397B" FromRole="sanpham" ToRole="daMua" />
+          <Property Name="ngaythem" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="daMuas" Relationship="Self.FK__daMua__idSP__40C49C62" FromRole="sanpham" ToRole="daMua" />
           <NavigationProperty Name="dangMuas" Relationship="Self.FK__dangMua__idSP__1A9EF37A" FromRole="sanpham" ToRole="dangMua" />
           <NavigationProperty Name="danhgias" Relationship="Self.FK__danhgia__idSP__1DB06A4F" FromRole="sanpham" ToRole="danhgia" />
           <NavigationProperty Name="giohangs" Relationship="Self.FK__giohang__idSP__2A164134" FromRole="sanpham" ToRole="giohang" />
@@ -1197,7 +1344,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__daMua__taikhoan__24285DB4">
+        <Association Name="FK__daMua__taikhoan__41B8C09B">
           <End Role="acc" Type="Self.acc" Multiplicity="0..1" />
           <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1329,7 +1476,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__daMua__idSP__2334397B">
+        <Association Name="FK__daMua__idSP__40C49C62">
           <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
           <End Role="daMua" Type="Self.daMua" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1442,7 +1589,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <End Role="acc" EntitySet="accs" />
             <End Role="comment" EntitySet="comments" />
           </AssociationSet>
-          <AssociationSet Name="FK__daMua__taikhoan__24285DB4" Association="Self.FK__daMua__taikhoan__24285DB4">
+          <AssociationSet Name="FK__daMua__taikhoan__41B8C09B" Association="Self.FK__daMua__taikhoan__41B8C09B">
             <End Role="acc" EntitySet="accs" />
             <End Role="daMua" EntitySet="daMuas" />
           </AssociationSet>
@@ -1486,7 +1633,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <End Role="comment" EntitySet="comments" />
             <End Role="liKe1" EntitySet="liKe1" />
           </AssociationSet>
-          <AssociationSet Name="FK__daMua__idSP__2334397B" Association="Self.FK__daMua__idSP__2334397B">
+          <AssociationSet Name="FK__daMua__idSP__40C49C62" Association="Self.FK__daMua__idSP__40C49C62">
             <End Role="sanpham" EntitySet="sanphams" />
             <End Role="daMua" EntitySet="daMuas" />
           </AssociationSet>
@@ -1518,12 +1665,21 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <Parameter Name="idsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
+          <FunctionImport Name="f_DanhGiaCuaHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCuaHang_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="F_HienThiTatCarTaiKhoan" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result)" />
           <FunctionImport Name="F_layComment" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_layComment_Result)">
             <Parameter Name="idDG" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_laydanhdia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laydanhdia_Result)">
             <Parameter Name="idsp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_laySanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laySanPham_Result)">
             <Parameter Name="idsp" Mode="In" Type="Int32" />
@@ -1634,6 +1790,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <ScalarProperty Name="dangChuanBi" ColumnName="dangChuanBi" />
                 <ScalarProperty Name="ngaymua" ColumnName="ngaymua" />
                 <ScalarProperty Name="ngayLapDat" ColumnName="ngayLapDat" />
+                <ScalarProperty Name="dalapdat" ColumnName="dalapdat" />
                 <ScalarProperty Name="dangVanChuyen" ColumnName="dangVanChuyen" />
                 <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="idSP" ColumnName="idSP" />
@@ -1756,6 +1913,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <ScalarProperty Name="idhopdong" ColumnName="idhopdong" />
                 <ScalarProperty Name="daxoa" ColumnName="daxoa" />
                 <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+                <ScalarProperty Name="About" ColumnName="About" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1789,6 +1947,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <ScalarProperty Name="hethang" ColumnName="hethang" />
                 <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
                 <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1843,6 +2002,41 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <ScalarProperty Name="hethang" ColumnName="hethang" />
                 <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
                 <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DanhGiaCuaHang" FunctionImportName="f_DanhGiaCuaHang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_DanhGiaCuaHang_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+                <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+                <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+                <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+                <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+                <ScalarProperty Name="rong" ColumnName="rong" />
+                <ScalarProperty Name="dai" ColumnName="dai" />
+                <ScalarProperty Name="cao" ColumnName="cao" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+                <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+                <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+                <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+                <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+                <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+                <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="hethang" ColumnName="hethang" />
+                <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1878,6 +2072,42 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <ScalarProperty Name="sosao" ColumnName="sosao" />
                 <ScalarProperty Name="solike" ColumnName="solike" />
                 <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong" FunctionImportName="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result">
+                <ScalarProperty Name="idDM" ColumnName="idDM" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="dangChuanBi" ColumnName="dangChuanBi" />
+                <ScalarProperty Name="ngaymua" ColumnName="ngaymua" />
+                <ScalarProperty Name="ngayLapDat" ColumnName="ngayLapDat" />
+                <ScalarProperty Name="dalapdat" ColumnName="dalapdat" />
+                <ScalarProperty Name="dangVanChuyen" ColumnName="dangVanChuyen" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua" FunctionImportName="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result">
+                <ScalarProperty Name="idDM" ColumnName="idDM" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="dangChuanBi" ColumnName="dangChuanBi" />
+                <ScalarProperty Name="ngaymua" ColumnName="ngaymua" />
+                <ScalarProperty Name="ngayLapDat" ColumnName="ngayLapDat" />
+                <ScalarProperty Name="dalapdat" ColumnName="dalapdat" />
+                <ScalarProperty Name="dangVanChuyen" ColumnName="dangVanChuyen" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
                 <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -1944,6 +2174,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <ScalarProperty Name="hethang" ColumnName="hethang" />
                 <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
                 <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

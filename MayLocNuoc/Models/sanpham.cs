@@ -51,6 +51,7 @@ namespace MayLocNuoc.Models
         public Nullable<bool> hethang { get; set; }
         public Nullable<int> idIfncc { get; set; }
         public Nullable<int> soluongdaban { get; set; }
+        public Nullable<System.DateTime> ngaythem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<daMua> daMuas { get; set; }

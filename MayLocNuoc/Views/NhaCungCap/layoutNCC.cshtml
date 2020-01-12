@@ -18,6 +18,9 @@
     <link href="//fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!--//fonts-->
 </head>
 <body>
@@ -26,7 +29,7 @@
         <div class="container">
             <div class="header">
                 <div class="hainam_agile_logo">
-                    <h1><a href="index.html">Fine Shape<span>fitness lifestyle</span></a></h1>
+                    <h1><a href="index.html">SƠN TRẦN<span>Máy Lọc Nước</span></a></h1>
                 </div>
                 <div class="hainam_menu">
                     <div class="mobile-nav-button">
@@ -36,13 +39,12 @@
                     </div>
                     <nav class="mobile-menu">
                         <ul>
-                            <li><a href="@Url.Action("TrangChu","NhaCungCap")" class="active scroll">Home</a></li>
+                            <li class="active"><a href="@Url.Action("TrangChu","NhaCungCap")" class=" scroll">Home</a></li>
+                            <li><a href="@Url.Action("xemDoanhthu", "NhaCungCap")" class="scroll">Doanh Thu</a></li>
                             <li><a href="@Url.Action("Info","NhaCungCap")" class="scroll">Thông Tin Bản Thân</a></li>
                             <li><a href="@Url.Action("ThemSanPham","NhaCungCap")" class="scroll">Thêm Sản Phẩm</a></li>
-                            <li><a href="@Url.Action("xemNCC","NhaCungCap")" class="scroll">Chế Độ Xem</a></li>
                             <li><a href="@Url.Action("RepComment","NhaCungCap")" class="scroll">Thông Báo</a></li>
                             <li><a href="@Url.Action("xemDoanhthu","NhaCungCap")" class="scroll">Biểu Đồ</a></li>
-                            <li><a href="@Url.Action("TrangChu","NhaCungCap")" class="scroll">IB Admin</a></li>
 
                         </ul>
                     </nav>
@@ -52,29 +54,25 @@
             <div class="agile_banner_info">
                 <h3><span>C</span>hào  <span>M</span>ừng  <span>N</span>hà  <span>C</span>ung  Cấp   Trần Hữu Sơn </h3>
             </div>
-            <div class="hainam_agileits_social_media">
-                <ul>
-                    <li class="agileinfo_share">Share On</li>
-                    <li><a href="#" class="wthree_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_dribbble"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_behance"><i class="fa fa-mobile" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
         </div>
     </div>
+    <style>
+        .banner {
+            background: url(../Content/NCC/all/images/4.jpg) no-repeat 0px 0px;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            min-height: 770px;
+            position: relative;
+        }
+    </style>
     <!-- //banner -->
     @RenderBody()
 
     <div class="footer-bottom wtrhee-agileinfo">
         <div class="container">
-            <section class="col-md-3 social-agileits">
-                <ul>
-                    <li><a href="#" class="wthree_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                    <li><a href="#" class="wthree_behance"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-                </ul>
-            </section>
             <p class="col-md-6 copy">Máy Lọc Nước Sơn Trần  | Design  <a href="">HaiNam</a></p>
             <div class=" col-md-3 top-hainamls">
                 <a href="#home" class="scroll"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>Lên Đầu Trang</a>
@@ -149,6 +147,7 @@
     <script type="text/javascript" src="~/Content/NCC/all/js/move-top.js"></script>
     <script type="text/javascript" src="~/Content/NCC/all/js/easing.js"></script>
     <script src="~/Content/NCC/all/jsThemSanPham/Themanh.js"></script>
+    <script src="~/Content/NCC/all/jsThemSanPham/ProTo.js"></script>
     <!-- start-smoth-scrolling -->
     <script type="text/javascript" src="~/Content/NCC/all/js/bootstrap-3.1.1.min.js"></script>
 

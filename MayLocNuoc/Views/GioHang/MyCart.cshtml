@@ -11,8 +11,6 @@
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <link href="~/Content/home/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -25,17 +23,23 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Vận Chuyển</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Index","Product")">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Lịch sử</a>
+                    <a class="nav-link " href="@Url.Action("DangMua","DaMua")" tabindex="-1" aria-disabled="true">Đang Chờ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Tài Khoản</a>
+                    <a class="nav-link " href="@Url.Action("LichSu","DaMua")" tabindex="-1" aria-disabled="true">Lịch sử</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Trợ Giúp</a>
+                    <a class="nav-link " href="@Url.Action("MyCart","GioHang")" tabindex="-1" aria-disabled="true">Lịch sử</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="@Url.Action("Log","DangNhap")" tabindex="-1" aria-disabled="true">Tài Khoản</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="@Url.Action("Index","TroGiup")" tabindex="-1" aria-disabled="true">Trợ Giúp</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

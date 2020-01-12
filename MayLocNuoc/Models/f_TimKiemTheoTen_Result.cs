@@ -40,5 +40,6 @@ namespace MayLocNuoc.Models
         public Nullable<bool> hethang { get; set; }
         public Nullable<int> idIfncc { get; set; }
         public Nullable<int> soluongdaban { get; set; }
+        public Nullable<System.DateTime> ngaythem { get; set; }
     }
 }
