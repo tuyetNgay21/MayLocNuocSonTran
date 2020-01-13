@@ -82,7 +82,7 @@ namespace MayLocNuoc.Controllers
             }
         }
         //san pham trong mot ngay trong thang
-        public ActionResult Product_In_Day_inMonth( int thang=1, int nam=2020)
+        public ActionResult Product_In_Day_inMonth( int thang=1, int nam=2020, int ngay=1)
         {
             if (save.taikhoan == null || save.taikhoan == "")
             {
@@ -90,6 +90,7 @@ namespace MayLocNuoc.Controllers
             }
             else
             {
+                ViewBag.ngay = ngay;
                 ViewBag.thang = thang;
                 ViewBag.nam = nam;
                 return View();

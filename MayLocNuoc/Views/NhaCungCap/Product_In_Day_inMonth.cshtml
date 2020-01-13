@@ -31,9 +31,11 @@
 @model  f_DoanhThuTrongThang_Result
 @{
     mayLocNuocEntities db = new mayLocNuocEntities();
+    int ngay = ViewBag.ngay;
     int thang = ViewBag.thang;
     int nam = ViewBag.nam;
-    var a = db.f_DoanhThuTrongThang(save.taikhoan, thang, nam);
+    var doanhthuThang = db.f_DoanhThuTrongThang(save.taikhoan, thang, nam);
+    var doanhthungay = db.f_DoanhThuTrongNgay(save.taikhoan, thang, nam, ngay);
 }
 <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:20px;">
     <div style="width: 100%; height:1000px;">
@@ -84,7 +86,7 @@
             <td>Số Lượng Hiện Tại</td>
             <td>Chi Tiết Sản Phẩm</td>
         </tr>
-        @foreach (var key in a)
+        @foreach (var key in doanhthuThang)
         {
             <tr style="text-align:center;">
                 <td>@key.idsanpham</td>
@@ -133,22 +135,32 @@
     </div>
     <table border="1" cellpadding="5" cellspacing="5" width="100%">
         <tr style="text-align:center;">
-            <td>Ngày</td>
-            <td>Số chiếc Trong Ngày (Chiếc)</td>
-            <td>Đã bán Trong Ngày (Chiếc)</td>
-            <td>Tăng Trưởng (%)</td>
-            <td>Tổng Tiền (VNĐ)</td>
-            <td>Tất Cả đã bán (Chiếc)</td>
-            <td>Chi Tiết</td>
+            <td>ID Sản Phẩm</td>
+            <td>Ngày Bán</td>
+            <td>Giá (VNĐ)</td>
+            <td>Giảm Giá (%)</td>
+            <td>Số Lượng (Chiếc)</td>
+            <td>Tổng (VNĐ)</td>
+            <td>Tài Khoản Mua</td>
+            <td>Ngày Thêm Sản Phẩm</td>
+            <td>Số Lượng Hiện Tại</td>
+            <td>Chi Tiết Sản Phẩm</td>
         </tr>
-        <tr style="text-align:center;">
-            <td>1</td>
-            <td>12</td>
-            <td>2</td>
-            <td>1</td>
-            <td>123</td>
-            <td>33</td>
-        </tr>
+        @foreach (var key1 in doanhthungay)
+        {
+            <tr style="text-align:center;">
+                <td>@key1.idsanpham</td>
+                <td>@key1.ngayban</td>
+                <td>@Convert.ToInt32(key1.gia)</td>
+                <td>@key1.sophantram</td>
+                <td>@key1.soluongdaban</td>
+                <td>@{ var tog = Convert.ToInt32(key1.soluongdaban * (key1.gia * ((key1.sophantram + 100) / 100))); } @tog</td>
+                <td>@key1.taikhoanmua</td>
+                <td>@key1.ngaythem</td>
+                <td>@key1.soluonghientai</td>
+                <td><a href="@Url.Action("Index","ChiTiet", new {id=key1.idsanpham})"> Xem</a></td>
+            </tr>
+        }
     </table>
 </div>
 <hr />

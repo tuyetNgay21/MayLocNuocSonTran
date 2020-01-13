@@ -66,6 +66,26 @@
     <Property Name="soluongdaban" Type="Int32" />
     <Property Name="ngaythem" Type="DateTime" />
   </ComplexType>
+  <ComplexType Name="f_DoanhThuTrongNgay_Result">
+    <Property Name="idsanpham" Type="Int32" />
+    <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ngaythem" Type="DateTime" />
+    <Property Name="soluonghientai" Type="Int32" />
+    <Property Name="soluongdaban" Type="Int32" />
+    <Property Name="ngayban" Type="DateTime" />
+    <Property Name="sophantram" Type="Int32" />
+    <Property Name="taikhoanmua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </ComplexType>
+  <ComplexType Name="f_DoanhThuTrongThang_Result">
+    <Property Name="idsanpham" Type="Int32" />
+    <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ngaythem" Type="DateTime" />
+    <Property Name="soluonghientai" Type="Int32" />
+    <Property Name="soluongdaban" Type="Int32" />
+    <Property Name="ngayban" Type="DateTime" />
+    <Property Name="sophantram" Type="Int32" />
+    <Property Name="taikhoanmua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </ComplexType>
   <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
     <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="matkhau" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -789,6 +809,17 @@
     <FunctionImport Name="f_DanhGiaCuaHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCuaHang_Result)">
       <Parameter Name="tk" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="f_DoanhThuTrongNgay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongNgay_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+      <Parameter Name="thang" Mode="In" Type="Int32" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+      <Parameter Name="ngay" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="f_DoanhThuTrongThang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongThang_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+      <Parameter Name="thang" Mode="In" Type="Int32" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="F_HienThiTatCarTaiKhoan" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result)" />
     <FunctionImport Name="F_layComment" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_layComment_Result)">
       <Parameter Name="idDG" Mode="In" Type="Int32" />
@@ -850,17 +881,6 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="f_DoanhThuTrongNgay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongNgay_Result)">
-      <Parameter Name="tk" Mode="In" Type="String" />
-      <Parameter Name="thang" Mode="In" Type="Int32" />
-      <Parameter Name="nam" Mode="In" Type="Int32" />
-      <Parameter Name="ngay" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="f_DoanhThuTrongThang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongThang_Result)">
-      <Parameter Name="tk" Mode="In" Type="String" />
-      <Parameter Name="thang" Mode="In" Type="Int32" />
-      <Parameter Name="nam" Mode="In" Type="Int32" />
-    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -872,25 +892,5 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="f_DoanhThuTrongNgay_Result">
-    <Property Type="Int32" Name="idsanpham" Nullable="true" />
-    <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
-    <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
-    <Property Type="Int32" Name="soluonghientai" Nullable="true" />
-    <Property Type="Int32" Name="soluongdaban" Nullable="true" />
-    <Property Type="DateTime" Name="ngayban" Nullable="true" Precision="10" />
-    <Property Type="Int32" Name="sophantram" Nullable="true" />
-    <Property Type="String" Name="taikhoanmua" Nullable="true" MaxLength="30" />
-  </ComplexType>
-  <ComplexType Name="f_DoanhThuTrongThang_Result">
-    <Property Type="Int32" Name="idsanpham" Nullable="true" />
-    <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
-    <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
-    <Property Type="Int32" Name="soluonghientai" Nullable="true" />
-    <Property Type="Int32" Name="soluongdaban" Nullable="true" />
-    <Property Type="DateTime" Name="ngayban" Nullable="true" Precision="10" />
-    <Property Type="Int32" Name="sophantram" Nullable="true" />
-    <Property Type="String" Name="taikhoanmua" Nullable="true" MaxLength="30" />
   </ComplexType>
 </Schema>
