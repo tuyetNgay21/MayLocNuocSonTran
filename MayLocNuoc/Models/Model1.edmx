@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mayLocNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mayLocNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="acc">
           <Key>
             <PropertyRef Name="taikhoan" />
@@ -548,6 +548,45 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="f_DoanhThuTrongNgay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <Parameter Name="thang" Type="int" Mode="In" />
+          <Parameter Name="nam" Type="int" Mode="In" />
+          <Parameter Name="ngay" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idsanpham" Type="int" />
+                <Property Name="gia" Type="money" />
+                <Property Name="ngaythem" Type="date" />
+                <Property Name="soluonghientai" Type="int" />
+                <Property Name="soluongdaban" Type="int" />
+                <Property Name="ngayban" Type="date" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="taikhoanmua" Type="varchar" MaxLength="30" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="f_DoanhThuTrongThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <Parameter Name="thang" Type="int" Mode="In" />
+          <Parameter Name="nam" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idsanpham" Type="int" />
+                <Property Name="gia" Type="money" />
+                <Property Name="ngaythem" Type="date" />
+                <Property Name="soluonghientai" Type="int" />
+                <Property Name="soluongdaban" Type="int" />
+                <Property Name="ngayban" Type="date" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="taikhoanmua" Type="varchar" MaxLength="30" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="F_HienThiTatCarTaiKhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <ReturnType>
             <CollectionType>
@@ -874,8 +913,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <End Role="sanpham" EntitySet="sanpham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mayLocNuocModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1662,36 +1700,36 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <End Role="sanpham" EntitySet="sanphams" />
           </AssociationSet>
           <FunctionImport Name="F_cungHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_cungHang_Result)">
-            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <Parameter Name="idsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
           <FunctionImport Name="f_DanhGiaCuaHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCuaHang_Result)">
-            <Parameter Name="tk" Mode="In" Type="String" />
+          <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_HienThiTatCarTaiKhoan" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result)" />
           <FunctionImport Name="F_layComment" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_layComment_Result)">
-            <Parameter Name="idDG" Mode="In" Type="Int32" />
+          <Parameter Name="idDG" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_laydanhdia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laydanhdia_Result)">
-            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <Parameter Name="idsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result)">
-            <Parameter Name="tk" Mode="In" Type="String" />
+          <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result)">
-            <Parameter Name="tk" Mode="In" Type="String" />
+          <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_laySanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laySanPham_Result)">
-            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <Parameter Name="idsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_TimKiemTheoTen" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_TimKiemTheoTen_Result)">
-            <Parameter Name="truyenvao" Mode="In" Type="String" />
+          <Parameter Name="truyenvao" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_Top10DanhGiaCao" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_Top10DanhGiaCao_Result)">
-            <Parameter Name="top" Mode="In" Type="Int32" />
+          <Parameter Name="top" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_TopBanChay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_TopBanChay_Result)">
-            <Parameter Name="top" Mode="In" Type="Int32" />
+          <Parameter Name="top" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="P_themtaikhoan">
             <Parameter Name="taikhoan" Mode="In" Type="String" />
@@ -1729,6 +1767,17 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="f_DoanhThuTrongNgay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongNgay_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+            <Parameter Name="thang" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+            <Parameter Name="ngay" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_DoanhThuTrongThang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongThang_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+            <Parameter Name="thang" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1740,6 +1789,26 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="f_DoanhThuTrongNgay_Result">
+          <Property Type="Int32" Name="idsanpham" Nullable="true" />
+          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
+          <Property Type="Int32" Name="soluonghientai" Nullable="true" />
+          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+          <Property Type="DateTime" Name="ngayban" Nullable="true" Precision="10" />
+          <Property Type="Int32" Name="sophantram" Nullable="true" />
+          <Property Type="String" Name="taikhoanmua" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="f_DoanhThuTrongThang_Result">
+          <Property Type="Int32" Name="idsanpham" Nullable="true" />
+          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
+          <Property Type="Int32" Name="soluonghientai" Nullable="true" />
+          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+          <Property Type="DateTime" Name="ngayban" Nullable="true" Precision="10" />
+          <Property Type="Int32" Name="sophantram" Nullable="true" />
+          <Property Type="String" Name="taikhoanmua" Nullable="true" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2223,6 +2292,34 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="mayLocNuocModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="mayLocNuocModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="f_DoanhThuTrongNgay" FunctionName="mayLocNuocModel.Store.f_DoanhThuTrongNgay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuTrongNgay_Result">
+                <ScalarProperty Name="idsanpham" ColumnName="idsanpham" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
+                <ScalarProperty Name="soluonghientai" ColumnName="soluonghientai" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngayban" ColumnName="ngayban" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="taikhoanmua" ColumnName="taikhoanmua" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_DoanhThuTrongThang" FunctionName="mayLocNuocModel.Store.f_DoanhThuTrongThang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuTrongThang_Result">
+                <ScalarProperty Name="idsanpham" ColumnName="idsanpham" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
+                <ScalarProperty Name="soluonghientai" ColumnName="soluonghientai" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngayban" ColumnName="ngayban" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="taikhoanmua" ColumnName="taikhoanmua" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

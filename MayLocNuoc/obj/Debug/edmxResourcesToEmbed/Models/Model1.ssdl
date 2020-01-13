@@ -543,6 +543,45 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="f_DoanhThuTrongNgay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <Parameter Name="thang" Type="int" Mode="In" />
+    <Parameter Name="nam" Type="int" Mode="In" />
+    <Parameter Name="ngay" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idsanpham" Type="int" />
+          <Property Name="gia" Type="money" />
+          <Property Name="ngaythem" Type="date" />
+          <Property Name="soluonghientai" Type="int" />
+          <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngayban" Type="date" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="taikhoanmua" Type="varchar" MaxLength="30" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_DoanhThuTrongThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <Parameter Name="thang" Type="int" Mode="In" />
+    <Parameter Name="nam" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idsanpham" Type="int" />
+          <Property Name="gia" Type="money" />
+          <Property Name="ngaythem" Type="date" />
+          <Property Name="soluonghientai" Type="int" />
+          <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngayban" Type="date" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="taikhoanmua" Type="varchar" MaxLength="30" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="F_HienThiTatCarTaiKhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <ReturnType>
       <CollectionType>

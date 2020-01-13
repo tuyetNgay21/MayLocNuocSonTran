@@ -275,5 +275,45 @@ namespace MayLocNuoc.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        [DbFunction("mayLocNuocEntities", "f_DoanhThuTrongNgay")]
+        public virtual IQueryable<f_DoanhThuTrongNgay_Result> f_DoanhThuTrongNgay(string tk, Nullable<int> thang, Nullable<int> nam, Nullable<int> ngay)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            var thangParameter = thang.HasValue ?
+                new ObjectParameter("thang", thang) :
+                new ObjectParameter("thang", typeof(int));
+    
+            var namParameter = nam.HasValue ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(int));
+    
+            var ngayParameter = ngay.HasValue ?
+                new ObjectParameter("ngay", ngay) :
+                new ObjectParameter("ngay", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DoanhThuTrongNgay_Result>("[mayLocNuocEntities].[f_DoanhThuTrongNgay](@tk, @thang, @nam, @ngay)", tkParameter, thangParameter, namParameter, ngayParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_DoanhThuTrongThang")]
+        public virtual IQueryable<f_DoanhThuTrongThang_Result> f_DoanhThuTrongThang(string tk, Nullable<int> thang, Nullable<int> nam)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            var thangParameter = thang.HasValue ?
+                new ObjectParameter("thang", thang) :
+                new ObjectParameter("thang", typeof(int));
+    
+            var namParameter = nam.HasValue ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DoanhThuTrongThang_Result>("[mayLocNuocEntities].[f_DoanhThuTrongThang](@tk, @thang, @nam)", tkParameter, thangParameter, namParameter);
+        }
     }
 }

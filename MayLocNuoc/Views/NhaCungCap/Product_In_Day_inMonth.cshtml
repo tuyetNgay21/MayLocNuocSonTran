@@ -1,34 +1,40 @@
-﻿
+﻿@using MayLocNuoc.Models;
 @{
     ViewBag.Title = "Product_In_Day_inMonth";
     Layout = "~/Views/NhaCungCap/Lay_out_DoanhThu.cshtml";
 }
-    <div style="width:100%;">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("xemDoanhthu","NhaCungCap")">Doang Thu Tổng Quan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="@Url.Action("Product_In_Day_inMonth","NhaCungCap")">Theo Tháng</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="@Url.Action("chưathem1","NhaCungCap")">chưa thêm1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
-            </li>
-        </ul>
-    </div>
-
+<div style="width:100%;">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("xemDoanhthu","NhaCungCap")">Doang Thu Tổng Quan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="@Url.Action("Product_In_Day_inMonth","NhaCungCap")">Theo Tháng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("chưathem1","NhaCungCap")">chưa thêm1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
+        </li>
+    </ul>
+</div>
+@model  f_DoanhThuTrongThang_Result
+@{
+    mayLocNuocEntities db = new mayLocNuocEntities();
+    int thang = ViewBag.thang;
+    int nam = ViewBag.nam;
+    var a = db.f_DoanhThuTrongThang(save.taikhoan, thang, nam);
+}
 <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:20px;">
     <div style="width: 100%; height:1000px;">
         <h1 style="text-align:center">Doanh Thu Theo Từng Tháng</h1>
@@ -43,7 +49,7 @@
         <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
         <select id="PhanTrangChonThang" style="margin:2%; width:15%;" class="btn btn-success">
             <option>Hiển Thị số Bản Ghi</option>
-            <option>10</option>
+            <option></option>
             <option>20</option>
             <option>30</option>
             <option>50</option>
@@ -67,23 +73,32 @@
     </div>
     <table border="1" cellpadding="5" cellspacing="5" width="100%">
         <tr style="text-align:center;">
-            <td>Ngày</td>
-            <td>Số chiếc Trong Ngày (Chiếc)</td>
-            <td>Đã bán Trong Ngày (Chiếc)</td>
-            <td>Tăng Trưởng (%)</td>
-            <td>Tổng Tiền (VNĐ)</td>
-            <td>Tất Cả đã bán (Chiếc)</td>
-            <td>Chi Tiết</td>
+            <td>ID Sản Phẩm</td>
+            <td>Ngày Bán</td>
+            <td>Giá (VNĐ)</td>
+            <td>Giảm Giá (%)</td>
+            <td>Số Lượng (Chiếc)</td>
+            <td>Tổng (VNĐ)</td>
+            <td>Tài Khoản Mua</td>
+            <td>Ngày Thêm Sản Phẩm</td>
+            <td>Số Lượng Hiện Tại</td>
+            <td>Chi Tiết Sản Phẩm</td>
         </tr>
-        <tr style="text-align:center;">
-            <td>1</td>
-            <td>12</td>
-            <td>2</td>
-            <td>1</td>
-            <td>123</td>
-            <td>33</td>
-            <td><input type="submit" value="Xem" class="btn btn-link" /></td>
-        </tr>
+        @foreach (var key in a)
+        {
+            <tr style="text-align:center;">
+                <td>@key.idsanpham</td>
+                <td>@key.ngayban</td>
+                <td>@Convert.ToInt32(key.gia)</td>
+                <td>@key.sophantram</td>
+                <td>@key.soluongdaban</td>
+                <td>@{ var tog =Convert.ToInt32( key.soluongdaban * (key.gia * ((key.sophantram +100)/100))); } @tog</td>
+                <td>@key.taikhoanmua</td>
+                <td>@key.ngaythem</td>
+                <td>@key.soluonghientai</td>
+                <td><a href="@Url.Action("Index","ChiTiet", new {id=key.idsanpham})"> Xem</a></td>
+            </tr>
+        }
     </table>
 </div>
 <hr />
