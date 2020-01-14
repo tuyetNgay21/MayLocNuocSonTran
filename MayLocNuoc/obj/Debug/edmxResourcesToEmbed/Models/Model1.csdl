@@ -77,14 +77,10 @@
     <Property Name="taikhoanmua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
   </ComplexType>
   <ComplexType Name="f_DoanhThuTrongThang_Result">
-    <Property Name="idsanpham" Type="Int32" />
-    <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="ngaythem" Type="DateTime" />
-    <Property Name="soluonghientai" Type="Int32" />
-    <Property Name="soluongdaban" Type="Int32" />
-    <Property Name="ngayban" Type="DateTime" />
-    <Property Name="sophantram" Type="Int32" />
-    <Property Name="taikhoanmua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tonggia" Type="Int32" />
+    <Property Name="Tongslcl" Type="Int32" />
+    <Property Name="Tongsldm" Type="Int32" />
+    <Property Name="ngaylapdat" Type="DateTime" />
   </ComplexType>
   <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
     <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />

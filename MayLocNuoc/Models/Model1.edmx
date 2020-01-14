@@ -575,14 +575,10 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <ReturnType>
             <CollectionType>
               <RowType>
-                <Property Name="idsanpham" Type="int" />
-                <Property Name="gia" Type="money" />
-                <Property Name="ngaythem" Type="date" />
-                <Property Name="soluonghientai" Type="int" />
-                <Property Name="soluongdaban" Type="int" />
-                <Property Name="ngayban" Type="date" />
-                <Property Name="sophantram" Type="int" />
-                <Property Name="taikhoanmua" Type="varchar" MaxLength="30" />
+                <Property Name="Tonggia" Type="int" />
+                <Property Name="Tongslcl" Type="int" />
+                <Property Name="Tongsldm" Type="int" />
+                <Property Name="ngaylapdat" Type="date" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -995,14 +991,10 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="taikhoanmua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </ComplexType>
         <ComplexType Name="f_DoanhThuTrongThang_Result">
-          <Property Name="idsanpham" Type="Int32" />
-          <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="ngaythem" Type="DateTime" />
-          <Property Name="soluonghientai" Type="Int32" />
-          <Property Name="soluongdaban" Type="Int32" />
-          <Property Name="ngayban" Type="DateTime" />
-          <Property Name="sophantram" Type="Int32" />
-          <Property Name="taikhoanmua" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Tonggia" Type="Int32" />
+          <Property Name="Tongslcl" Type="Int32" />
+          <Property Name="Tongsldm" Type="Int32" />
+          <Property Name="ngaylapdat" Type="DateTime" />
         </ComplexType>
         <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -2127,14 +2119,10 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DoanhThuTrongThang" FunctionImportName="f_DoanhThuTrongThang">
             <ResultMapping>
               <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuTrongThang_Result">
-                <ScalarProperty Name="idsanpham" ColumnName="idsanpham" />
-                <ScalarProperty Name="gia" ColumnName="gia" />
-                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
-                <ScalarProperty Name="soluonghientai" ColumnName="soluonghientai" />
-                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
-                <ScalarProperty Name="ngayban" ColumnName="ngayban" />
-                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
-                <ScalarProperty Name="taikhoanmua" ColumnName="taikhoanmua" />
+                <ScalarProperty Name="Tonggia" ColumnName="Tonggia" />
+                <ScalarProperty Name="Tongslcl" ColumnName="Tongslcl" />
+                <ScalarProperty Name="Tongsldm" ColumnName="Tongsldm" />
+                <ScalarProperty Name="ngaylapdat" ColumnName="ngaylapdat" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

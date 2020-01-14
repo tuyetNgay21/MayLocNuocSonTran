@@ -311,14 +311,10 @@
     <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DoanhThuTrongThang" FunctionImportName="f_DoanhThuTrongThang">
       <ResultMapping>
         <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuTrongThang_Result">
-          <ScalarProperty Name="idsanpham" ColumnName="idsanpham" />
-          <ScalarProperty Name="gia" ColumnName="gia" />
-          <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
-          <ScalarProperty Name="soluonghientai" ColumnName="soluonghientai" />
-          <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
-          <ScalarProperty Name="ngayban" ColumnName="ngayban" />
-          <ScalarProperty Name="sophantram" ColumnName="sophantram" />
-          <ScalarProperty Name="taikhoanmua" ColumnName="taikhoanmua" />
+          <ScalarProperty Name="Tonggia" ColumnName="Tonggia" />
+          <ScalarProperty Name="Tongslcl" ColumnName="Tongslcl" />
+          <ScalarProperty Name="Tongsldm" ColumnName="Tongsldm" />
+          <ScalarProperty Name="ngaylapdat" ColumnName="ngaylapdat" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

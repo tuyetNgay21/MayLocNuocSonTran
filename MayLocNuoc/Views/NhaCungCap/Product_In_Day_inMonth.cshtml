@@ -34,30 +34,25 @@
     int ngay = ViewBag.ngay;
     int thang = ViewBag.thang;
     int nam = ViewBag.nam;
-    var doanhthuThang = db.f_DoanhThuTrongThang(save.taikhoan, thang, nam);
     var doanhthungay = db.f_DoanhThuTrongNgay(save.taikhoan, thang, nam, ngay);
+    int tongdoanhthu = 0;
+    int cacthangdaco = 0;
+    int[] dabansanphammap = new int[13];
+    int[] conlaisanphammap = new int[13];
+    double[] doanhthumap = new double[13];
 }
 <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:20px;">
     <div style="width: 100%; height:1000px;">
-        <h1 style="text-align:center">Doanh Thu Theo Từng Tháng</h1>
+        <h1 style="text-align:center">DOANH THU THEO THÁNG</h1>
         <div id="curve_chart" style="width: 100%; height: 100%;"></div>
     </div>
 </div>
 <hr />
 <div style="width:100%; padding-top:5%">
-    <h1 style="text-align:center">Thông Số Trong Tháng</h1>
+    <h1 style="text-align:center">CHI TIẾT</h1>
     <div>
         <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:20%;" />
         <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
-        <select id="PhanTrangChonThang" style="margin:2%; width:15%;" class="btn btn-success">
-            <option>Hiển Thị số Bản Ghi</option>
-            <option></option>
-            <option>20</option>
-            <option>30</option>
-            <option>50</option>
-            <option>90</option>
-            <option>Tất Cả</option>
-        </select>
         <select id="ChonThang" style="margin:2%; width:20%;" class="btn btn-success">
             <option>Tháng 1</option>
             <option>Tháng 2</option>
@@ -75,37 +70,146 @@
     </div>
     <table border="1" cellpadding="5" cellspacing="5" width="100%">
         <tr style="text-align:center;">
-            <td>ID Sản Phẩm</td>
-            <td>Ngày Bán</td>
-            <td>Giá (VNĐ)</td>
-            <td>Giảm Giá (%)</td>
-            <td>Số Lượng (Chiếc)</td>
-            <td>Tổng (VNĐ)</td>
-            <td>Tài Khoản Mua</td>
-            <td>Ngày Thêm Sản Phẩm</td>
-            <td>Số Lượng Hiện Tại</td>
-            <td>Chi Tiết Sản Phẩm</td>
+            <td>Tháng</td>
+            <td>Ngày Lắp Đặt (Tháng /Ngày/Năm)</td>
+            <td>Tổng Giá (VNĐ)(Chưa có Giảm Giá)</td>
+            <td>Tổng Số Lượng Còn Lại </td>
+            <td>Tổng Số Lượng Đã Mua</td>
+            <td>Đã Bán / Còn Lại</td>
+            <td>Chi Tiết Ngày</td>
         </tr>
-        @foreach (var key in doanhthuThang)
+        @for (int i = 1; i < 13; i++)
         {
-            <tr style="text-align:center;">
-                <td>@key.idsanpham</td>
-                <td>@key.ngayban</td>
-                <td>@Convert.ToInt32(key.gia)</td>
-                <td>@key.sophantram</td>
-                <td>@key.soluongdaban</td>
-                <td>@{ var tog =Convert.ToInt32( key.soluongdaban * (key.gia * ((key.sophantram +100)/100))); } @tog</td>
-                <td>@key.taikhoanmua</td>
-                <td>@key.ngaythem</td>
-                <td>@key.soluonghientai</td>
-                <td><a href="@Url.Action("Index","ChiTiet", new {id=key.idsanpham})"> Xem</a></td>
-            </tr>
+            var doanhthuThang = db.f_DoanhThuTrongThang(save.taikhoan, i, nam).FirstOrDefault();
+            if (doanhthuThang == null)
+            {
+                dabansanphammap[i] = 0;
+                conlaisanphammap[i] = 0;
+                doanhthumap = 0.0;
+            }
+            else
+            {
+                cacthangdaco++;
+                dabansanphammap[i] =  Convert.ToInt32(doanhthuThang.Tongslcl);
+                conlaisanphammap[i] =  Convert.ToInt32(doanhthuThang.Tongsldm);
+
+                <tr style="text-align:center;">
+                    <td>@i</td>
+                    <td>@doanhthuThang.ngaylapdat</td>
+                    <td>@doanhthuThang.Tonggia</td>
+                    <td>@doanhthuThang.Tongslcl</td>
+                    <td>@doanhthuThang.Tongsldm</td>
+                    <td>
+                        @{ tongdoanhthu = tongdoanhthu + Convert.ToInt32(doanhthuThang.Tongsldm);
+                            float giatri1 = (float)Convert.ToInt32(doanhthuThang.Tongsldm);
+                            double TangTruong = Math.Round((giatri1 / tongdoanhthu) * 100, 3);
+                            doanhthumap[i] = TangTruong;
+                          }
+                        @TangTruong (%)
+                    </td>
+                    
+                    <td><a href=""> Xem</a></td>
+                </tr>
+            }
         }
     </table>
 </div>
 <hr />
+<script>
+    //bieu do thu 2 san pham dua vao thang nay  san pham
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Tháng', 'Tổng Sản Phẩm Đưa Vào ', 'Đã Bán(Trong Tháng)', 'Tỉ Lệ Tăng Trưởng (100%) '],
+            ['1', @dabansanphammap[1] , @conlaisanphammap[1], @doanhthumap[1] ],
+            ['2', @dabansanphammap[2] , @conlaisanphammap[2], @doanhthumap[2] ],
+            ['3', @dabansanphammap[3] , @conlaisanphammap[3], @doanhthumap[3] ],
+            ['4', @dabansanphammap[4] , @conlaisanphammap[4], @doanhthumap[4] ],
+            ['5', @dabansanphammap[5] , @conlaisanphammap[5], @doanhthumap[5] ],
+            ['6', @dabansanphammap[6] , @conlaisanphammap[6], @doanhthumap[6] ],
+            ['7', @dabansanphammap[7] , @conlaisanphammap[7], @doanhthumap[7] ],
+            ['8', @dabansanphammap[8] , @conlaisanphammap[8], @doanhthumap[8] ],
+            ['9', @dabansanphammap[9] , @conlaisanphammap[9], @doanhthumap[9] ],
+            ['10', @dabansanphammap[10] , @conlaisanphammap[10], @doanhthumap[10] ],
+            ['11', @dabansanphammap[11] , @conlaisanphammap[11], @doanhthumap[11] ],
+            ['12', @dabansanphammap[12] , @conlaisanphammap[12], @doanhthumap[12] ]
+        ]);
+
+        var options = {
+            title: 'Doanh Thu Hàng Tháng',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+    }
+
+</script>
+<div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:20px;">
+    <div style="width: 100%; height:1000px;">
+        <h1 style="text-align:center">DOANH THU THEO NGÀY</h1>
+        <div id="curve_chart1" style="width: 100%; height: 100%;"></div>
+    </div>
+</div>
+<hr />
+<script>
+    //bieu do thu 2 san pham dua vao thang nay  san pham
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Ngày', 'Tổng Sản Phẩm Đưa Vào ', 'Đã Bán(Trong Tháng)', 'Tỉ Lệ Tăng Trưởng (100%) '],
+            ['1', 1000, 400, 10],
+            ['2', 1170, 460, 20],
+            ['3', 660, 1102, 30],
+            ['4', 1030, 504, 40],
+            ['5', 1000, 400, 50],
+            ['6', 1107, 460, 60],
+            ['7', 660, 1120, 40],
+            ['8', 1000, 400, 70],
+            ['9', 1170, 406, 30],
+            ['10', 660, 1102, 40],
+            ['11', 1000, 400, 60],
+            ['12', 1770, 406, 77],
+            ['13', 1000, 400, 10],
+            ['14', 1170, 460, 20],
+            ['15', 660, 1102, 30],
+            ['16', 1107, 460, 60],
+            ['17', 660, 1120, 40],
+            ['18', 1000, 400, 70],
+            ['19', 1170, 406, 30],
+            ['20', 660, 1102, 40],
+            ['21', 1000, 400, 60],
+            ['22', 1770, 406, 77],
+            ['23', 1000, 400, 10],
+            ['24', 1170, 460, 20],
+            ['25', 660, 1102, 30],
+            ['26', 1107, 460, 60],
+            ['27', 660, 1120, 40],
+            ['28', 1000, 400, 70],
+            ['29', 1170, 406, 30],
+            ['30', 660, 1102, 40],
+        ]);
+
+        var options = {
+            title: 'Doanh Thu Hàng Tháng',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+
+        chart.draw(data, options);
+    }
+
+</script>
 <div style="width:100%; padding-top:5%">
-    <h1 style="text-align:center">Chi Tiết Trong Tháng</h1>
+    <h1 style="text-align:center">CHI TIẾT NGÀY TRONG THÁNG</h1>
     <div>
         <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:20%;" />
         <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
@@ -164,56 +268,5 @@
     </table>
 </div>
 <hr />
-<script>
-    //bieu do thu 2 san pham dua vao thang nay  san pham
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Year', 'Tổng Sản Phẩm Đưa Vào ', 'Đã Bán(Trong Tháng)', 'Tỉ Lệ Tăng Trưởng (100%) '],
-            ['1', 1000, 400, 10],
-            ['2', 1170, 460, 20],
-            ['3', 660, 1102, 30],
-            ['4', 1030, 504, 40],
-            ['5', 1000, 400, 50],
-            ['6', 1107, 460, 60],
-            ['7', 660, 1120, 40],
-            ['8', 1000, 400, 70],
-            ['9', 1170, 406, 30],
-            ['10', 660, 1102, 40],
-            ['11', 1000, 400, 60],
-            ['12', 1770, 406, 77],
-            ['13', 1000, 400, 10],
-            ['14', 1170, 460, 20],
-            ['15', 660, 1102, 30],
-            ['16', 1107, 460, 60],
-            ['17', 660, 1120, 40],
-            ['18', 1000, 400, 70],
-            ['19', 1170, 406, 30],
-            ['20', 660, 1102, 40],
-            ['21', 1000, 400, 60],
-            ['22', 1770, 406, 77],
-            ['23', 1000, 400, 10],
-            ['24', 1170, 460, 20],
-            ['25', 660, 1102, 30],
-            ['26', 1107, 460, 60],
-            ['27', 660, 1120, 40],
-            ['28', 1000, 400, 70],
-            ['29', 1170, 406, 30],
-            ['30', 660, 1102, 40],
-        ]);
-
-        var options = {
-            title: 'Doanh Thu Hàng Tháng',
-            curveType: 'function',
-            legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart.draw(data, options);
-    }
-
-</script>
 

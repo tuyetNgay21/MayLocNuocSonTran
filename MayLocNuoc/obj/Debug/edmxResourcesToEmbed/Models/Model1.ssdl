@@ -570,14 +570,10 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
     <ReturnType>
       <CollectionType>
         <RowType>
-          <Property Name="idsanpham" Type="int" />
-          <Property Name="gia" Type="money" />
-          <Property Name="ngaythem" Type="date" />
-          <Property Name="soluonghientai" Type="int" />
-          <Property Name="soluongdaban" Type="int" />
-          <Property Name="ngayban" Type="date" />
-          <Property Name="sophantram" Type="int" />
-          <Property Name="taikhoanmua" Type="varchar" MaxLength="30" />
+          <Property Name="Tonggia" Type="int" />
+          <Property Name="Tongslcl" Type="int" />
+          <Property Name="Tongsldm" Type="int" />
+          <Property Name="ngaylapdat" Type="date" />
         </RowType>
       </CollectionType>
     </ReturnType>
