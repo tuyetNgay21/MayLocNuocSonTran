@@ -543,6 +543,22 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="f_DoanhThuNgayTrongThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <Parameter Name="thang" Type="int" Mode="In" />
+    <Parameter Name="nam" Type="int" Mode="In" />
+    <Parameter Name="ngay" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Tonggia" Type="int" />
+          <Property Name="Tongslcl" Type="int" />
+          <Property Name="Tongsldm" Type="int" />
+          <Property Name="ngaylapdat" Type="date" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="f_DoanhThuTrongNgay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="tk" Type="varchar" Mode="In" />
     <Parameter Name="thang" Type="int" Mode="In" />
@@ -573,7 +589,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="Tonggia" Type="int" />
           <Property Name="Tongslcl" Type="int" />
           <Property Name="Tongsldm" Type="int" />
-          <Property Name="ngaylapdat" Type="date" />
+          <Property Name="thanglapdat" Type="int" />
         </RowType>
       </CollectionType>
     </ReturnType>

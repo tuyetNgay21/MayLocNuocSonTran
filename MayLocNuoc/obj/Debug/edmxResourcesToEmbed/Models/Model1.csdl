@@ -66,6 +66,12 @@
     <Property Name="soluongdaban" Type="Int32" />
     <Property Name="ngaythem" Type="DateTime" />
   </ComplexType>
+  <ComplexType Name="f_DoanhThuNgayTrongThang_Result">
+    <Property Name="Tonggia" Type="Int32" />
+    <Property Name="Tongslcl" Type="Int32" />
+    <Property Name="Tongsldm" Type="Int32" />
+    <Property Name="ngaylapdat" Type="DateTime" />
+  </ComplexType>
   <ComplexType Name="f_DoanhThuTrongNgay_Result">
     <Property Name="idsanpham" Type="Int32" />
     <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
@@ -80,7 +86,7 @@
     <Property Name="Tonggia" Type="Int32" />
     <Property Name="Tongslcl" Type="Int32" />
     <Property Name="Tongsldm" Type="Int32" />
-    <Property Name="ngaylapdat" Type="DateTime" />
+    <Property Name="thanglapdat" Type="Int32" />
   </ComplexType>
   <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
     <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -804,6 +810,12 @@
     <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
     <FunctionImport Name="f_DanhGiaCuaHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCuaHang_Result)">
       <Parameter Name="tk" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="f_DoanhThuNgayTrongThang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuNgayTrongThang_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+      <Parameter Name="thang" Mode="In" Type="Int32" />
+      <Parameter Name="nam" Mode="In" Type="Int32" />
+      <Parameter Name="ngay" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="f_DoanhThuTrongNgay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongNgay_Result)">
       <Parameter Name="tk" Mode="In" Type="String" />

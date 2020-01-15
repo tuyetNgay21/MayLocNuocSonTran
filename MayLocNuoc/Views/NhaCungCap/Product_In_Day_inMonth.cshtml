@@ -34,7 +34,6 @@
     int ngay = ViewBag.ngay;
     int thang = ViewBag.thang;
     int nam = ViewBag.nam;
-    var doanhthungay = db.f_DoanhThuTrongNgay(save.taikhoan, thang, nam, ngay);
     int tongdoanhthu = 0;
     int cacthangdaco = 0;
     int[] dabansanphammap = new int[13];
@@ -67,15 +66,15 @@
             <option>Tháng 11</option>
             <option>Tháng 12</option>
         </select>
+        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:10%;" />
     </div>
     <table border="1" cellpadding="5" cellspacing="5" width="100%">
         <tr style="text-align:center;">
             <td>Tháng</td>
-            <td>Ngày Lắp Đặt (Tháng /Ngày/Năm)</td>
             <td>Tổng Giá (VNĐ)(Chưa có Giảm Giá)</td>
             <td>Tổng Số Lượng Còn Lại </td>
             <td>Tổng Số Lượng Đã Mua</td>
-            <td>Đã Bán / Còn Lại</td>
+            <td>Tăng Trưởng</td>
             <td>Chi Tiết Ngày</td>
         </tr>
         @for (int i = 1; i < 13; i++)
@@ -83,19 +82,15 @@
             var doanhthuThang = db.f_DoanhThuTrongThang(save.taikhoan, i, nam).FirstOrDefault();
             if (doanhthuThang == null)
             {
-                dabansanphammap[i] = 0;
-                conlaisanphammap[i] = 0;
-                doanhthumap = 0.0;
             }
             else
             {
                 cacthangdaco++;
-                dabansanphammap[i] =  Convert.ToInt32(doanhthuThang.Tongslcl);
-                conlaisanphammap[i] =  Convert.ToInt32(doanhthuThang.Tongsldm);
+                dabansanphammap[i] = Convert.ToInt32(doanhthuThang.Tongslcl);
+                conlaisanphammap[i] = Convert.ToInt32(doanhthuThang.Tongsldm);
 
                 <tr style="text-align:center;">
                     <td>@i</td>
-                    <td>@doanhthuThang.ngaylapdat</td>
                     <td>@doanhthuThang.Tonggia</td>
                     <td>@doanhthuThang.Tongslcl</td>
                     <td>@doanhthuThang.Tongsldm</td>
@@ -104,10 +99,10 @@
                             float giatri1 = (float)Convert.ToInt32(doanhthuThang.Tongsldm);
                             double TangTruong = Math.Round((giatri1 / tongdoanhthu) * 100, 3);
                             doanhthumap[i] = TangTruong;
-                          }
+                        }
                         @TangTruong (%)
                     </td>
-                    
+
                     <td><a href=""> Xem</a></td>
                 </tr>
             }
@@ -149,6 +144,16 @@
     }
 
 </script>
+@{
+    //capnhat theo ngay
+    int tongdoanhthuNgayNgayTrong = 0;
+    int cacthangdacoNgayNgayTrong = 0;
+    int[] dabansanphammapNgay = new int[32];
+    int[] conlaisanphammapNgay = new int[32];
+    double[] doanhthumapNgay = new double[32];
+    double[] tangtruowngNgay = new double[32];
+}
+<div style="margin:20px 0px;height:2px; width:100%; background-color:black;"></div>
 <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:20px;">
     <div style="width: 100%; height:1000px;">
         <h1 style="text-align:center">DOANH THU THEO NGÀY</h1>
@@ -156,72 +161,11 @@
     </div>
 </div>
 <hr />
-<script>
-    //bieu do thu 2 san pham dua vao thang nay  san pham
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Ngày', 'Tổng Sản Phẩm Đưa Vào ', 'Đã Bán(Trong Tháng)', 'Tỉ Lệ Tăng Trưởng (100%) '],
-            ['1', 1000, 400, 10],
-            ['2', 1170, 460, 20],
-            ['3', 660, 1102, 30],
-            ['4', 1030, 504, 40],
-            ['5', 1000, 400, 50],
-            ['6', 1107, 460, 60],
-            ['7', 660, 1120, 40],
-            ['8', 1000, 400, 70],
-            ['9', 1170, 406, 30],
-            ['10', 660, 1102, 40],
-            ['11', 1000, 400, 60],
-            ['12', 1770, 406, 77],
-            ['13', 1000, 400, 10],
-            ['14', 1170, 460, 20],
-            ['15', 660, 1102, 30],
-            ['16', 1107, 460, 60],
-            ['17', 660, 1120, 40],
-            ['18', 1000, 400, 70],
-            ['19', 1170, 406, 30],
-            ['20', 660, 1102, 40],
-            ['21', 1000, 400, 60],
-            ['22', 1770, 406, 77],
-            ['23', 1000, 400, 10],
-            ['24', 1170, 460, 20],
-            ['25', 660, 1102, 30],
-            ['26', 1107, 460, 60],
-            ['27', 660, 1120, 40],
-            ['28', 1000, 400, 70],
-            ['29', 1170, 406, 30],
-            ['30', 660, 1102, 40],
-        ]);
-
-        var options = {
-            title: 'Doanh Thu Hàng Tháng',
-            curveType: 'function',
-            legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
-
-        chart.draw(data, options);
-    }
-
-</script>
 <div style="width:100%; padding-top:5%">
     <h1 style="text-align:center">CHI TIẾT NGÀY TRONG THÁNG</h1>
     <div>
         <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:20%;" />
         <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
-        <select id="PhanTrangChonThang" style="margin:2%; width:15%;" class="btn btn-success">
-            <option>Hiển Thị số Bản Ghi</option>
-            <option>10</option>
-            <option>20</option>
-            <option>30</option>
-            <option>50</option>
-            <option>90</option>
-            <option>Tất Cả</option>
-        </select>
         <select id="ChonThang" style="margin:2%; width:20%;" class="btn btn-success">
             <option>Tháng 1</option>
             <option>Tháng 2</option>
@@ -236,37 +180,125 @@
             <option>Tháng 11</option>
             <option>Tháng 12</option>
         </select>
+        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:20%;" />
     </div>
-    <table border="1" cellpadding="5" cellspacing="5" width="100%">
-        <tr style="text-align:center;">
-            <td>ID Sản Phẩm</td>
-            <td>Ngày Bán</td>
-            <td>Giá (VNĐ)</td>
-            <td>Giảm Giá (%)</td>
-            <td>Số Lượng (Chiếc)</td>
-            <td>Tổng (VNĐ)</td>
-            <td>Tài Khoản Mua</td>
-            <td>Ngày Thêm Sản Phẩm</td>
-            <td>Số Lượng Hiện Tại</td>
-            <td>Chi Tiết Sản Phẩm</td>
-        </tr>
-        @foreach (var key1 in doanhthungay)
-        {
+    <div style="width:100%; padding-top:5%">
+        <h1 style="text-align:center">CHI TIẾT</h1>
+        <div>
+            <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:20%;" />
+            <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
+            <select id="ChonThang" style="margin:2%; width:20%;" class="btn btn-success">
+                <option>Tháng 1</option>
+                <option>Tháng 2</option>
+                <option>Tháng 3</option>
+                <option>Tháng 4</option>
+                <option>Tháng 5</option>
+                <option>Tháng 6</option>
+                <option>Tháng 7</option>
+                <option>Tháng 8</option>
+                <option>Tháng 9</option>
+                <option>Tháng 10</option>
+                <option>Tháng 11</option>
+                <option>Tháng 12</option>
+            </select>
+        </div>
+        <table border="1" cellpadding="5" cellspacing="5" width="100%">
             <tr style="text-align:center;">
-                <td>@key1.idsanpham</td>
-                <td>@key1.ngayban</td>
-                <td>@Convert.ToInt32(key1.gia)</td>
-                <td>@key1.sophantram</td>
-                <td>@key1.soluongdaban</td>
-                <td>@{ var tog = Convert.ToInt32(key1.soluongdaban * (key1.gia * ((key1.sophantram + 100) / 100))); } @tog</td>
-                <td>@key1.taikhoanmua</td>
-                <td>@key1.ngaythem</td>
-                <td>@key1.soluonghientai</td>
-                <td><a href="@Url.Action("Index","ChiTiet", new {id=key1.idsanpham})"> Xem</a></td>
+                <td>Tháng</td>
+                <td>Tổng Giá (VNĐ)(Chưa có Giảm Giá)</td>
+                <td>Tổng Số Lượng Còn Lại </td>
+                <td>Tổng Số Lượng Đã Mua</td>
+                <td>Tăng Trưởng</td>
+                <td>Chi Tiết Ngày</td>
             </tr>
+            @for (int i = 1; i < 31; i++)
+            {
+                var doanhthuNgayTrongThang = db.f_DoanhThuNgayTrongThang(save.taikhoan, thang, nam, i).FirstOrDefault();
+                if (doanhthuNgayTrongThang == null)
+                {
+                }
+                else
+                {
+                    cacthangdacoNgayNgayTrong++;
+                    doanhthumapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tonggia);
+                    dabansanphammapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tongslcl);
+                    conlaisanphammapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
+
+                    <tr style="text-align:center;">
+                        <td>@i</td>
+                        <td>@doanhthuNgayTrongThang.Tonggia</td>
+                        <td>@doanhthuNgayTrongThang.Tongslcl</td>
+                        <td>@doanhthuNgayTrongThang.Tongsldm</td>
+                        <td>@doanhthuNgayTrongThang.ngaylapdat</td>
+                        <td>
+                            @{ tongdoanhthuNgayNgayTrong = tongdoanhthuNgayNgayTrong + Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
+                                float giatriNgayTrong = (float)Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
+                                double TangTruongNgayTrong = Math.Round((giatriNgayTrong / tongdoanhthuNgayNgayTrong) * 100, 3);
+                                tangtruowngNgay[i] = TangTruongNgayTrong;
+                            }
+                            @TangTruongNgayTrong (%)
+                        </td>
+
+                        <td><a href=""> Xem</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <hr />
+    <script>
+        //bieu do thu 2 san pham dua vao thang nay  san pham
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Ngày', 'Tổng Giá ', 'Số Lượng Còn Lại(Trong Tháng)', 'Số Lượng Đã Mua(Trong Tháng)', 'Tỉ Lệ Tăng Trưởng (100%) '],
+                ['1', @doanhthumapNgay[1], @dabansanphammapNgay[1], @conlaisanphammapNgay[1], @tangtruowngNgay[1] ],
+                ['2', @doanhthumapNgay[2], @dabansanphammapNgay[2], @conlaisanphammapNgay[2], @tangtruowngNgay[2] ],
+                ['3', @doanhthumapNgay[3], @dabansanphammapNgay[3], @conlaisanphammapNgay[3], @tangtruowngNgay[3] ],
+                ['4', @doanhthumapNgay[4], @dabansanphammapNgay[4], @conlaisanphammapNgay[4], @tangtruowngNgay[4] ],
+                ['5', @doanhthumapNgay[5], @dabansanphammapNgay[5], @conlaisanphammapNgay[5], @tangtruowngNgay[6] ],
+                ['6', @doanhthumapNgay[6], @dabansanphammapNgay[6], @conlaisanphammapNgay[6], @tangtruowngNgay[7] ],
+                ['7', @doanhthumapNgay[7], @dabansanphammapNgay[7], @conlaisanphammapNgay[7], @tangtruowngNgay[8] ],
+                ['8', @doanhthumapNgay[8], @dabansanphammapNgay[8], @conlaisanphammapNgay[8], @tangtruowngNgay[9] ],
+                ['9', @doanhthumapNgay[9], @dabansanphammapNgay[9], @conlaisanphammapNgay[9], @tangtruowngNgay[1] ],
+                ['10', @doanhthumapNgay[10], @dabansanphammapNgay[10], @conlaisanphammapNgay[10], @tangtruowngNgay[10] ],
+                ['11', @doanhthumapNgay[11], @dabansanphammapNgay[11], @conlaisanphammapNgay[11], @tangtruowngNgay[11] ],
+                ['12', @doanhthumapNgay[12], @dabansanphammapNgay[12], @conlaisanphammapNgay[12], @tangtruowngNgay[12] ],
+                ['13', @doanhthumapNgay[13], @dabansanphammapNgay[13], @conlaisanphammapNgay[13], @tangtruowngNgay[13] ],
+                ['14', @doanhthumapNgay[14], @dabansanphammapNgay[14], @conlaisanphammapNgay[14], @tangtruowngNgay[14] ],
+                ['15', @doanhthumapNgay[15], @dabansanphammapNgay[15], @conlaisanphammapNgay[15], @tangtruowngNgay[15] ],
+                ['16', @doanhthumapNgay[16], @dabansanphammapNgay[16], @conlaisanphammapNgay[16], @tangtruowngNgay[16] ],
+                ['17', @doanhthumapNgay[17], @dabansanphammapNgay[17], @conlaisanphammapNgay[17], @tangtruowngNgay[17] ],
+                ['18', @doanhthumapNgay[18], @dabansanphammapNgay[18], @conlaisanphammapNgay[18], @tangtruowngNgay[18] ],
+                ['19', @doanhthumapNgay[19], @dabansanphammapNgay[19], @conlaisanphammapNgay[19], @tangtruowngNgay[19] ],
+                ['20', @doanhthumapNgay[20], @dabansanphammapNgay[20], @conlaisanphammapNgay[20], @tangtruowngNgay[20] ],
+                ['21', @doanhthumapNgay[21], @dabansanphammapNgay[21], @conlaisanphammapNgay[21], @tangtruowngNgay[21] ],
+                ['22', @doanhthumapNgay[22], @dabansanphammapNgay[22], @conlaisanphammapNgay[22], @tangtruowngNgay[22] ],
+                ['23', @doanhthumapNgay[23], @dabansanphammapNgay[23], @conlaisanphammapNgay[23], @tangtruowngNgay[23] ],
+                ['24', @doanhthumapNgay[24], @dabansanphammapNgay[24], @conlaisanphammapNgay[24], @tangtruowngNgay[24] ],
+                ['25', @doanhthumapNgay[25], @dabansanphammapNgay[25], @conlaisanphammapNgay[25], @tangtruowngNgay[25] ],
+                ['26', @doanhthumapNgay[26], @dabansanphammapNgay[26], @conlaisanphammapNgay[26], @tangtruowngNgay[26] ],
+                ['27', @doanhthumapNgay[27], @dabansanphammapNgay[27], @conlaisanphammapNgay[27], @tangtruowngNgay[27] ],
+                ['28', @doanhthumapNgay[28], @dabansanphammapNgay[28], @conlaisanphammapNgay[28], @tangtruowngNgay[28] ],
+                ['29', @doanhthumapNgay[29], @dabansanphammapNgay[29], @conlaisanphammapNgay[29], @tangtruowngNgay[29] ],
+                ['30', @doanhthumapNgay[30], @dabansanphammapNgay[30], @conlaisanphammapNgay[30], @tangtruowngNgay[30] ],
+                ['31', @doanhthumapNgay[31], @dabansanphammapNgay[31], @conlaisanphammapNgay[31], @tangtruowngNgay[31] ],
+            ]);
+
+            var options = {
+                title: 'Doanh Thu Hàng Tháng',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart1'));
+
+            chart.draw(data, options);
         }
-    </table>
-</div>
-<hr />
+
+    </script>
+
 
 

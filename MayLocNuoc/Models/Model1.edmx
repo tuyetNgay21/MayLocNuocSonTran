@@ -548,6 +548,22 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="f_DoanhThuNgayTrongThang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <Parameter Name="thang" Type="int" Mode="In" />
+          <Parameter Name="nam" Type="int" Mode="In" />
+          <Parameter Name="ngay" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Tonggia" Type="int" />
+                <Property Name="Tongslcl" Type="int" />
+                <Property Name="Tongsldm" Type="int" />
+                <Property Name="ngaylapdat" Type="date" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="f_DoanhThuTrongNgay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tk" Type="varchar" Mode="In" />
           <Parameter Name="thang" Type="int" Mode="In" />
@@ -578,7 +594,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <Property Name="Tonggia" Type="int" />
                 <Property Name="Tongslcl" Type="int" />
                 <Property Name="Tongsldm" Type="int" />
-                <Property Name="ngaylapdat" Type="date" />
+                <Property Name="thanglapdat" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -980,6 +996,12 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="soluongdaban" Type="Int32" />
           <Property Name="ngaythem" Type="DateTime" />
         </ComplexType>
+        <ComplexType Name="f_DoanhThuNgayTrongThang_Result">
+          <Property Name="Tonggia" Type="Int32" />
+          <Property Name="Tongslcl" Type="Int32" />
+          <Property Name="Tongsldm" Type="Int32" />
+          <Property Name="ngaylapdat" Type="DateTime" />
+        </ComplexType>
         <ComplexType Name="f_DoanhThuTrongNgay_Result">
           <Property Name="idsanpham" Type="Int32" />
           <Property Name="gia" Type="Decimal" Precision="19" Scale="4" />
@@ -994,7 +1016,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="Tonggia" Type="Int32" />
           <Property Name="Tongslcl" Type="Int32" />
           <Property Name="Tongsldm" Type="Int32" />
-          <Property Name="ngaylapdat" Type="DateTime" />
+          <Property Name="thanglapdat" Type="Int32" />
         </ComplexType>
         <ComplexType Name="F_HienThiTatCarTaiKhoan_Result">
           <Property Name="taikhoan" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -1719,6 +1741,12 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <FunctionImport Name="f_DanhGiaCuaHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCuaHang_Result)">
             <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="f_DoanhThuNgayTrongThang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuNgayTrongThang_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+            <Parameter Name="thang" Mode="In" Type="Int32" />
+            <Parameter Name="nam" Mode="In" Type="Int32" />
+            <Parameter Name="ngay" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="f_DoanhThuTrongNgay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuTrongNgay_Result)">
             <Parameter Name="tk" Mode="In" Type="String" />
             <Parameter Name="thang" Mode="In" Type="Int32" />
@@ -2102,6 +2130,16 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DoanhThuNgayTrongThang" FunctionImportName="f_DoanhThuNgayTrongThang">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuNgayTrongThang_Result">
+                <ScalarProperty Name="Tonggia" ColumnName="Tonggia" />
+                <ScalarProperty Name="Tongslcl" ColumnName="Tongslcl" />
+                <ScalarProperty Name="Tongsldm" ColumnName="Tongsldm" />
+                <ScalarProperty Name="ngaylapdat" ColumnName="ngaylapdat" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DoanhThuTrongNgay" FunctionImportName="f_DoanhThuTrongNgay">
             <ResultMapping>
               <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuTrongNgay_Result">
@@ -2122,7 +2160,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <ScalarProperty Name="Tonggia" ColumnName="Tonggia" />
                 <ScalarProperty Name="Tongslcl" ColumnName="Tongslcl" />
                 <ScalarProperty Name="Tongsldm" ColumnName="Tongsldm" />
-                <ScalarProperty Name="ngaylapdat" ColumnName="ngaylapdat" />
+                <ScalarProperty Name="thanglapdat" ColumnName="thanglapdat" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

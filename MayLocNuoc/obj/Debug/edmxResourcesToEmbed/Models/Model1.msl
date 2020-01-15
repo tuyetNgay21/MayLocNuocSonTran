@@ -294,6 +294,16 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DoanhThuNgayTrongThang" FunctionImportName="f_DoanhThuNgayTrongThang">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuNgayTrongThang_Result">
+          <ScalarProperty Name="Tonggia" ColumnName="Tonggia" />
+          <ScalarProperty Name="Tongslcl" ColumnName="Tongslcl" />
+          <ScalarProperty Name="Tongsldm" ColumnName="Tongsldm" />
+          <ScalarProperty Name="ngaylapdat" ColumnName="ngaylapdat" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionName="mayLocNuocModel.Store.f_DoanhThuTrongNgay" FunctionImportName="f_DoanhThuTrongNgay">
       <ResultMapping>
         <ComplexTypeMapping TypeName="mayLocNuocModel.f_DoanhThuTrongNgay_Result">
@@ -314,7 +324,7 @@
           <ScalarProperty Name="Tonggia" ColumnName="Tonggia" />
           <ScalarProperty Name="Tongslcl" ColumnName="Tongslcl" />
           <ScalarProperty Name="Tongsldm" ColumnName="Tongsldm" />
-          <ScalarProperty Name="ngaylapdat" ColumnName="ngaylapdat" />
+          <ScalarProperty Name="thanglapdat" ColumnName="thanglapdat" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -70,6 +70,28 @@ namespace MayLocNuoc.Models
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaCuaHang_Result>("[mayLocNuocEntities].[f_DanhGiaCuaHang](@tk)", tkParameter);
         }
     
+        [DbFunction("mayLocNuocEntities", "f_DoanhThuNgayTrongThang")]
+        public virtual IQueryable<f_DoanhThuNgayTrongThang_Result> f_DoanhThuNgayTrongThang(string tk, Nullable<int> thang, Nullable<int> nam, Nullable<int> ngay)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            var thangParameter = thang.HasValue ?
+                new ObjectParameter("thang", thang) :
+                new ObjectParameter("thang", typeof(int));
+    
+            var namParameter = nam.HasValue ?
+                new ObjectParameter("nam", nam) :
+                new ObjectParameter("nam", typeof(int));
+    
+            var ngayParameter = ngay.HasValue ?
+                new ObjectParameter("ngay", ngay) :
+                new ObjectParameter("ngay", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DoanhThuNgayTrongThang_Result>("[mayLocNuocEntities].[f_DoanhThuNgayTrongThang](@tk, @thang, @nam, @ngay)", tkParameter, thangParameter, namParameter, ngayParameter);
+        }
+    
         [DbFunction("mayLocNuocEntities", "f_DoanhThuTrongNgay")]
         public virtual IQueryable<f_DoanhThuTrongNgay_Result> f_DoanhThuTrongNgay(string tk, Nullable<int> thang, Nullable<int> nam, Nullable<int> ngay)
         {
