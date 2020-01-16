@@ -42,7 +42,7 @@
 }
 <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:20px;">
     <div style="width: 100%; height:1000px;">
-        <h1 style="text-align:center">DOANH THU THEO THÁNG</h1>
+        <h1 style="text-align:center">DOANH THU THEO NĂM ( @nam )</h1>
         <div id="curve_chart" style="width: 100%; height: 100%;"></div>
     </div>
 </div>
@@ -50,23 +50,38 @@
 <div style="width:100%; padding-top:5%">
     <h1 style="text-align:center">CHI TIẾT</h1>
     <div>
-        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:20%;" />
-        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
-        <select id="ChonThang" style="margin:2%; width:20%;" class="btn btn-success">
-            <option>Tháng 1</option>
-            <option>Tháng 2</option>
-            <option>Tháng 3</option>
-            <option>Tháng 4</option>
-            <option>Tháng 5</option>
-            <option>Tháng 6</option>
-            <option>Tháng 7</option>
-            <option>Tháng 8</option>
-            <option>Tháng 9</option>
-            <option>Tháng 10</option>
-            <option>Tháng 11</option>
-            <option>Tháng 12</option>
+        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:10%;" />
+        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:10%;" />
+        <select id="BTNChonThangNam" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Năm</option>
+            <option>2020</option>
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028</option>
+            <option>2029</option>
         </select>
-        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:10%;" />
+        <select id="BTNChonThangThang" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Tháng</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+        </select>
+        <input id="BTNthang" type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:10%;" />
+        
     </div>
     <table border="1" cellpadding="5" cellspacing="5" width="100%">
         <tr style="text-align:center;">
@@ -133,7 +148,7 @@
         ]);
 
         var options = {
-            title: 'Doanh Thu Hàng Tháng',
+            title: 'Doanh Thu Năm @nam',
             curveType: 'function',
             legend: { position: 'bottom' }
         };
@@ -156,97 +171,126 @@
 <div style="margin:20px 0px;height:2px; width:100%; background-color:black;"></div>
 <div class="col-lg-12 col-xs-12 col-md-12 col-sm-12" style="padding:20px;">
     <div style="width: 100%; height:1000px;">
-        <h1 style="text-align:center">DOANH THU THEO NGÀY</h1>
+        <h1 style="text-align:center">DOANH THU THEO THÁNG (@thang /@nam)</h1>
         <div id="curve_chart1" style="width: 100%; height: 100%;"></div>
     </div>
 </div>
 <hr />
 <div style="width:100%; padding-top:5%">
-    <h1 style="text-align:center">CHI TIẾT NGÀY TRONG THÁNG</h1>
+    <h1 style="text-align:center">THÔNG SỐ</h1>
     <div>
-        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:20%;" />
-        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
-        <select id="ChonThang" style="margin:2%; width:20%;" class="btn btn-success">
-            <option>Tháng 1</option>
-            <option>Tháng 2</option>
-            <option>Tháng 3</option>
-            <option>Tháng 4</option>
-            <option>Tháng 5</option>
-            <option>Tháng 6</option>
-            <option>Tháng 7</option>
-            <option>Tháng 8</option>
-            <option>Tháng 9</option>
-            <option>Tháng 10</option>
-            <option>Tháng 11</option>
-            <option>Tháng 12</option>
+        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:10%;" />
+        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:10%;" />
+        <select id="ChonThang" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Năm</option>
+            <option>2020</option>
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028</option>
+            <option>2029</option>
         </select>
-        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:20%;" />
+        <select id="ChonThang" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Tháng</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+        </select>
+        <select id="ChonThang" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Ngày</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+        </select>
+        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:10%;" />
     </div>
-    <div style="width:100%; padding-top:5%">
-        <h1 style="text-align:center">CHI TIẾT</h1>
-        <div>
-            <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:20%;" />
-            <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:20%;" />
-            <select id="ChonThang" style="margin:2%; width:20%;" class="btn btn-success">
-                <option>Tháng 1</option>
-                <option>Tháng 2</option>
-                <option>Tháng 3</option>
-                <option>Tháng 4</option>
-                <option>Tháng 5</option>
-                <option>Tháng 6</option>
-                <option>Tháng 7</option>
-                <option>Tháng 8</option>
-                <option>Tháng 9</option>
-                <option>Tháng 10</option>
-                <option>Tháng 11</option>
-                <option>Tháng 12</option>
-            </select>
-        </div>
-        <table border="1" cellpadding="5" cellspacing="5" width="100%">
-            <tr style="text-align:center;">
-                <td>Tháng</td>
-                <td>Tổng Giá (VNĐ)(Chưa có Giảm Giá)</td>
-                <td>Tổng Số Lượng Còn Lại </td>
-                <td>Tổng Số Lượng Đã Mua</td>
-                <td>Tăng Trưởng</td>
-                <td>Chi Tiết Ngày</td>
-            </tr>
-            @for (int i = 1; i < 31; i++)
+    <table border="1" cellpadding="5" cellspacing="5" width="100%">
+        <tr style="text-align:center;">
+            <td>Ngày</td>
+            <td>Tổng Giá (VNĐ)(Chưa có Giảm Giá)</td>
+            <td>Tổng Số Lượng Còn Lại </td>
+            <td>Tổng Số Lượng Đã Mua</td>
+            <td>Doanh Thu</td>
+            <td>Tăng Trưởng</td>
+            <td>Chi Tiết Ngày</td>
+        </tr>
+        @for (int i = 1; i < 31; i++)
+        {
+            var doanhthuNgayTrongThang = db.f_DoanhThuNgayTrongThang(save.taikhoan, thang, nam, i).FirstOrDefault();
+            if (doanhthuNgayTrongThang == null)
             {
-                var doanhthuNgayTrongThang = db.f_DoanhThuNgayTrongThang(save.taikhoan, thang, nam, i).FirstOrDefault();
-                if (doanhthuNgayTrongThang == null)
-                {
-                }
-                else
-                {
-                    cacthangdacoNgayNgayTrong++;
-                    doanhthumapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tonggia);
-                    dabansanphammapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tongslcl);
-                    conlaisanphammapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
-
-                    <tr style="text-align:center;">
-                        <td>@i</td>
-                        <td>@doanhthuNgayTrongThang.Tonggia</td>
-                        <td>@doanhthuNgayTrongThang.Tongslcl</td>
-                        <td>@doanhthuNgayTrongThang.Tongsldm</td>
-                        <td>@doanhthuNgayTrongThang.ngaylapdat</td>
-                        <td>
-                            @{ tongdoanhthuNgayNgayTrong = tongdoanhthuNgayNgayTrong + Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
-                                float giatriNgayTrong = (float)Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
-                                double TangTruongNgayTrong = Math.Round((giatriNgayTrong / tongdoanhthuNgayNgayTrong) * 100, 3);
-                                tangtruowngNgay[i] = TangTruongNgayTrong;
-                            }
-                            @TangTruongNgayTrong (%)
-                        </td>
-
-                        <td><a href=""> Xem</a></td>
-                    </tr>
-                }
             }
-        </table>
-    </div>
-    <hr />
-    <script>
+            else
+            {
+                cacthangdacoNgayNgayTrong++;
+                doanhthumapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tonggia);
+                dabansanphammapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tongslcl);
+                conlaisanphammapNgay[i] = Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
+
+                <tr style="text-align:center;">
+                    <td>@i</td>
+                    <td>@doanhthuNgayTrongThang.Tonggia</td>
+                    <td>@doanhthuNgayTrongThang.Tongslcl</td>
+                    <td>@doanhthuNgayTrongThang.Tongsldm</td>
+                    <td>@doanhthuNgayTrongThang.ngaylapdat</td>
+                    <td>
+                        @{ tongdoanhthuNgayNgayTrong = tongdoanhthuNgayNgayTrong + Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
+                            float giatriNgayTrong = (float)Convert.ToInt32(doanhthuNgayTrongThang.Tongsldm);
+                            double TangTruongNgayTrong = Math.Round((giatriNgayTrong / tongdoanhthuNgayNgayTrong) * 100, 3);
+                            tangtruowngNgay[i] = TangTruongNgayTrong;
+                        }
+                        @TangTruongNgayTrong (%)
+                    </td>
+
+                    <td><a href="">Xem</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<hr />
+<script>
         //bieu do thu 2 san pham dua vao thang nay  san pham
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
@@ -288,7 +332,7 @@
             ]);
 
             var options = {
-                title: 'Doanh Thu Hàng Tháng',
+                title: 'Doanh Thu Tháng @thang',
                 curveType: 'function',
                 legend: { position: 'bottom' }
             };
@@ -298,7 +342,108 @@
             chart.draw(data, options);
         }
 
-    </script>
-
-
-
+</script>
+<div style="width:100%; padding-top:5%">
+    <h1 style="text-align:center">CHI TIẾT NGÀY (@ngay /@thang /@nam )</h1>
+    <div>
+        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:10%;" />
+        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:10%;" />
+        <select id="ChonThang" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Năm</option>
+            <option>2020</option>
+            <option>2021</option>
+            <option>2022</option>
+            <option>2023</option>
+            <option>2024</option>
+            <option>2025</option>
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028</option>
+            <option>2029</option>
+        </select>
+        <select id="ChonThang" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Tháng</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+        </select>
+        <select id="ChonThang" style="margin:2%; width:10%;" class="btn btn-success">
+            <option>Ngày</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+        </select>
+        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:10%;" />
+    </div>
+    <table border="1" cellpadding="5" cellspacing="5" width="100%">
+        <tr style="text-align:center;">
+            <td>Ngày Lắp Đặt</td>
+            <td>Mã Sản Phẩm</td>
+            <td>Tài Khoản Mua </td>
+            <td>Số Lượng</td>
+            <td>Số Phần Trăm</td>
+            <td>Giá</td>
+            <td> Giá Thực Tế</td>
+            <td>Ngày Thêm Sản Phẩm</td>
+            <td>Số Lượng Còn Lại</td>
+        </tr>
+        @{
+            var chiTietNgay = db.f_DoanhThuTrongNgay(save.taikhoan, thang, nam, ngay).ToList();
+        }
+        @foreach (var key in chiTietNgay)
+        {
+            <tr style="text-align:center;">
+                <td>@key.ngayban</td>
+                <td>@key.idsanpham</td>
+                <td>@key.taikhoanmua</td>
+                <td>@key.soluongdaban</td>
+                <td>@key.sophantram</td>
+                <td>@key.gia</td>
+                @{
+                    var giathucte_ChitietNgay = ((key.gia * (100 - key.sophantram) / 100) * key.soluongdaban);
+                }
+                <td>@giathucte_ChitietNgay</td>
+                <td>@key.ngaythem</td>
+                <td>@key.soluonghientai</td>
+            </tr>
+        }
+    </table>
+</div>
+<hr />

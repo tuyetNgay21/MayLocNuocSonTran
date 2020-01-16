@@ -82,18 +82,44 @@ namespace MayLocNuoc.Controllers
             }
         }
         //san pham trong mot ngay trong thang
-        public ActionResult Product_In_Day_inMonth( int thang=1, int nam=2020, int ngay=1)
+
+        public ActionResult Product_In_Day_inMonth(int? ngay, int? thang, int? nam)
         {
+            int ngayhientai = Convert.ToInt32(DateTime.Now.Day);
+            int Thanghientai = Convert.ToInt32(DateTime.Now.Month);
+            int Namhientai = Convert.ToInt32(DateTime.Now.Year);
             if (save.taikhoan == null || save.taikhoan == "")
             {
                 return RedirectToAction("DN", "QuanTri");
             }
             else
             {
-                ViewBag.ngay = ngay;
-                ViewBag.thang = thang;
-                ViewBag.nam = nam;
-                return View();
+                if ( thang == null || nam == null)
+                {
+                    ViewBag.ngay = ngayhientai;
+                    ViewBag.thang = Thanghientai;
+                    ViewBag.nam = Namhientai;
+                    return View();
+                }
+                else
+                {
+                    if (ngay == null)
+                    {
+                        ViewBag.ngay = ngayhientai;
+                        ViewBag.thang = thang;
+                        ViewBag.nam = nam;
+                        return View();
+                    }
+                    else
+                    {
+                        ViewBag.ngay = ngay;
+                        ViewBag.thang = thang;
+                        ViewBag.nam = nam;
+                        return View();
+                    }
+                }
+                
+
             }
         }
         //đánh Giá Của Tất cả sản phẩm chuyển qua trang chi tiết
@@ -401,11 +427,11 @@ namespace MayLocNuoc.Controllers
                 var idnhacungcap = db.sanphams.Where(n => n.idSP == idsp).FirstOrDefault();
                 if (db.NhaCungCaps.Where(v => v.idIfncc == idnhacungcap.idIfncc).FirstOrDefault().taikhoan == save.taikhoan)
                 {
-                        var sanphamhientai = db.daMuas.Where(m => m.idDM == iddamua).FirstOrDefault();
-                        sanphamhientai.ngayLapDat = new DateTime(Convert.ToInt32(nam), Convert.ToInt32(thang), Convert.ToInt32(ngay));
-                        db.SaveChanges();
-                        trave = "3";
-                    
+                    var sanphamhientai = db.daMuas.Where(m => m.idDM == iddamua).FirstOrDefault();
+                    sanphamhientai.ngayLapDat = new DateTime(Convert.ToInt32(nam), Convert.ToInt32(thang), Convert.ToInt32(ngay));
+                    db.SaveChanges();
+                    trave = "3";
+
                 }
                 else
                 {

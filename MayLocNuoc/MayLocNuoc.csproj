@@ -482,6 +482,7 @@
     <Content Include="Content\NCC\all\images\t3.jpg" />
     <Content Include="Content\NCC\all\images\t4.jpg" />
     <Content Include="Content\NCC\all\images\test.jpg" />
+    <Content Include="Content\NCC\all\jsThemSanPham\inDayMonth.js" />
     <Content Include="Content\NCC\all\jsThemSanPham\ProTo.js" />
     <Content Include="Content\NCC\all\jsThemSanPham\Themanh.js" />
     <Content Include="Content\NCC\all\js\bootstrap-3.1.1.min.js" />
