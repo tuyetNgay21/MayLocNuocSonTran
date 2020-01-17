@@ -172,10 +172,16 @@
     <Compile Include="Models\F_cungHang_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\f_DanhGiaCaoNhatNhaCungCap_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\f_DanhGiaCaoNhat_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\f_DanhGiaCuaHang_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\f_DanhGiaThapNhatNhaCungCap_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\f_DoanhThuNgayTrongThang_Result.cs">
@@ -190,6 +196,12 @@
     <Compile Include="Models\F_HienThiTatCarTaiKhoan_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\f_layChiTietDanhGiaTheoSoSao_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\f_layChiTietDanhGia_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\F_layComment_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -200,6 +212,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\f_layrasosaoSanPham_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\f_layrasosao_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\F_laySanPham_Result.cs">
@@ -285,6 +303,34 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chiTiet\js\dungKhocMotMinhEmOi.js" />
+    <Content Include="Content\CONTM\IMG_Product\03925163081487291_713017568811886_175939172947346396_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630854278318_435117747234449_2310863752968273920_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630854353998_435117740567783_600933686409428992_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630856248057_439087840170773_6324188349489741824_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630856281537_439087846837439_2277403574025584640_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630856296964_439087833504107_5951760619878219776_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630858374001_2258432171075648_6981050095005335552_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630859621347_446295306119014_8076709411994730496_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630860012716_283756082572095_3706080868301799424_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630860348682_2287627874845773_1221918066862981120_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630860487472_398613340754538_3786573670734888960_n.png" />
+    <Content Include="Content\CONTM\IMG_Product\039251630860794977_831607747198658_2868621524720418816_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630860863284_399191314030074_6985644357097357312_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630860866820_2374755862806676_892950814966939648_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630860923336_2437305273168534_8630534982273597440_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630864471433_2438243933164481_5794354041324568576_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630866648790_140994920329851_602080777684910080_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630867191824_212793586351343_1255830462912266240_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630867421071_479830319479779_6950082547577520128_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\039251630867710644_490689925090880_6695057993815293952_n.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\0392516308Capture.PNG" />
+    <Content Include="Content\CONTM\IMG_Product\0392516308fdgdgd.PNG" />
+    <Content Include="Content\CONTM\IMG_Product\fdgdgd.PNG" />
+    <Content Include="Content\CONTM\IMG_Product\hainamCapture.PNG" />
+    <Content Include="Content\CONTM\IMG_Product\hainamWIN_20191205_21_07_42_Pro.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\hainamWIN_20191227_01_42_57_Pro.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\WIN_20191213_01_21_29_Pro.jpg" />
+    <Content Include="Content\CONTM\IMG_Product\WIN_20191227_01_42_57_Pro.jpg" />
     <Content Include="Content\DaMua\KHDM.js" />
     <Content Include="Content\dangNhap\dangnhap.css" />
     <Content Include="Content\dangNhap\dangnhap.js" />
@@ -482,7 +528,9 @@
     <Content Include="Content\NCC\all\images\t3.jpg" />
     <Content Include="Content\NCC\all\images\t4.jpg" />
     <Content Include="Content\NCC\all\images\test.jpg" />
+    <Content Include="Content\NCC\all\jsThemSanPham\DG.js" />
     <Content Include="Content\NCC\all\jsThemSanPham\inDayMonth.js" />
+    <Content Include="Content\NCC\all\jsThemSanPham\AlterPro.js" />
     <Content Include="Content\NCC\all\jsThemSanPham\ProTo.js" />
     <Content Include="Content\NCC\all\jsThemSanPham\Themanh.js" />
     <Content Include="Content\NCC\all\js\bootstrap-3.1.1.min.js" />
@@ -723,7 +771,6 @@
     <Content Include="Views\DaMua\Shearch.cshtml" />
     <Content Include="Views\NhaCungCap\Index.cshtml" />
     <Content Include="Views\NhaCungCap\Lay_out_DoanhThu.cshtml" />
-    <Content Include="Views\NhaCungCap\In_Month.cshtml" />
     <Content Include="Views\NhaCungCap\Product_In_Day_inMonth.cshtml" />
     <Content Include="Views\NhaCungCap\Evaluate_Product.cshtml" />
     <Content Include="Views\NhaCungCap\Product_not_to.cshtml" />

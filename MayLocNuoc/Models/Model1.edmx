@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mayLocNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mayLocNuocModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="acc">
           <Key>
             <PropertyRef Name="taikhoan" />
@@ -204,12 +204,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="V_timsosao">
-          <Property Name="idSP" Type="int" />
-          <Property Name="sosao" Type="int" />
-        </EntityType>-->
         <Association Name="FK__acc__chucvu__00200768">
           <End Role="chucvu" Type="Self.chucvu" Multiplicity="0..1" />
           <End Role="acc" Type="Self.acc" Multiplicity="*" />
@@ -511,7 +505,81 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="f_DanhGiaCaoNhatNhaCungCap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idSP" Type="int" />
+                <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+                <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+                <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="gia" Type="money" />
+                <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="soluong" Type="int" />
+                <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+                <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+                <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+                <Property Name="soLoiLoc" Type="int" />
+                <Property Name="congxuat" Type="varchar" MaxLength="30" />
+                <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+                <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+                <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+                <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+                <Property Name="daxoa" Type="bit" />
+                <Property Name="hethang" Type="bit" />
+                <Property Name="idIfncc" Type="int" />
+                <Property Name="soluongdaban" Type="int" />
+                <Property Name="ngaythem" Type="date" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="f_DanhGiaCuaHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="idSP" Type="int" />
+                <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+                <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+                <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+                <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+                <Property Name="gia" Type="money" />
+                <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+                <Property Name="sophantram" Type="int" />
+                <Property Name="soluong" Type="int" />
+                <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+                <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+                <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+                <Property Name="soLoiLoc" Type="int" />
+                <Property Name="congxuat" Type="varchar" MaxLength="30" />
+                <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+                <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+                <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+                <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+                <Property Name="daxoa" Type="bit" />
+                <Property Name="hethang" Type="bit" />
+                <Property Name="idIfncc" Type="int" />
+                <Property Name="soluongdaban" Type="int" />
+                <Property Name="ngaythem" Type="date" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="f_DanhGiaThapNhatNhaCungCap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tk" Type="varchar" Mode="In" />
           <ReturnType>
             <CollectionType>
@@ -613,6 +681,34 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="f_layChiTietDanhGia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="noidung" Type="nvarchar" MaxLength="300" />
+                <Property Name="sosao" Type="int" />
+                <Property Name="solike" Type="int" />
+                <Property Name="idSP" Type="int" />
+                <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="f_layChiTietDanhGiaTheoSoSao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <Parameter Name="sao" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="iddanhGia" Type="int" />
+                <Property Name="noidung" Type="nvarchar" MaxLength="300" />
+                <Property Name="solike" Type="int" />
+                <Property Name="idSP" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="F_layComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idDG" Type="int" Mode="In" />
           <ReturnType>
@@ -681,6 +777,29 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
                 <Property Name="daxoa" Type="bit" />
                 <Property Name="idSP" Type="int" />
                 <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="f_layrasosao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="sao" Type="int" />
+                <Property Name="sluong" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="f_layrasosaoSanPham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tk" Type="varchar" Mode="In" />
+          <Parameter Name="idSP" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="sao" Type="int" />
+                <Property Name="sluong" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -925,8 +1044,7 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <End Role="sanpham" EntitySet="sanpham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mayLocNuocModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1735,11 +1853,11 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <End Role="sanpham" EntitySet="sanphams" />
           </AssociationSet>
           <FunctionImport Name="F_cungHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_cungHang_Result)">
-            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <Parameter Name="idsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_DanhGiaCaoNhat" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhat_Result)" />
           <FunctionImport Name="f_DanhGiaCuaHang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCuaHang_Result)">
-            <Parameter Name="tk" Mode="In" Type="String" />
+          <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="f_DoanhThuNgayTrongThang" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DoanhThuNgayTrongThang_Result)">
             <Parameter Name="tk" Mode="In" Type="String" />
@@ -1760,28 +1878,28 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           </FunctionImport>
           <FunctionImport Name="F_HienThiTatCarTaiKhoan" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_HienThiTatCarTaiKhoan_Result)" />
           <FunctionImport Name="F_layComment" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_layComment_Result)">
-            <Parameter Name="idDG" Mode="In" Type="Int32" />
+          <Parameter Name="idDG" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_laydanhdia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laydanhdia_Result)">
-            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <Parameter Name="idsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong_Result)">
-            <Parameter Name="tk" Mode="In" Type="String" />
+          <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua_Result)">
-            <Parameter Name="tk" Mode="In" Type="String" />
+          <Parameter Name="tk" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_laySanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_laySanPham_Result)">
-            <Parameter Name="idsp" Mode="In" Type="Int32" />
+          <Parameter Name="idsp" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="f_TimKiemTheoTen" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_TimKiemTheoTen_Result)">
-            <Parameter Name="truyenvao" Mode="In" Type="String" />
+          <Parameter Name="truyenvao" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="F_Top10DanhGiaCao" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_Top10DanhGiaCao_Result)">
-            <Parameter Name="top" Mode="In" Type="Int32" />
+          <Parameter Name="top" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="F_TopBanChay" IsComposable="true" ReturnType="Collection(mayLocNuocModel.F_TopBanChay_Result)">
-            <Parameter Name="top" Mode="In" Type="Int32" />
+          <Parameter Name="top" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="P_themtaikhoan">
             <Parameter Name="taikhoan" Mode="In" Type="String" />
@@ -1819,6 +1937,26 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="f_layChiTietDanhGia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layChiTietDanhGia_Result)">
+          <Parameter Name="tk" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="f_layrasosao" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layrasosao_Result)">
+          <Parameter Name="tk" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="f_layrasosaoSanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layrasosaoSanPham_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+            <Parameter Name="idSP" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_layChiTietDanhGiaTheoSoSao" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layChiTietDanhGiaTheoSoSao_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+            <Parameter Name="sao" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="f_DanhGiaCaoNhatNhaCungCap" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhatNhaCungCap_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="f_DanhGiaThapNhatNhaCungCap" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaThapNhatNhaCungCap_Result)">
+            <Parameter Name="tk" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1830,6 +1968,87 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="f_layChiTietDanhGia_Result">
+          <Property Type="String" Name="noidung" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="sosao" Nullable="true" />
+          <Property Type="Int32" Name="solike" Nullable="true" />
+          <Property Type="Int32" Name="idSP" Nullable="true" />
+          <Property Type="String" Name="taikhoan" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="f_layrasosao_Result">
+          <Property Type="Int32" Name="sao" Nullable="true" />
+          <Property Type="Int32" Name="sluong" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="f_layrasosaoSanPham_Result">
+          <Property Type="Int32" Name="sao" Nullable="true" />
+          <Property Type="Int32" Name="sluong" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="f_layChiTietDanhGiaTheoSoSao_Result">
+          <Property Type="Int32" Name="iddanhGia" Nullable="true" />
+          <Property Type="String" Name="noidung" Nullable="true" MaxLength="300" />
+          <Property Type="Int32" Name="solike" Nullable="true" />
+          <Property Type="Int32" Name="idSP" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="f_DanhGiaCaoNhatNhaCungCap_Result">
+          <Property Type="Int32" Name="idSP" Nullable="true" />
+          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="sophantram" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
+          <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="daxoa" Nullable="true" />
+          <Property Type="Boolean" Name="hethang" Nullable="true" />
+          <Property Type="Int32" Name="idIfncc" Nullable="true" />
+          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+          <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
+        </ComplexType>
+        <ComplexType Name="f_DanhGiaThapNhatNhaCungCap_Result">
+          <Property Type="Int32" Name="idSP" Nullable="true" />
+          <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="sophantram" Nullable="true" />
+          <Property Type="Int32" Name="soluong" Nullable="true" />
+          <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
+          <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="daxoa" Nullable="true" />
+          <Property Type="Boolean" Name="hethang" Nullable="true" />
+          <Property Type="Int32" Name="idIfncc" Nullable="true" />
+          <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+          <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2347,6 +2566,111 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="mayLocNuocModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="mayLocNuocModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="f_layChiTietDanhGia" FunctionName="mayLocNuocModel.Store.f_layChiTietDanhGia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_layChiTietDanhGia_Result">
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="sosao" ColumnName="sosao" />
+                <ScalarProperty Name="solike" ColumnName="solike" />
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_layrasosao" FunctionName="mayLocNuocModel.Store.f_layrasosao">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_layrasosao_Result">
+                <ScalarProperty Name="sao" ColumnName="sao" />
+                <ScalarProperty Name="sluong" ColumnName="sluong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_layrasosaoSanPham" FunctionName="mayLocNuocModel.Store.f_layrasosaoSanPham">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_layrasosaoSanPham_Result">
+                <ScalarProperty Name="sao" ColumnName="sao" />
+                <ScalarProperty Name="sluong" ColumnName="sluong" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_layChiTietDanhGiaTheoSoSao" FunctionName="mayLocNuocModel.Store.f_layChiTietDanhGiaTheoSoSao">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_layChiTietDanhGiaTheoSoSao_Result">
+                <ScalarProperty Name="iddanhGia" ColumnName="iddanhGia" />
+                <ScalarProperty Name="noidung" ColumnName="noidung" />
+                <ScalarProperty Name="solike" ColumnName="solike" />
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_DanhGiaCaoNhatNhaCungCap" FunctionName="mayLocNuocModel.Store.f_DanhGiaCaoNhatNhaCungCap">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_DanhGiaCaoNhatNhaCungCap_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+                <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+                <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+                <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+                <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+                <ScalarProperty Name="rong" ColumnName="rong" />
+                <ScalarProperty Name="dai" ColumnName="dai" />
+                <ScalarProperty Name="cao" ColumnName="cao" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+                <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+                <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+                <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+                <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+                <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+                <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="hethang" ColumnName="hethang" />
+                <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="f_DanhGiaThapNhatNhaCungCap" FunctionName="mayLocNuocModel.Store.f_DanhGiaThapNhatNhaCungCap">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="mayLocNuocModel.f_DanhGiaThapNhatNhaCungCap_Result">
+                <ScalarProperty Name="idSP" ColumnName="idSP" />
+                <ScalarProperty Name="tensp" ColumnName="tensp" />
+                <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+                <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+                <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+                <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+                <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+                <ScalarProperty Name="rong" ColumnName="rong" />
+                <ScalarProperty Name="dai" ColumnName="dai" />
+                <ScalarProperty Name="cao" ColumnName="cao" />
+                <ScalarProperty Name="gia" ColumnName="gia" />
+                <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+                <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+                <ScalarProperty Name="tieude" ColumnName="tieude" />
+                <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+                <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+                <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+                <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+                <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+                <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+                <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+                <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+                <ScalarProperty Name="hethang" ColumnName="hethang" />
+                <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
+                <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+                <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

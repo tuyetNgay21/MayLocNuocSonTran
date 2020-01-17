@@ -6,7 +6,7 @@
     }
     else {
 
-        location.href = '/NhaCungCap/Product_In_Day_inMonth/?thang=' + BTNChonThangThang + '&nam=' + BTNChonThangNam+'';
+        location.href = '/NhaCungCap/Product_In_Day_inMonth?thang=' + BTNChonThangThang + '&nam=' + BTNChonThangNam+'';
                
     }
 });
@@ -20,7 +20,7 @@ $('#btnMap2').click(function () {
     }
     else {
 
-        location.href = '/NhaCungCap/Product_In_Day_inMonth/?thang=' + BTNChonThangThang + '&nam=' + BTNChonThangNam + '&ngay=' + btnngayMap2 + '';
+        location.href = '/NhaCungCap/Product_In_Day_inMonth?thang=' + BTNChonThangThang + '&nam=' + BTNChonThangNam + '&ngay=' + btnngayMap2 + '';
 
     }
 });
@@ -34,7 +34,7 @@ $('#btnchitiet').click(function () {
     }
     else {
 
-        location.href = '/NhaCungCap/Product_In_Day_inMonth/?thang=' + BTNChonThangThang + '&nam=' + BTNChonThangNam + '&ngay=' + btnngayMap2 + '';
+        location.href = '/NhaCungCap/Product_In_Day_inMonth?thang=' + BTNChonThangThang + '&nam=' + BTNChonThangNam + '&ngay=' + btnngayMap2 + '';
 
     }
 });

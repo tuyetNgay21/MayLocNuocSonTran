@@ -1,4 +1,7 @@
-﻿
+﻿@using MayLocNuoc.Models;
+@{
+    mayLocNuocEntities db = new mayLocNuocEntities();
+}
 @{
     ViewBag.Title = "Evaluate_Product";
     Layout = "~/Views/NhaCungCap/Lay_out_DoanhThu.cshtml";
@@ -29,88 +32,39 @@
     </ul>
 </div>
 
-<div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
-    <h1 style="text-align:center">Thống Kê Đánh Giá</h1>
-    <div id="DanhGiaSosao"></div>
-</div>
-<div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
-    <div style="padding:3%;">
-        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:15%;" />
-        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:15%;" />
-        <select id="PhanTrangChonsosao" style="margin:2%; width:25%;" class="btn btn-success">
-            <option>Hiển Thị số Bản Ghi</option>
-            <option>10</option>
-            <option>20</option>
-            <option>30</option>
-            <option>50</option>
-            <option>90</option>
-            <option>Tất Cả</option>
-        </select>
-        <select id="ChonThang" style="margin:2%; width:15%;" class="btn btn-success">
-            <option>Năm 1</option>
-            <option>Năm 2</option>
-            <option>Năm 3</option>
-
-        </select>
-        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2%; width:15%;" />
+@{
+    var AllStarNhacungCap = db.f_layrasosao(save.taikhoan).ToList();
+    int[] sosaomap = new int[6];
+}
+@if (AllStarNhacungCap == null)
+{
+    <h1>Không Xác Định Tài Khoản</h1>
+}
+else
+{
+    <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
+        <h1 style="text-align:center">Thống Kê Đánh Giá Tất Cả</h1>
+        <div id="DanhGiaSosao"></div>
     </div>
-    <table border="1" cellpadding="5" cellspacing="5" width="100%">
-        <tr style="text-align:center;">
-            <td>Mã Sản Phẩm</td>
-            <td>Tên Sản Phẩm</td>
-            <td>Số Sao</td>
-            <td>Đánh Giá</td>
-            <td>Ngày</td>
-        </tr>
-        <tr style="text-align:center;">
-            <td>1</td>
-            <td>12</td>
-            <td>2</td>
-            <td><input type="submit" value="Xem" class="btn btn-link" /></td>
-            <td>1</td>
-        </tr>
-    </table>
-</div>
-<div style="width:100%;">
-    <div style="padding:1%;">
-        <h1 style="text-align:center">Chi Tiết Đánh Giá</h1>
-        <input type="text" class="btn btn-success" placeholder="Tìm Kiếm Sản Phẩm" style="margin:2% 0; width:15%;" />
-        <input type="submit" class="btn btn-success" value="Tìm" style="margin:2% 0; width:5%;" />
-        <input type="submit" class="btn btn-success" value="In ra excel" style="margin:2%; width:10%;" />
-        <input type="submit" class="btn btn-success" value="In ra Work" style="margin:2%; width:10%;" />
-        <select id="PhanTrangChonThang" style="margin:1%; width:15%;" class="btn btn-success">
-            <option>Hiển Thị số Bản Ghi</option>
-            <option>10</option>
-            <option>20</option>
-            <option>30</option>
-            <option>50</option>
-            <option>90</option>
-            <option>Tất Cả</option>
-        </select>
-        <select id="ChonThang" style="margin:2%; width:15%;" class="btn btn-success">
-            <option>Năm 1</option>
-            <option>Năm 2</option>
-            <option>Năm 3</option>
-        </select>
+    <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
+        <table border="1" cellpadding="5" cellspacing="5" width="100%">
+            <tr style="text-align:center;">
+                <td>Sao</td>
+                <td>Số Lượng</td>
+                <td>Chi Tiết</td>
+            </tr>
+            @foreach (var key in AllStarNhacungCap)
+            {
+                sosaomap[Convert.ToInt32(key.sao)] = Convert.ToInt32(key.sluong);
+                <tr style="text-align:center;">
+                    <td>@key.sao</td>
+                    <td>@key.sluong</td>
+                    <td><a href="@Url.Action("Evaluate_Product","NhaCungCap", new {sao=key.sao})">Xem</a></td>
+                </tr>
+            }
+        </table>
     </div>
-    <table border="1" cellpadding="5" cellspacing="5" width="100%">
-        <tr style="text-align:center;">
-            <td>Mã Sản Phẩm</td>
-            <td>Tên Sản Phẩm</td>
-            <td>Số Sao</td>
-            <td>Đánh Giá</td>
-            <td>Ngày</td>
-        </tr>
-        <tr style="text-align:center;">
-            <td>1</td>
-            <td>12</td>
-            <td>2</td>
-            <td>ddddddddf dgdd dddd</td>
-            <td>1</td>
-        </tr>
-    </table>
-</div>
-<div style="margin:1%;"></div>
+}
 
 <script type="text/javascript">
     // googlae chart1  bieu do hinh tron cho cac thang do la doanh thu ban san pham ti le tang truong
@@ -120,12 +74,12 @@
     // Draw the chart and set the chart values
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Năm', 'Doanh Thu'],
-            ['1 Sao', 30],
-            ['2 Sao', 30],
-            ['3 Sao', 10],
-            ['4 Sao', 10],
-            ['5 Sao', 20],
+            ['Sao', 'Số Lượng'],
+            ['1 Sao',  @sosaomap[1]],
+            ['2 Sao',  @sosaomap[2]],
+            ['3 Sao',  @sosaomap[3]],
+            ['4 Sao',  @sosaomap[4]],
+            ['5 Sao',  @sosaomap[5]],
 
         ]);
 
@@ -138,4 +92,263 @@
     }
 
 </script>
+<!----------------------------------------------------------------------------------------------------------------------------------------------->
+@{
+    int SaoTRuyenVao = ViewBag.Sao;
+    int BanGi = ViewBag.BanGi;
+    int DemBanGi = 0;
+    var SanPhamTheoSaoTRuyenVao = db.f_layChiTietDanhGiaTheoSoSao(save.taikhoan, SaoTRuyenVao).ToList();
+}
+<div style="width:100%; background-color:bisque;">
+    <div style="padding:1%;">
+        <h1 style="text-align:center">Chi Tiết @SaoTRuyenVao Sao </h1>
+        <select id="PhanTrangChonBanGiDanhGia" style="margin:1%; width:25%;" class="btn btn-success">
+            <option>Hiển Thị số Bản Ghi</option>
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>90</option>
+            <option>100</option>
+            <option>200</option>
+            <option>500</option>
+            <option>1000</option>
+        </select>
+        <select id="PhanTrangChonSaoDanhGia" style="margin:1%; width:25%;" class="btn btn-success">
+            <option>Hiển Thị số Sao</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <input type="submit" id="BTNTimBanGiVaSOSAo" class="btn btn-success" value="Tìm" style="margin:2% 0; width:15%;" />
+    </div>
+    @if (SanPhamTheoSaoTRuyenVao.Count() == 0 || SanPhamTheoSaoTRuyenVao == null)
+    {
+
+        <h3><b><i>Tuyệt Vời Không Có Sản Phẩm Nào</i></b></h3>
+    }
+    else
+    {
+
+        <table cellpadding="5" cellspacing="5" width="100%">
+            <tr style="text-align:center;">
+                <td>Mã</td>
+                <td>Nội Dung</td>
+                <td>Số Like</td>
+                <td>Chi Tiết</td>
+            </tr>
+            @foreach (var saoTheoSanPham in SanPhamTheoSaoTRuyenVao)
+            {
+
+                if (DemBanGi != BanGi)
+                {
+                    <tr style="text-align:center;">
+                        <td>@saoTheoSanPham.iddanhGia</td>
+                        <td>@saoTheoSanPham.noidung</td>
+                        <td>@saoTheoSanPham.solike</td>
+                        <td><a href="@Url.Action("Index","ChiTiet", new { id=saoTheoSanPham.idSP})">Xem</a></td>
+                    </tr>
+                    DemBanGi++;
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+        </table>
+
+    }
+</div>
+<div style="margin:1%;"></div>
+@{
+    var va = db.f_DanhGiaThapNhatNhaCungCap(save.taikhoan).FirstOrDefault();}
+<div style="width:100%; background-color:rgba(52, 46, 46, 0.93)">
+    <h2 style="text-align:center; color:#ff0000;"><i>Sản Phẩm Tệ Nhất</i></h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xl-6 col-xs-6">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="@va.anhsanpham1" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va.anhsanpham2" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va.anhsanpham3" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va.anhsanpham4" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va.anhsanpham5" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xl-6 col-xs-6" style="text-align:center;">
+                <div style=" color:white; height:auto; width:100%;">
+                    <h2>Thông Số</h2>
+                    <p>
+                        <table cellpadding="5" cellspacing="5" width="100%">
+                            <tr style="text-align:left;">
+                                <td>Tên Sản Phẩm </td>
+                                <td>@va.tensp</td>
+                                <td>Thương Hiệu</td>
+                                <td>@va.thuongHieu</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Chiều Dài</td>
+                                <td>@va.dai</td>
+                                <td>Chất Lượng</td>
+                                <td>@va.chatluong</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Chiều Rộng</td>
+                                <td>@va.rong</td>
+                                <td>Giá</td>
+                                <td>@va.gia</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Chiều Cao</td>
+                                <td>@va.cao</td>
+                                <td>Mã Giảm Giá</td>
+                                <td>@va.magiamgia</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Số Lượng</td>
+                                <td>@va.soluong</td>
+                                <td>Giảm Giá</td>
+                                <td>@va.sophantram</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Số Lõi Lọc</td>
+                                <td>@va.soLoiLoc</td>
+                                <td>Tốc Độ Lọc</td>
+                                <td>@va.tocdoloc</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Công Xuất</td>
+                                <td>@va.congxuat</td>
+                                <td>Công xuất Bơm</td>
+                                <td>@va.congXuatBom</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Công Nghệ Kháng Khuẩn</td>
+                                <td>@va.congnghekhangkhuan</td>
+                                <td>Số Lượng Đã Bán </td>
+                                <td>@va.soluongdaban</td>
+                            </tr>
+                        </table>
+                    </p>
+                    <p>Giới Thiệu Sản Phẩm : @va.tieude</p>
+                    <a href="@Url.Action("Index", "chiTiet", new { id = va.idSP })"> <input type="submit" class="btn btn-warning" value="Xem" /></a>
+                    <a href="@Url.Action("SuaProduct", "NhaCungCap", new { ma = va.idSP })"> <input type="submit" class="btn btn-warning" value="Chỉnh Sửa" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    var va1 = db.f_DanhGiaCaoNhatNhaCungCap(save.taikhoan).FirstOrDefault();}
+<div style="width:100%; background-color:#31b638; margin-top:30px;" >
+    <h2 style="text-align:center; color:#0d3b07;"><i>Sản Phẩm Tốt Nhất</i></h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xl-6 col-xs-6">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="@va1.anhsanpham1" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va1.anhsanpham2" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va1.anhsanpham3" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va1.anhsanpham4" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="@va1.anhsanpham5" class="d-block w-100" alt="..." style="width:100%; height:80%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xl-6 col-xs-6" style="text-align:center;">
+                <div style=" color:black; height:auto; width:100%;">
+                    <h2>Thông Số</h2>
+                    <p>
+                        <table cellpadding="5" cellspacing="5" width="100%">
+                            <tr style="text-align:left;">
+                                <td>Tên Sản Phẩm </td>
+                                <td>@va1.tensp</td>
+                                <td>Thương Hiệu</td>
+                                <td>@va1.thuongHieu</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Chiều Dài</td>
+                                <td>@va1.dai</td>
+                                <td>Chất Lượng</td>
+                                <td>@va1.chatluong</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Chiều Rộng</td>
+                                <td>@va1.rong</td>
+                                <td>Giá</td>
+                                <td>@va1.gia</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Chiều Cao</td>
+                                <td>@va1.cao</td>
+                                <td>Mã Giảm Giá</td>
+                                <td>@va1.magiamgia</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Số Lượng</td>
+                                <td>@va1.soluong</td>
+                                <td>Giảm Giá</td>
+                                <td>@va1.sophantram</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Số Lõi Lọc</td>
+                                <td>@va1.soLoiLoc</td>
+                                <td>Tốc Độ Lọc</td>
+                                <td>@va1.tocdoloc</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Công Xuất</td>
+                                <td>@va1.congxuat</td>
+                                <td>Công xuất Bơm</td>
+                                <td>@va1.congXuatBom</td>
+                            </tr>
+                            <tr style="text-align:left;">
+                                <td>Công Nghệ Kháng Khuẩn</td>
+                                <td>@va1.congnghekhangkhuan</td>
+                                <td>Số Lượng Đã Bán </td>
+                                <td>@va1.soluongdaban</td>
+                            </tr>
+                        </table>
+                    </p>
+                    <p>Giới Thiệu Sản Phẩm : @va1.tieude</p>
+                    <a href="@Url.Action("Index", "chiTiet", new { id = va1.idSP })"> <input type="submit" class="btn btn-warning" value="Xem" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

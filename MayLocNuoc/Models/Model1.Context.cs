@@ -337,5 +337,73 @@ namespace MayLocNuoc.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        [DbFunction("mayLocNuocEntities", "f_layChiTietDanhGia")]
+        public virtual IQueryable<f_layChiTietDanhGia_Result> f_layChiTietDanhGia(string tk)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_layChiTietDanhGia_Result>("[mayLocNuocEntities].[f_layChiTietDanhGia](@tk)", tkParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_layrasosao")]
+        public virtual IQueryable<f_layrasosao_Result> f_layrasosao(string tk)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_layrasosao_Result>("[mayLocNuocEntities].[f_layrasosao](@tk)", tkParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_layrasosaoSanPham")]
+        public virtual IQueryable<f_layrasosaoSanPham_Result> f_layrasosaoSanPham(string tk, Nullable<int> idSP)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            var idSPParameter = idSP.HasValue ?
+                new ObjectParameter("idSP", idSP) :
+                new ObjectParameter("idSP", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_layrasosaoSanPham_Result>("[mayLocNuocEntities].[f_layrasosaoSanPham](@tk, @idSP)", tkParameter, idSPParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_layChiTietDanhGiaTheoSoSao")]
+        public virtual IQueryable<f_layChiTietDanhGiaTheoSoSao_Result> f_layChiTietDanhGiaTheoSoSao(string tk, Nullable<int> sao)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            var saoParameter = sao.HasValue ?
+                new ObjectParameter("sao", sao) :
+                new ObjectParameter("sao", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_layChiTietDanhGiaTheoSoSao_Result>("[mayLocNuocEntities].[f_layChiTietDanhGiaTheoSoSao](@tk, @sao)", tkParameter, saoParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_DanhGiaCaoNhatNhaCungCap")]
+        public virtual IQueryable<f_DanhGiaCaoNhatNhaCungCap_Result> f_DanhGiaCaoNhatNhaCungCap(string tk)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaCaoNhatNhaCungCap_Result>("[mayLocNuocEntities].[f_DanhGiaCaoNhatNhaCungCap](@tk)", tkParameter);
+        }
+    
+        [DbFunction("mayLocNuocEntities", "f_DanhGiaThapNhatNhaCungCap")]
+        public virtual IQueryable<f_DanhGiaThapNhatNhaCungCap_Result> f_DanhGiaThapNhatNhaCungCap(string tk)
+        {
+            var tkParameter = tk != null ?
+                new ObjectParameter("tk", tk) :
+                new ObjectParameter("tk", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<f_DanhGiaThapNhatNhaCungCap_Result>("[mayLocNuocEntities].[f_DanhGiaThapNhatNhaCungCap](@tk)", tkParameter);
+        }
     }
 }

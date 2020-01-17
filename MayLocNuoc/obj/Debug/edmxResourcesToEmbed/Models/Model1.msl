@@ -511,5 +511,110 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="mayLocNuocModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="mayLocNuocModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="f_layChiTietDanhGia" FunctionName="mayLocNuocModel.Store.f_layChiTietDanhGia">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="mayLocNuocModel.f_layChiTietDanhGia_Result">
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+          <ScalarProperty Name="sosao" ColumnName="sosao" />
+          <ScalarProperty Name="solike" ColumnName="solike" />
+          <ScalarProperty Name="idSP" ColumnName="idSP" />
+          <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_layrasosao" FunctionName="mayLocNuocModel.Store.f_layrasosao">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="mayLocNuocModel.f_layrasosao_Result">
+          <ScalarProperty Name="sao" ColumnName="sao" />
+          <ScalarProperty Name="sluong" ColumnName="sluong" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_layrasosaoSanPham" FunctionName="mayLocNuocModel.Store.f_layrasosaoSanPham">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="mayLocNuocModel.f_layrasosaoSanPham_Result">
+          <ScalarProperty Name="sao" ColumnName="sao" />
+          <ScalarProperty Name="sluong" ColumnName="sluong" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_layChiTietDanhGiaTheoSoSao" FunctionName="mayLocNuocModel.Store.f_layChiTietDanhGiaTheoSoSao">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="mayLocNuocModel.f_layChiTietDanhGiaTheoSoSao_Result">
+          <ScalarProperty Name="iddanhGia" ColumnName="iddanhGia" />
+          <ScalarProperty Name="noidung" ColumnName="noidung" />
+          <ScalarProperty Name="solike" ColumnName="solike" />
+          <ScalarProperty Name="idSP" ColumnName="idSP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_DanhGiaCaoNhatNhaCungCap" FunctionName="mayLocNuocModel.Store.f_DanhGiaCaoNhatNhaCungCap">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="mayLocNuocModel.f_DanhGiaCaoNhatNhaCungCap_Result">
+          <ScalarProperty Name="idSP" ColumnName="idSP" />
+          <ScalarProperty Name="tensp" ColumnName="tensp" />
+          <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+          <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+          <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+          <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+          <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+          <ScalarProperty Name="rong" ColumnName="rong" />
+          <ScalarProperty Name="dai" ColumnName="dai" />
+          <ScalarProperty Name="cao" ColumnName="cao" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+          <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+          <ScalarProperty Name="tieude" ColumnName="tieude" />
+          <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+          <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+          <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+          <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+          <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+          <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+          <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+          <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+          <ScalarProperty Name="hethang" ColumnName="hethang" />
+          <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
+          <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+          <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_DanhGiaThapNhatNhaCungCap" FunctionName="mayLocNuocModel.Store.f_DanhGiaThapNhatNhaCungCap">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="mayLocNuocModel.f_DanhGiaThapNhatNhaCungCap_Result">
+          <ScalarProperty Name="idSP" ColumnName="idSP" />
+          <ScalarProperty Name="tensp" ColumnName="tensp" />
+          <ScalarProperty Name="anhsanpham1" ColumnName="anhsanpham1" />
+          <ScalarProperty Name="anhsanpham2" ColumnName="anhsanpham2" />
+          <ScalarProperty Name="anhsanpham3" ColumnName="anhsanpham3" />
+          <ScalarProperty Name="anhsanpham4" ColumnName="anhsanpham4" />
+          <ScalarProperty Name="anhsanpham5" ColumnName="anhsanpham5" />
+          <ScalarProperty Name="rong" ColumnName="rong" />
+          <ScalarProperty Name="dai" ColumnName="dai" />
+          <ScalarProperty Name="cao" ColumnName="cao" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="magiamgia" ColumnName="magiamgia" />
+          <ScalarProperty Name="sophantram" ColumnName="sophantram" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="thuongHieu" ColumnName="thuongHieu" />
+          <ScalarProperty Name="tieude" ColumnName="tieude" />
+          <ScalarProperty Name="chatluong" ColumnName="chatluong" />
+          <ScalarProperty Name="soLoiLoc" ColumnName="soLoiLoc" />
+          <ScalarProperty Name="congxuat" ColumnName="congxuat" />
+          <ScalarProperty Name="tocdoloc" ColumnName="tocdoloc" />
+          <ScalarProperty Name="congnghekhangkhuan" ColumnName="congnghekhangkhuan" />
+          <ScalarProperty Name="congXuatBom" ColumnName="congXuatBom" />
+          <ScalarProperty Name="noisanxuat" ColumnName="noisanxuat" />
+          <ScalarProperty Name="daxoa" ColumnName="daxoa" />
+          <ScalarProperty Name="hethang" ColumnName="hethang" />
+          <ScalarProperty Name="idIfncc" ColumnName="idIfncc" />
+          <ScalarProperty Name="soluongdaban" ColumnName="soluongdaban" />
+          <ScalarProperty Name="ngaythem" ColumnName="ngaythem" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -199,12 +199,6 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="V_timsosao">
-          <Property Name="idSP" Type="int" />
-          <Property Name="sosao" Type="int" />
-        </EntityType>-->
   <Association Name="FK__acc__chucvu__00200768">
     <End Role="chucvu" Type="Self.chucvu" Multiplicity="0..1" />
     <End Role="acc" Type="Self.acc" Multiplicity="*" />
@@ -506,7 +500,81 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="f_DanhGiaCaoNhatNhaCungCap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idSP" Type="int" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+          <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+          <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="money" />
+          <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+          <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+          <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+          <Property Name="soLoiLoc" Type="int" />
+          <Property Name="congxuat" Type="varchar" MaxLength="30" />
+          <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+          <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+          <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+          <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="hethang" Type="bit" />
+          <Property Name="idIfncc" Type="int" />
+          <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngaythem" Type="date" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="f_DanhGiaCuaHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="idSP" Type="int" />
+          <Property Name="tensp" Type="nvarchar" MaxLength="30" />
+          <Property Name="anhsanpham1" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham2" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham3" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham4" Type="varchar" MaxLength="100" />
+          <Property Name="anhsanpham5" Type="varchar" MaxLength="100" />
+          <Property Name="rong" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cao" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="gia" Type="money" />
+          <Property Name="magiamgia" Type="varchar" MaxLength="30" />
+          <Property Name="sophantram" Type="int" />
+          <Property Name="soluong" Type="int" />
+          <Property Name="thuongHieu" Type="nvarchar" MaxLength="30" />
+          <Property Name="tieude" Type="nvarchar" MaxLength="100" />
+          <Property Name="chatluong" Type="nvarchar" MaxLength="20" />
+          <Property Name="soLoiLoc" Type="int" />
+          <Property Name="congxuat" Type="varchar" MaxLength="30" />
+          <Property Name="tocdoloc" Type="nvarchar" MaxLength="30" />
+          <Property Name="congnghekhangkhuan" Type="nvarchar" MaxLength="30" />
+          <Property Name="congXuatBom" Type="nvarchar" MaxLength="30" />
+          <Property Name="noisanxuat" Type="nvarchar" MaxLength="100" />
+          <Property Name="daxoa" Type="bit" />
+          <Property Name="hethang" Type="bit" />
+          <Property Name="idIfncc" Type="int" />
+          <Property Name="soluongdaban" Type="int" />
+          <Property Name="ngaythem" Type="date" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_DanhGiaThapNhatNhaCungCap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="tk" Type="varchar" Mode="In" />
     <ReturnType>
       <CollectionType>
@@ -608,6 +676,34 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="f_layChiTietDanhGia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="noidung" Type="nvarchar" MaxLength="300" />
+          <Property Name="sosao" Type="int" />
+          <Property Name="solike" Type="int" />
+          <Property Name="idSP" Type="int" />
+          <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_layChiTietDanhGiaTheoSoSao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <Parameter Name="sao" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="iddanhGia" Type="int" />
+          <Property Name="noidung" Type="nvarchar" MaxLength="300" />
+          <Property Name="solike" Type="int" />
+          <Property Name="idSP" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="F_layComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idDG" Type="int" Mode="In" />
     <ReturnType>
@@ -676,6 +772,29 @@ warning 6013: The table/view 'mayLocNuoc.dbo.V_timsosao' does not have a primary
           <Property Name="daxoa" Type="bit" />
           <Property Name="idSP" Type="int" />
           <Property Name="taikhoan" Type="varchar" MaxLength="30" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_layrasosao" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="sao" Type="int" />
+          <Property Name="sluong" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="f_layrasosaoSanPham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tk" Type="varchar" Mode="In" />
+    <Parameter Name="idSP" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="sao" Type="int" />
+          <Property Name="sluong" Type="int" />
         </RowType>
       </CollectionType>
     </ReturnType>

@@ -889,6 +889,26 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="f_layChiTietDanhGia" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layChiTietDanhGia_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="f_layrasosao" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layrasosao_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="f_layrasosaoSanPham" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layrasosaoSanPham_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+      <Parameter Name="idSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="f_layChiTietDanhGiaTheoSoSao" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_layChiTietDanhGiaTheoSoSao_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+      <Parameter Name="sao" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="f_DanhGiaCaoNhatNhaCungCap" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaCaoNhatNhaCungCap_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="f_DanhGiaThapNhatNhaCungCap" IsComposable="true" ReturnType="Collection(mayLocNuocModel.f_DanhGiaThapNhatNhaCungCap_Result)">
+      <Parameter Name="tk" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -900,5 +920,86 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="f_layChiTietDanhGia_Result">
+    <Property Type="String" Name="noidung" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="sosao" Nullable="true" />
+    <Property Type="Int32" Name="solike" Nullable="true" />
+    <Property Type="Int32" Name="idSP" Nullable="true" />
+    <Property Type="String" Name="taikhoan" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="f_layrasosao_Result">
+    <Property Type="Int32" Name="sao" Nullable="true" />
+    <Property Type="Int32" Name="sluong" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="f_layrasosaoSanPham_Result">
+    <Property Type="Int32" Name="sao" Nullable="true" />
+    <Property Type="Int32" Name="sluong" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="f_layChiTietDanhGiaTheoSoSao_Result">
+    <Property Type="Int32" Name="iddanhGia" Nullable="true" />
+    <Property Type="String" Name="noidung" Nullable="true" MaxLength="300" />
+    <Property Type="Int32" Name="solike" Nullable="true" />
+    <Property Type="Int32" Name="idSP" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="f_DanhGiaCaoNhatNhaCungCap_Result">
+    <Property Type="Int32" Name="idSP" Nullable="true" />
+    <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="sophantram" Nullable="true" />
+    <Property Type="Int32" Name="soluong" Nullable="true" />
+    <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
+    <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="daxoa" Nullable="true" />
+    <Property Type="Boolean" Name="hethang" Nullable="true" />
+    <Property Type="Int32" Name="idIfncc" Nullable="true" />
+    <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+    <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
+  </ComplexType>
+  <ComplexType Name="f_DanhGiaThapNhatNhaCungCap_Result">
+    <Property Type="Int32" Name="idSP" Nullable="true" />
+    <Property Type="String" Name="tensp" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="anhsanpham1" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham2" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham3" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham4" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="anhsanpham5" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="rong" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="dai" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="cao" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="gia" Nullable="true" Precision="19" Scale="4" />
+    <Property Type="String" Name="magiamgia" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="sophantram" Nullable="true" />
+    <Property Type="Int32" Name="soluong" Nullable="true" />
+    <Property Type="String" Name="thuongHieu" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="tieude" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="chatluong" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="soLoiLoc" Nullable="true" />
+    <Property Type="String" Name="congxuat" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="tocdoloc" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="congnghekhangkhuan" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="congXuatBom" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="noisanxuat" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="daxoa" Nullable="true" />
+    <Property Type="Boolean" Name="hethang" Nullable="true" />
+    <Property Type="Int32" Name="idIfncc" Nullable="true" />
+    <Property Type="Int32" Name="soluongdaban" Nullable="true" />
+    <Property Type="DateTime" Name="ngaythem" Nullable="true" Precision="10" />
   </ComplexType>
 </Schema>

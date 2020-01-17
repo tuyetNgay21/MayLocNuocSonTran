@@ -69,18 +69,6 @@ namespace MayLocNuoc.Controllers
                 return View();
             }
         }
-        //trong thang
-        public ActionResult In_Month()
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                return View();
-            }
-        }
         //san pham trong mot ngay trong thang
 
         public ActionResult Product_In_Day_inMonth(int? ngay, int? thang, int? nam)
@@ -123,7 +111,7 @@ namespace MayLocNuoc.Controllers
             }
         }
         //đánh Giá Của Tất cả sản phẩm chuyển qua trang chi tiết
-        public ActionResult Evaluate_Product()
+        public ActionResult Evaluate_Product( int? sao , int? BanGi)
         {
             if (save.taikhoan == null || save.taikhoan == "")
             {
@@ -131,7 +119,25 @@ namespace MayLocNuoc.Controllers
             }
             else
             {
-                return View();
+                if(sao ==null)
+                {
+                    ViewBag.Sao = 1;
+                    ViewBag.BanGi = 10;
+                    return View();
+                }
+                else if(BanGi==null)
+                {
+                    ViewBag.Sao = Convert.ToInt32(sao);
+                    ViewBag.BanGi = 10;
+                    return View();
+                }
+                else
+                {
+                    ViewBag.Sao = Convert.ToInt32(sao);
+                    ViewBag.BanGi = Convert.ToInt32(BanGi);
+                    return View();
+                }
+              
             }
         }
         public ActionResult Product_not_to()
@@ -322,6 +328,98 @@ namespace MayLocNuoc.Controllers
                                                n.anhsanpham1 == Imgchinh
                                            ).FirstOrDefault();
                         trave = "kd" + xyz.idSP;
+                    }
+                    catch (Exception)
+                    {
+                        trave = "3";
+                    }
+                }
+            }
+            return Json(trave);
+        }
+
+
+        //sua san pham truyen vao
+        public JsonResult ChinhSuaProduct(
+                                      string ID_product_Supplier,
+                                      string name_product,
+                                      string length_product,
+                                      string with_product,
+                                      string height_product,
+                                      string title_product,
+                                      string number_product,
+                                      string core_product,
+                                      string producttion_product,
+                                      string speed_product,
+                                      string technology_product,
+                                      string pump_product,
+                                      string price_product,
+                                      string brand_product,
+                                      string quality_product,
+                                      string where_production,
+                                      string free_product,
+                                      string number_free_product,
+                                      string Imgchinh,
+                                      string Img1,
+                                      string Img2,
+                                      string Img3,
+                                      string Img4)
+        {
+            string trave = "";
+            //tim kiem nha cung cap theo tai khoan hien co
+            /*
+             * 1 là tài khoản hiện tại rỗng
+             * 2 là nha cung cấp chưa đăng ký
+             * 3 là đã gặp vấn đề về dữ liệu
+             * 4 laf hoàn thành
+             */
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                trave = "1";
+            }
+            else
+            {
+
+                var manhacungcap = db.NhaCungCaps.Where(n => n.taikhoan == save.taikhoan).FirstOrDefault().idIfncc;
+                if (manhacungcap == null)
+                {
+                    trave = "2";
+                }
+                else
+                {
+                    try
+                    {
+                        int vcgdhajokhfg = Convert.ToInt32(ID_product_Supplier.Trim());
+                        sanpham sp = db.sanphams.Where(m => m.idSP == vcgdhajokhfg && m.idIfncc==(db.NhaCungCaps.Where(n=>n.taikhoan==save.taikhoan).FirstOrDefault().idIfncc)).FirstOrDefault();
+                        sp.tensp = name_product;
+                        sp.dai = Convert.ToInt32(length_product);
+                        sp.rong = Convert.ToInt32(with_product);
+                        sp.cao = Convert.ToInt32(height_product);
+                        sp.tieude = title_product;
+                        sp.soluong = Convert.ToInt32(number_product);
+                        sp.soLoiLoc = Convert.ToInt32(core_product);
+                        sp.congxuat = producttion_product;
+                        sp.tocdoloc = speed_product;
+                        sp.congnghekhangkhuan = technology_product;
+                        sp.congXuatBom = pump_product;
+                        sp.gia = Convert.ToInt32(float.Parse(price_product));
+                        sp.thuongHieu = brand_product;
+                        sp.chatluong = quality_product;
+                        sp.noisanxuat = where_production;
+                        sp.magiamgia = free_product;
+                        sp.sophantram = Convert.ToInt32(number_free_product);
+                        sp.anhsanpham1 = Imgchinh;
+                        sp.anhsanpham2 = Img1;
+                        sp.anhsanpham3 = Img2;
+                        sp.anhsanpham4 = Img3;
+                        sp.anhsanpham5 = Img4;
+                        sp.daxoa = false;
+                        sp.hethang = false;
+                        sp.idIfncc = manhacungcap;
+                        sp.soluongdaban = 0;
+                        db.SaveChanges();
+
+                        trave = "4";
                     }
                     catch (Exception)
                     {
