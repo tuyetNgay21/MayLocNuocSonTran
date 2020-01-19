@@ -33,7 +33,7 @@
                     <a class="nav-link " href="@Url.Action("LichSu","DaMua")" tabindex="-1" aria-disabled="true">Lịch sử</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="@Url.Action("MyCart","GioHang")" tabindex="-1" aria-disabled="true">Lịch sử</a>
+                    <a class="nav-link " href="@Url.Action("MyCart","GioHang")" tabindex="-1" aria-disabled="true">Giỏ Của Tôi</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="@Url.Action("Log","DangNhap")" tabindex="-1" aria-disabled="true">Tài Khoản</a>
@@ -78,7 +78,7 @@
                     <td class="GiaCuaSanPham" data-id="@key.idDM">@key.gia</td>
                     <td>@key.sophantram</td>
                     @{
-                        var tong = (key.gia * (key.sophantram + 100) / 100) * key.soluong;
+                        var tong = (key.gia * (100 - key.sophantram ) / 100) * key.soluong;
                     }
                     <td width="5%">
                         <input id="@key.idDM" type="number" min="0" max="10" value="@key.soluong" style="background-color:rgba(0, 0, 0, 0.00); color:white;" class="number_product" />

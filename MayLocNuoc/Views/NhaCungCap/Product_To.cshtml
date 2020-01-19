@@ -1,13 +1,37 @@
 ﻿@using MayLocNuoc.Models;
 @model daMua
 @{
-    ViewBag.Title = "Product_To";
-    Layout = "~/Views/NhaCungCap/layoutNCC.cshtml";
+    ViewBag.Title = "Product To";
+    Layout = "~/Views/NhaCungCap/Lay_out_DoanhThu.cshtml";
 }
-
+<div style="width:100%;">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("xemDoanhthu","NhaCungCap")">Doang Thu Tổng Quan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("Product_In_Day_inMonth","NhaCungCap")">Theo Tháng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="@Url.Action("Product_To","NhaCungCap")">Sản Phẩm Yêu Cầu </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
+        </li>
+    </ul>
+</div>
 <i> <h1><p style="text-align:center; color:rgba(69, 186, 224, 0.91)">Sản Phẩm Được Yêu Cầu</p></h1></i>
 <table class="table table-dark">
-    @{ 
+    @{
         mayLocNuocEntities db = new mayLocNuocEntities();
         var dangmua1 = db.F_LayRaSanPhamCuaNhaCungCapMaKhachDaMua(save.taikhoan);
     }
@@ -54,12 +78,12 @@
                 else if (key.dangChuanBi == true && key.dangVanChuyen == false)
                 {
                     <td colspan="1">Đang Chuẩn Bị : Đã Xong</td>
-                    <td colspan="1">Đang Vận chuyển : Xác Nhận</td>
+                    <td colspan="1">Vận chuyển : Xác Nhận</td>
                 }
                 else if (key.dangChuanBi == true && key.dangVanChuyen == true)
                 {
                     <td colspan="1">Đang Chuẩn Bị : Đã Xong</td>
-                    <td colspan="1">Đang Vận chuyển : Đang Đến</td>
+                    <td colspan="1">Đang Vận chuyển : Xác Nhận</td>
                 }
                 <td colspan="2">Ngày Lắp Đặt Dự Kiến (Tháng/ngày/Năm) : @key.ngayLapDat</td>
             </tr>
@@ -71,9 +95,9 @@
                 <td colspan="1"> <input class=" thayDoiNgayThan btn btn-success" data-id="@key.idDM" data-idcuasanpham="@key.idSP" type="submit" value="Chỉnh Sửa" /></td>
             </tr>
             <tr>
-                <td><input class="DaLapDat btn btn-success"  data-id="@key.idDM" data-idcuasanpham="@key.idSP" type="submit" value="Đã Lắp Đặt" /></td>
+                <td><input class="DaLapDat btn btn-success" data-id="@key.idDM" data-idcuasanpham="@key.idSP" type="submit" value="Đã Lắp Đặt" /></td>
                 <td><input class="DangVanChuyen btn btn-success" data-id="@key.idDM" data-idcuasanpham="@key.idSP" type="submit" value="Đang Vận Chuyển" /></td>
-                <td><a href="@Url.Action("Index","ChiTiet",new {id=key.idSP})"><input class="btn btn-success" type="submit" value="Đánh Giá" /></a></td> 
+                <td><a href="@Url.Action("Index","ChiTiet",new {id=key.idSP})"><input class="btn btn-success" type="submit" value="Đánh Giá" /></a></td>
             </tr>
         </tbody>
     }

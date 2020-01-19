@@ -115,7 +115,29 @@
             alert('Trình duyệt không hỗ trợ');
         }
     });
-
+    $("#filechinh12345").change(function () {
+        if (window.FormData !== undefined) {
+            var fille = $("#filechinh12345").get(0);
+            var fom = new FormData();
+            fom.append('anh', fille.files[0]);
+            $.ajax({
+                type: 'Post',
+                url: '/NhaCungCap/Upadate_Img_Product',
+                contentType: false,
+                processData: false,
+                data: fom,
+                success: function (e) {
+                    $("#ImgShowChinhInFoNCC").attr("src", e);
+                },
+                error: function () {
+                    alert("loi");
+                }
+            });
+        }
+        else {
+            alert('Trình duyệt không hỗ trợ');
+        }
+    });
     //lay thong tin san pham dua vao 
     $("#Add_product").click(function () {
 

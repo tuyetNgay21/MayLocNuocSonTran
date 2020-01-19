@@ -4,27 +4,29 @@
     Layout = "~/Views/NhaCungCap/layoutNCC.cshtml";
 }
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
-                <div>
-                    <img src="~/Content/NCC/all/images/6.jpg" style="height:70%; top:0px;width:100%;" />
-                    <div style="height:10%; padding-top:2%;width:100%;">
-                        <input type="file" name="file" id="file" class="inputfile " />
-                        <label for="file" class="btn btn-default">ảnh Chính</label>
-                    </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
+            <div>
+                <img src="" id="ImgShowChinhInFoNCC" style="height:70%; top:0px;width:100%;" />
+                <div style="height:10%; padding-top:2%;width:100%;">
+                    <input type="file" name="file" id="filechinh12345" class="inputfile " />
+                    <label for="filechinh12345" id="filechinh" class="btn btn-default">ảnh Chính</label>
                 </div>
             </div>
-            <div class=" col-lg-6 col-xs-12 col-md-6 col-sm-12" style="float:left;">
-                <b><i>Cơ Bản</i></b>
-                <input type="text" placeholder="Tài Khoản" style=" width:100%;" />
-                <input type="text" placeholder="Tên " style=" width:100%;" />
-                <input type="number" placeholder="Tuổi" style=" width: 100%;" />
-                <input type="number" placeholder="Số Điện thoại" style=" width:100%;" />
-                <input type="text" placeholder="Địa chỉ" style=" width:100%;" />
-                <input type="email" placeholder="Email" style=" width:100%;" />
-                <input type="number" placeholder="ATM" style=" width: 100%;" />
-            </div>
+        </div>
+        <div class=" col-lg-6 col-xs-12 col-md-6 col-sm-12" style="float:left;">
+            <b><i>Cơ Bản</i></b>
+            <input type="text" placeholder="Tài Khoản" style=" width:100%;" />
+            <input type="text" placeholder="Tên " style=" width:100%;" />
+            <input type="number" placeholder="Tuổi" style=" width: 100%;" />
+            <input type="number" placeholder="Số Điện thoại" style=" width:100%;" />
+            <input type="text" placeholder="Địa chỉ" style=" width:100%;" />
+            <input type="email" placeholder="Email" style=" width:100%;" />
+            <input type="number" placeholder="ATM" style=" width: 100%;" />
         </div>
     </div>
+    <input type="submit" id="CapNhatThongTinNhaCungCap" class="btn btn-outline-success" value="Cập Nhật" style=" width: 100%;" />
+    <script type="text/javascript" src="~/Content/NCC/all/js/jquery-2.1.4.min.js"></script>  
+</div>
 

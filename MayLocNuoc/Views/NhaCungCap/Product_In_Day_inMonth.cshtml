@@ -3,31 +3,31 @@
     ViewBag.Title = "Product_In_Day_inMonth";
     Layout = "~/Views/NhaCungCap/Lay_out_DoanhThu.cshtml";
 }
-<div style="width:100%;">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link " href="@Url.Action("xemDoanhthu","NhaCungCap")">Doang Thu Tổng Quan</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="@Url.Action("Product_In_Day_inMonth","NhaCungCap")">Theo Tháng</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link " href="@Url.Action("chưathem1","NhaCungCap")">chưa thêm1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
-        </li>
-    </ul>
-</div>
+    <div style="width:100%;">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("xemDoanhthu","NhaCungCap")">Doang Thu Tổng Quan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  active" href="@Url.Action("Product_In_Day_inMonth","NhaCungCap")">Theo Tháng</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Action("Product_To","NhaCungCap")">Sản Phẩm Yêu Cầu </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
+            </li>
+        </ul>
+    </div>
 @model  f_DoanhThuTrongThang_Result
 @{
     mayLocNuocEntities db = new mayLocNuocEntities();
