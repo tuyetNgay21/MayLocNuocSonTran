@@ -15,16 +15,10 @@
                 <a class="nav-link " href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link " href="@Url.Action("Product_To","NhaCungCap")">Sản Phẩm Yêu Cầu </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
+                <a class="nav-link " href="@Url.Action("List_Product","NhaCungCap")">Danh sách</a>
             </li>
         </ul>
     </div>
@@ -90,7 +84,7 @@
             <td>Tổng Số Lượng Còn Lại </td>
             <td>Tổng Số Lượng Đã Mua</td>
             <td>Tăng Trưởng</td>
-            <td>Chi Tiết Ngày</td>
+            <td>Chi Tiết Tháng</td>
         </tr>
         @for (int i = 1; i < 13; i++)
         {
@@ -119,7 +113,7 @@
                         @TangTruong (%)
                     </td>
 
-                    <td><a href=""> Xem</a></td>
+                    <td><a href="@Url.Action("Product_In_Day_inMonth","NhaCungCap", new {nam=nam,thang=i})"> Xem</a></td>
                 </tr>
             }
         }
@@ -284,7 +278,7 @@
                         @TangTruongNgayTrong (%)
                     </td>
 
-                    <td><a href="">Xem</a></td>
+                    <td><a href="@Url.Action("Product_In_Day_inMonth","NhaCungCap", new {nam=nam, thang=thang, ngay=i })">Xem</a></td>
                 </tr>
             }
         }
@@ -416,7 +410,6 @@
     <table border="1" cellpadding="5" cellspacing="5" width="100%">
         <tr style="text-align:center;">
             <td>Ngày Lắp Đặt</td>
-            <td>Mã Sản Phẩm</td>
             <td>Tài Khoản Mua </td>
             <td>Số Lượng</td>
             <td>Số Phần Trăm</td>
@@ -424,6 +417,7 @@
             <td> Giá Thực Tế</td>
             <td>Ngày Thêm Sản Phẩm</td>
             <td>Số Lượng Còn Lại</td>
+            <td>Xem Sản Phẩm</td>
         </tr>
         @{
             var chiTietNgay = db.f_DoanhThuTrongNgay(save.taikhoan, thang, nam, ngay).ToList();
@@ -431,8 +425,7 @@
         @foreach (var key in chiTietNgay)
         {
             <tr style="text-align:center;">
-                <td>@key.ngayban</td>
-                <td>@key.idsanpham</td>
+                <td>@key.ngayban</td>               
                 <td>@key.taikhoanmua</td>
                 <td>@key.soluongdaban</td>
                 <td>@key.sophantram</td>
@@ -443,6 +436,7 @@
                 <td>@giathucte_ChitietNgay</td>
                 <td>@key.ngaythem</td>
                 <td>@key.soluonghientai</td>
+                <td><a href="@Url.Action("Index","chiTiet", new {id=key.idsanpham})">Xem</a></td>
             </tr>
         }
     </table>

@@ -4,7 +4,7 @@
 
 @{
     mayLocNuocEntities db = new mayLocNuocEntities();
-    var ifnhacungcap = Model.FirstOrDefault().idIfncc;
+    int id = ViewBag.id;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,7 @@
             <div class="header">
                 <div class="hainam_agile_logo">
                     @{
-                        var tennhacungcap = db.NhaCungCaps.Where(n => n.idIfncc == ifnhacungcap).FirstOrDefault();
+                        var tennhacungcap = db.NhaCungCaps.Where(n => n.idIfncc == id).FirstOrDefault();
                     }
                     <h1><a href="@Url.Action("Index","Product")">SƠN TRẦN<span>Máy Lọc Nước</span></a></h1>
                 </div>
@@ -58,7 +58,7 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="agile_banner_info">
-                <h3><span>C</span>hào  <span>M</span>ừng  <span>N</span>hà  <span>C</span>ung  Cấp   @tennhacungcap.nameFull </h3>
+                <h3><span>T</span>rang <span>N</span>hà  <span>C</span>ung  Cấp   @tennhacungcap.nameFull </h3>
             </div>
         </div>
     </div>
@@ -72,10 +72,10 @@
     </div>
     <style>
         .about {
-            background: url(../Content/NCC/all/images/5.jpg)no-repeat 0px 0px;
+            background-color:aquamarine;
             background-size: cover;
             padding: 0;
-            min-height: 800px;
+            min-height: 100px;
             position: relative;
             text-align: center;
             z-index: 999;
@@ -91,24 +91,32 @@
         <div class="agileits_services_grids">
             <ul id="flexiselDemo1">
                 @{
-                    var TopDanhGiaCao = db.f_DanhGiaCuaHang(ifnhacungcap.ToString());
+                    var TopDanhGiaCao = db.f_DanhGiaCuaHang(id.ToString());
                 }
-                @foreach (var topdanhGia in TopDanhGiaCao)
+                @if (TopDanhGiaCao == null)
                 {
-                    <li>
-                        <div class="agileits_services_grid" style="text-align:center;">
-                            <img src="@topdanhGia.anhsanpham1" style="width:100%;" />
-                            <h5 style="padding-top:2%;">Tên Sản Phẩm : @topdanhGia.tensp</h5>
-                            <p>Giá Sản Phẩm : @topdanhGia.gia  VNĐ</p>
-                            <a href="@Url.Action("Index","ChiTiet", new {id=topdanhGia.idSP})"><input type="submit" class="btn btn-danger" value="Xem" /></a>
-                        </div>
-                    </li>
+                    <h3>Không Có Sản Phẩm Nào </h3>
                 }
+                else
+                {
+                    foreach (var topdanhGia in TopDanhGiaCao)
+                    {
+                        <li>
+                            <div class="agileits_services_grid" style="text-align:center;">
+                                <img src="@topdanhGia.anhsanpham1" style="width:100%;" />
+                                <h5 style="padding-top:2%;">Tên Sản Phẩm : @topdanhGia.tensp</h5>
+                                <p>Giá Sản Phẩm : @topdanhGia.gia  VNĐ</p>
+                                <a href="@Url.Action("Index","ChiTiet", new {id=topdanhGia.idSP})"><input type="submit" class="btn btn-danger" value="Xem" /></a>
+                            </div>
+                        </li>
+                    }
+                }
+
             </ul>
         </div>
         <style>
             .banner {
-                background: url(../Content/NCC/all/images/4.jpg) no-repeat 0px 0px;
+                background-color:aquamarine;
                 background-size: cover;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
@@ -136,7 +144,7 @@
                         </div>
                     </div>
                 }
-                <div style="margin-left:40%;"> @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, tk = ifnhacungcap }));</div>
+                <div style="margin-left:40%;"> @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, id =id }));</div>
                 <div class="clearfix"> </div>
             </div>
         </div>

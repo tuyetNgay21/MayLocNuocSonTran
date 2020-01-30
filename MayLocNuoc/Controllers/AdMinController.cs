@@ -13,6 +13,10 @@ namespace MayLocNuoc.Controllers
         {
             return View();
         }
+        public ActionResult ErrorAdmin()
+        {
+            return View();
+        }
         public ActionResult NhaCungCap()
         {
             return View();

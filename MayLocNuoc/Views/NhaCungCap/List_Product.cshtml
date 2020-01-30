@@ -1,0 +1,58 @@
+﻿@using MayLocNuoc.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<sanpham>
+@{
+    ViewBag.Title = "List_Product";
+    Layout = "~/Views/NhaCungCap/Lay_out_DoanhThu.cshtml";
+}
+<div style="width:100%;">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("xemDoanhthu","NhaCungCap")">Doang Thu Tổng Quan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link  " href="@Url.Action("Product_In_Day_inMonth","NhaCungCap")">Theo Tháng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="@Url.Action("Product_To","NhaCungCap")">Sản Phẩm Yêu Cầu </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="@Url.Action("List_product","NhaCungCap")">Danh sách</a>
+        </li>
+    </ul>
+</div>
+<table class="table table-striped table-dark" style="text-align:center;">
+    <thead>
+        <tr>
+            <th scope="col">Ảnh Sản Phẩm</th>
+            <th scope="col">tên sản Phẩm</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Mã Giảm Giá</th>
+            <th scope="col">Ngày Đăng</th>
+            <th scope="col">Sử Lý</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var key in Model)
+        {
+            <tr>
+                <td style="width:25%;"><img src="@key.anhsanpham1" style="width:100%; height:30%;" /> </td>
+                <td>@key.tensp</td>
+                <td>@key.gia</td>
+                <td>@key.magiamgia</td>
+                <td>@key.ngaythem</td>
+                <td style="width:10%;">
+                    <a href="@Url.Action("Index","chiTiet", new {id=key.idSP})">Chi Tiết</a><br /><hr />
+                    <a href="@Url.Action("SuaProduct","NhaCungCap", new {ma=key.idSP})">Chỉnh sửa</a><br /><hr />
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<div style="margin-left:40%;"> @Html.PagedListPager(Model, Page => Url.Action("List_Product", new { Page }))</div>
+

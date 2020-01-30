@@ -64,7 +64,8 @@
                                 <input style="width:30%; height:30px; font-size:120%; border-radius:5px;" id="magiamgia" type="text" placeholder="Mã Giảm Giá" />
                                 <input class="btn btn-default" type="submit" id="kiemtracode" onclick="kiemtra()" value="Kiểm Tra">
                             </div>
-                            <div class="cart btn btn-block " style="background-color:#4cff00;" data-id="@sp.idSP" id="muaSanPham" >Mua</div>
+                            <div class="cart btn btn-block " style="background-color:#4cff00;" data-id="@sp.idSP" id="muaSanPham">Mua</div>
+                            <a href="~/NhaCungCap/Index?id=@db.sanphams.Where(m=>m.idSP==sp.idSP).FirstOrDefault().idIfncc">Xem Nhà Cung Cấp</a>
                             @if (save.taikhoan == null)
                             {
                                 <div id="taikhoanhienthi" style=" border: 1px solid black; display:block;padding:5%; margin:30px;">

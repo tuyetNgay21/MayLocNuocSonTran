@@ -1,17 +1,103 @@
-﻿
-@{
-    Layout = null;
-}
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Loi</title>
+    <title>Nhà Cung Cấp Máy Lọc Nước  </title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/NCC/all/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/NCC/all/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/NCC/all/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--fonts-->
+    <link href="//fonts.googleapis.com/css?family=Six+Caps" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--//fonts-->
 </head>
 <body>
-    <div style="background: -moz-radial-gradient(top center, ellipse farthest-corner, #f73c3c 91%, #000000 32%);">
-        <h1>404</h1>
-        <input type="submit" value="Home" />
+    <!-- banner -->
+    <div class="banner" id="home">
+        <div class="container">
+            <div class="header">
+                <div class="hainam_agile_logo">
+                    <h1><a href="@Url.Action("Index","Product")">SƠN TRẦN<span>Máy Lọc Nước</span></a></h1>
+                </div>
+                <div class="hainam_menu">
+                    <div class="mobile-nav-button">
+                        <div class="mobile-nav-button__line"></div>
+                        <div class="mobile-nav-button__line"></div>
+                        <div class="mobile-nav-button__line"></div>
+                    </div>
+                    <nav class="mobile-menu">
+                        <ul>
+                            <li class="active"><a href="@Url.Action("TrangChu","NhaCungCap")" class=" scroll">Home</a></li>
+                            <li><a href="@Url.Action("xemDoanhthu", "NhaCungCap")" class="scroll">Doanh Thu</a></li>
+                            <li><a href="@Url.Action("Info","NhaCungCap")" class="scroll">Thông Tin Bản Thân</a></li>
+                            <li><a href="@Url.Action("ThemSanPham","NhaCungCap")" class="scroll">Thêm Sản Phẩm</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="agile_banner_info">
+                <h3><span>C</span>hào  <span>M</span>ừng  <span>N</span>hà  <span>C</span>ung  Cấp </h3>
+            </div>
+        </div>
     </div>
+    <style>
+        .banner {
+             background-color:rgba(25, 228, 228, 0.71);
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            -ms-background-size: cover;
+            min-height: 770px;
+            position: relative;
+        }
+    </style>
+    <!-- //banner -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div class="container-fluid">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="footer-bottom wtrhee-agileinfo">
+        <div class="container">
+            <p class="col-md-6 copy">Máy Lọc Nước Sơn Trần  | Design  <a href="">HaiNam</a></p>
+            <div class=" col-md-3 top-hainamls">
+                <a href="#home" class="scroll"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>Lên Đầu Trang</a>
+            </div>
+        </div>
+    </div>
+    <!--//footer-->
+    <!-- js -->
+    <script type="text/javascript" src="~/Content/NCC/all/js/jquery-2.1.4.min.js"></script>
+
+
+    <!-- Navigation-JavaScript -->
+    <!-- menu -->
+    <script>
+        $(document).ready(function () {
+            $('.mobile-nav-button').on('click', function () {
+                $(".mobile-nav-button .mobile-nav-button__line:nth-of-type(1)").toggleClass("mobile-nav-button__line--1");
+                $(".mobile-nav-button .mobile-nav-button__line:nth-of-type(2)").toggleClass("mobile-nav-button__line--2");
+                $(".mobile-nav-button .mobile-nav-button__line:nth-of-type(3)").toggleClass("mobile-nav-button__line--3");
+
+                $('.mobile-menu').toggleClass('mobile-menu--open');
+                return false;
+            });
+        });
+    </script>
 </body>
 </html>

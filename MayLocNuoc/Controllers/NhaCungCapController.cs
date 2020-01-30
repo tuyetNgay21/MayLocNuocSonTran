@@ -13,11 +13,19 @@ namespace MayLocNuoc.Controllers
         mayLocNuocEntities db = new mayLocNuocEntities();
         // GET: NhaCungCap
         [HttpGet]
-        public ActionResult Index(string tk, int page = 1, int size = 9)
+        public ActionResult Index(string id ,int  page = 1, int size = 9)
         {
-            int TL = Convert.ToInt32(tk);
-            var model = db.sanphams.Where(m => m.idIfncc == TL).OrderBy(n => n.soluong).ToPagedList(page, size);
-            return View(model);
+            if (id == null)
+            {
+                return RedirectToAction("Error","Error1");
+            }
+            else
+            {
+                int TL = Convert.ToInt32(id);
+                ViewBag.id = TL;
+                var model = db.sanphams.Where(m => m.idIfncc == TL).OrderBy(n => n.soluong).ToPagedList(page, size);
+                return View(model);
+            }
         }
         public ActionResult TrangChu(int page = 1, int size = 9)
         {
@@ -69,6 +77,31 @@ namespace MayLocNuoc.Controllers
                 return View();
             }
         }
+
+        public ActionResult List_Product(int page = 1, int size = 9)
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                var sanpham = db.sanphams.Where(n => n.idIfncc == (db.NhaCungCaps.Where(m => m.taikhoan == save.taikhoan).FirstOrDefault().idIfncc)).OrderBy(l=>l.ngaythem).ToPagedList(page, size);
+                return View(sanpham);
+            }
+        }
+        public ActionResult History(int page = 1, int size = 9)
+        {
+            if (save.taikhoan == null || save.taikhoan == "")
+            {
+                return RedirectToAction("DN", "QuanTri");
+            }
+            else
+            {
+                var damua = db.F_LayRaSanPhamCuaNhaCungCapMaKhachDaLapDatThanhCong(save.taikhoan).ToList();
+                return View(damua);
+            }
+        }
         //san pham trong mot ngay trong thang
 
         public ActionResult Product_In_Day_inMonth(int? ngay, int? thang, int? nam)
@@ -82,6 +115,7 @@ namespace MayLocNuoc.Controllers
             }
             else
             {
+                
                 if ( thang == null || nam == null)
                 {
                     ViewBag.ngay = ngayhientai;
@@ -138,61 +172,6 @@ namespace MayLocNuoc.Controllers
                     return View();
                 }
               
-            }
-        }
-        public ActionResult Product_not_to()
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                return View();
-            }
-        }
-        public ActionResult RepComment()
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                return View();
-            }
-        }
-        public ActionResult chưathem1()
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                return View();
-            }
-        }
-        public ActionResult chưathem2()
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                return View();
-            }
-        }
-        public ActionResult chưathem3()
-        {
-            if (save.taikhoan == null || save.taikhoan == "")
-            {
-                return RedirectToAction("DN", "QuanTri");
-            }
-            else
-            {
-                return View();
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  

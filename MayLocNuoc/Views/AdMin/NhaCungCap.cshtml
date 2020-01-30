@@ -3,6 +3,28 @@
     ViewBag.Title = "NhaCungCap";
     Layout = "~/Views/AdMin/layOutAdMin.cshtml";
 }
+@using MayLocNuoc.Models;
+@{ 
+    mayLocNuocEntities db = new mayLocNuocEntities();
+    var taikhoan = db.accs.Where(n => n.daxoa == false).ToList();
+}
+<table cellpadding="2" cellspacing="1" border="1" style="text-align:center; width:100%;">
+    <tr>
+        <td width="9">Tài Khoản</td>
+        <td width="15">Mật Khẩu</td>
+        <td>Chức Vụ</td>
+        <td width="5">Email</td>
+        <td width="15">đã xóa</td>
+    </tr>
+    <tr>
+        @foreach (var key in taikhoan)
+        {
+            <td>@key.taikhoan</td>
+            <td>@key.matkhau</td>
+            <td>@key.chucvu</td>
+            <td>@key.email</td>
+            <td>@key.daxoa\</td>
+        }
 
-<h2>NhaCungCap</h2>
-
+    </tr>
+</table>

@@ -18,13 +18,10 @@
             <a class="nav-link active" href="@Url.Action("Evaluate_Product","NhaCungCap")">Đánh Giá</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("Product_not_to","NhaCungCap")">Sản Phẩm Chưa Giao</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link " href="@Url.Action("Product_To","NhaCungCap")">Sản Phẩm Yêu Cầu </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="@Url.Action("chưathem2","NhaCungCap")">chưa thêm2</a>
+            <a class="nav-link " href="@Url.Action("List_Product","NhaCungCap")">Danh sách</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="@Url.Action("chưathem3","NhaCungCap")">chưa thêm3</a>
@@ -44,7 +41,7 @@ else
 {
     <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
         <h1 style="text-align:center">Thống Kê Đánh Giá Tất Cả</h1>
-        <div id="DanhGiaSosao"></div>
+        <div id="DanhGiaSosao" style="width: 30em; height:30em;"></div>
     </div>
     <div class="col-lg-6 col-xs-12 col-md-6 col-sm-12" style="padding:20px;">
         <table border="1" cellpadding="5" cellspacing="5" width="100%">
@@ -84,7 +81,7 @@ else
         ]);
 
         // Optional; add a title and set the width and height of the chart
-        var options = { 'title': '', 'width': 800, 'height': 600 };
+        var options = { 'title': '' };
 
         // Display the chart inside the <div> element with id="piechart"
         var chart = new google.visualization.PieChart(document.getElementById('DanhGiaSosao'));

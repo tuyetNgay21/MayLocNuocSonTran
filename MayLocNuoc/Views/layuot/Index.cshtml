@@ -38,7 +38,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="@Url.Action("Index,Product")">
+                            <a class="navbar-brand" href="@Url.Action("Index","Product")">
                                 <h1>Sơn Trần</h1>
                             </a>
                         </div>
@@ -57,34 +57,41 @@
         </div>
         <div class="slider">
             <ul class="slider-main">
-                <li>
-                    <img src="../Content/CONTM/IMG_Product/03925163081487291_713017568811886_175939172947346396_n.jpg" />
-                    <div class="banner-w3ls">
-                        <h3>Bistro - Enjoy the Difference.</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tristique varius vulputate.</p>
-                    </div>
-                </li>
+
                 @{
                     var gioithieusanpham = db.gioithieux.Where(n => n.daxoa == false).ToList();
                     int gioithieu = 0;
                 }
-                @foreach (var k in gioithieusanpham)
+                @if (gioithieusanpham == null)
                 {
-                    if (gioithieu < 10)
+                    <li>
+                        <img src="../Content/CONTM/IMG_Product/03925163081487291_713017568811886_175939172947346396_n.jpg" />
+                        <div class="banner-w3ls">
+                            <h3>Chưa Có sản Phẩm Nào</h3>
+                            <p>Nhà Cung Cấp uy Tín Hàng Đầu</p>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    foreach (var k in gioithieusanpham)
                     {
-                        <li>
-                            <img src="@k.anh" />
-                            <div class="banner-w3ls">
-                                <h3>Bistro - Enjoy the Difference.</h3>
-                                <a href="@k.idSP"><input value="Xem" class="btn btn-success" /></a>
-                                <p>@k.cmoment</p>
-                            </div>
-                        </li>
-                        gioithieu++;
-                    }
-                    else
-                    {
-                        break;
+                        if (gioithieu < 10)
+                        {
+                            <li>
+                                <img src="@k.anh" />
+                                <div class="banner-w3ls">
+                                    <h3>@k.cmoment dsfjkhafkl</h3>
+                                    <p><a href="@k.idSP" class="btn btn-success">Xem</a></p>                                   
+                                </div>
+                            </li>
+                            gioithieu++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
                     }
 
                 }
@@ -175,31 +182,31 @@
                 <h4>Sản Phẩm Khác</h4>
                 <ul class="latest-pics ">
                     <li>
-                        <a href="~/Content/home/images/pic1.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic1.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic1.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic1.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic2.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic2.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic2.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic2.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic3.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic3.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic3.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic3.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic4.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic4.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic4.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic4.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic5.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic5.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic5.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic5.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic6.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic6.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic6.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic6.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic7.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic7.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic7.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic7.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic8.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic8.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic8.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic8.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                     <li>
-                        <a href="~/Content/home/images/pic9.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="~/Content/home/images/pic9.jpg " alt=" " class="img-responsive " /></a>
+                        <a href="../Content/home/images/pic9.jpg " class="lightninBox pic-w3ls " data-lb-group="2 "><img src="../Content/home/images/pic9.jpg " alt=" " class="img-responsive " /></a>
                     </li>
                 </ul>
             </div>
